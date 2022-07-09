@@ -8,7 +8,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           {routes.map((item) => {
-            const DefaultLayout = Fragment;
+            const DefaultLayout = item?.layout || Fragment;
             const Component = item.component;
             return (
               <Route
