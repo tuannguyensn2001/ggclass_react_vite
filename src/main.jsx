@@ -6,23 +6,21 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import CardCourse from "./components/CardCourse";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  // <React.StrictMode>
-  //   <QueryClientProvider
-  //     client={
-  //       new QueryClient({
-  //         defaultOptions: {
-  //           queries: {
-  //             refetchOnWindowFocus: false,
-  //           },
-  //         },
-  //       })
-  //     }
-  //   >
-  //     <App />
-  //   </QueryClientProvider>
-  // </React.StrictMode>  
-  <CardCourse/>
+  <React.StrictMode>
+    <QueryClientProvider
+      client={
+        new QueryClient({
+          defaultOptions: {
+            queries: {
+              refetchOnWindowFocus: false,
+            },
+          },
+        })
+      }
+    >
+      <App />
+    </QueryClientProvider>
+  </React.StrictMode>
 );
-
 
 //branch -> dev -> pull request -> merge
