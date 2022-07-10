@@ -10,24 +10,34 @@ import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
 import styles from './styles.module.css';
 
+const configs = [
+  {
+    text:'Thông tin cá nhân',
+    icon:PersonIcon
+  },
+  {
+    text:'Đăng xuất' ,
+    icon:LogoutIcon
+  }
+]
 export default function HeaderMenuUser( ) {
+
   return (
     <Paper className={styles.menu} sx={{ width: 320, maxWidth: '100%' }}>
         <MenuList>
-        <MenuItem>
-            <ListItemIcon>
-            <Avatar className={styles.user}>
-            <PersonIcon className={styles.user_icon}/>
-            </Avatar>
-            </ListItemIcon>
-            <ListItemText className={styles.text}>Thông tin cá nhân</ListItemText>
-        </MenuItem>
-        <MenuItem>
-        <Avatar className={styles.logout}>
-            <LogoutIcon  className={styles.logout_icon}/>
-            </Avatar>
-            <ListItemText className={styles.text}>Đăng xuất</ListItemText>
-        </MenuItem>
+          {configs.map((config,index)=>
+          (
+            <MenuItem>
+              <ListItemIcon>
+              <Avatar className={styles.user}>
+                <config.icon className={styles.user_icon}/>
+              </Avatar>
+              </ListItemIcon>
+              <ListItemText className={styles.text}>{config.text}</ListItemText>
+           </MenuItem>
+          )
+          )}
+        
         </MenuList>
     </Paper> 
   );
