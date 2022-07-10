@@ -1,16 +1,18 @@
 import Avatar from "@mui/material/Avatar";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
-import Tippy from "@tippyjs/react";
+import Tippy from "@tippyjs/react/headless";
 import "tippy.js/dist/tippy.css";
 
+import HeaderMenuUser from '~/components/HeaderMenuUser'
 import styles from "./styles.module.css";
+import HeaderBell from '~/components/HeaderBell'
+import HeaderUser from "~/components/HeaderUser";
 
 function HeaderRight() {
   return (
     <div className={styles.content_right_header}>
-      <a className={styles.update}>
+      {/* <a className={styles.update}> */}
         {/*<div>*/}
         {/*  <TrendingUpIcon*/}
         {/*    className={styles.icon}*/}
@@ -24,23 +26,9 @@ function HeaderRight() {
         {/*          <p className={styles.text_content}>Nâng cấp tài khoản cá nhân cao cấp</p>*/}
         {/*      </div>*/}
         {/*</div>*/}
-      </a>
-      <Tippy content="Thông báo">
-        <div className={styles.bell}>
-          <Avatar className={styles.bell_wrap} alt="Remy Sharp">
-            <NotificationsIcon className={styles.bell_icon} />
-          </Avatar>
-        </div>
-      </Tippy>
-      <div className={styles.user_wrap}>
-        <div className={styles.user}>
-          <Avatar src="~/assets/images/avatar_default.png" />
-          <div className={styles.user_name}>Cuong</div>
-          <div className={styles.user_action}>
-            <ArrowDropDownIcon fontSize="small" className={styles.icon_down} />
-          </div>
-        </div>
-      </div>
+      {/* </a> */}
+      <HeaderBell/>
+      <HeaderUser/>
     </div>
   );
 }

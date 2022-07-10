@@ -1,0 +1,10 @@
+.bell{
+    display: flex;
+    align-items: center;
+    margin-right:8px;
+    cursor: pointer;
+}
+.bell_wrap{
+    background-color: rgb(240, 242, 245)!important;
+    color: #1D2129!important;
+}
