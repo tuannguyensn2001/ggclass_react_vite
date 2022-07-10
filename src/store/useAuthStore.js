@@ -13,6 +13,12 @@ const useAuthStore = create()(
         }),
       isFetchedUser: false,
       isLoading: false,
+      logOut: () => {
+        set((state) => {
+          state.user = null;
+        });
+        localStorage.removeItem("accessToken");
+      },
       fetchUser: async () => {
         set((state) => {
           state.isLoading = true;

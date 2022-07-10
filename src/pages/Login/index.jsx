@@ -16,6 +16,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import API from "~/network/API";
 import useAuthStore from "~/store/useAuthStore";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -47,6 +48,8 @@ export default function SignInSide() {
 
   const setUser = useAuthStore((state) => state.setUser);
 
+  const navigate = useNavigate();
+
   const { mutate } = useMutation(
     "submit",
     async (data) => {
@@ -55,8 +58,9 @@ export default function SignInSide() {
     },
     {
       onSuccess(data) {
-        console.log(data);
+        localStorage.setItem("accessToken", data.data.accessToken);
         setUser(data.data.user);
+        navigate("/");
       },
     }
   );

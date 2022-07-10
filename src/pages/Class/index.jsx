@@ -1,5 +1,11 @@
+import CardCourse from "~/components/CardCourse";
+
 function Class() {
-  return <div>class</div>;
+  return (
+    <div>
+      <CardCourse />
+    </div>
+  );
 }
 
 export default Class;

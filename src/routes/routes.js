@@ -15,12 +15,12 @@ const routes = [
   {
     path: "/login",
     component: Login,
-    layout: DefaultLayout,
   },
   {
     path: "/class",
     component: Class,
     layout: DefaultLayout,
+    // private: true,
   },
   {
     path: "/resource",
