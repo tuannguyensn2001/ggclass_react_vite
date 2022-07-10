@@ -1,3 +1,63 @@
-.wrapper{
-  background-color: red;
+html {
+  font-family: 'Times New Roman', Times, serif;
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1.4;
+  color: black;
+  clear: both;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.img {
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+  border-radius: 10px;
+  width: 50%;
+}
+
+.introduce {
+  position: absolute;
+  margin: 30px;
+}
+
+.introduce:hover {
+  cursor: pointer;
+}
+
+.til {
+  padding: 15px 0 15px 23px;
+  position: absolute;
+  bottom: 7px;
+  border-radius: 0 0 10px 10px;
+  width: 50%;
+  background-color: white;
+  color: #000;
+  display: flex;
+  font-size: 14px;
+  justify-content: space-between;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.icon {
+  width: 38px;
+  padding: 7px;
+}
+
+.icon:hover { 
+  background-color: #ccc;
+  border-radius: 10px;
 }
