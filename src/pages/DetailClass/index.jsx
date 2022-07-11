@@ -1,9 +1,12 @@
 import { Outlet } from "react-router-dom";
+import SidebarClass from "~/components/SidebarClass";
 
 function DetailClass() {
   return (
     <div>
-      <div></div>
+      <div>
+        <SidebarClass />
+      </div>
       <div>
         <Outlet />
       </div>

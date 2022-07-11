@@ -33,7 +33,7 @@ const routes = [
     path: "/class/:id",
     component: DetailClass,
     layout: DefaultLayout,
-    private: true,
+    // private: true,
     children: [
       {
         path: "newsfeed",
