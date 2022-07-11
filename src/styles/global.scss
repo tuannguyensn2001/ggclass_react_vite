@@ -8,3 +8,7 @@
 *{
   font-family: 'Roboto', sans-serif;
 }
+
+.quill > .ql-toolbar:first-child {
+  display: none !important;
+}

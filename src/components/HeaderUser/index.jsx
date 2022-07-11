@@ -6,8 +6,7 @@ import "tippy.js/dist/tippy.css";
 import HeaderMenuUser from "~/components/HeaderMenuUser";
 import styles from "./styles.module.css";
 import useAuthStore from "~/store/useAuthStore";
-import { Link } from "react-router-dom";
-import Button from "@mui/material/Button";
+import avatarDefault from "~/assets/images/avatar_default.png";
 
 function HeaderUser() {
   const user = useAuthStore((state) => state.user);
@@ -22,7 +21,7 @@ function HeaderUser() {
       >
         <div className={styles.user_wrap}>
           <div className={styles.user}>
-            <Avatar src="~/assets/images/avatar_default.png" />
+            <Avatar src={avatarDefault} />
             <div className={styles.user_name}>
               {user?.username || "username"}
             </div>

@@ -17,6 +17,7 @@ import { useMutation } from "react-query";
 import API from "~/network/API";
 import useAuthStore from "~/store/useAuthStore";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Copyright(props) {
   return (
@@ -61,6 +62,7 @@ export default function SignInSide() {
         localStorage.setItem("accessToken", data.data.accessToken);
         setUser(data.data.user);
         navigate("/");
+        toast.success("Chào mừng bạn trở lại");
       },
     }
   );

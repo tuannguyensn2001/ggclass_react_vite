@@ -4,6 +4,7 @@ import App from "~/App";
 import "~/styles/global.scss";
 import { QueryClient, QueryClientProvider } from "react-query";
 import CardCourse from "./components/CardCourse";
+import { ConfirmProvider } from "material-ui-confirm";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -18,7 +19,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         })
       }
     >
-      <App />
+      <ConfirmProvider>
+        <App />
+      </ConfirmProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );

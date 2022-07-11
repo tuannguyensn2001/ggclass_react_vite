@@ -16,13 +16,13 @@ function Header() {
           <img src="https://shub.edu.vn/images/brand-blue.svg" alt="logo" />
         </div>
 
-        {!Boolean(user) && (
+        {Boolean(user) && (
           <>
             <HeaderContent />
             <HeaderRight />
           </>
         )}
-        {Boolean(user) && (
+        {!Boolean(user) && (
           <div className={"tw-h-[64px] tw-flex tw-flex-col tw-justify-center"}>
             <Link to={"/login"} className={"tw-no-underline"}>
               <Button variant={"contained"}>Đăng nhập</Button>

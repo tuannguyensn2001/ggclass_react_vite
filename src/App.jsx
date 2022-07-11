@@ -3,6 +3,8 @@ import { Suspense, Fragment, createElement, useEffect } from "react";
 import routes from "~/routes/routes";
 import useAuthStore from "~/store/useAuthStore";
 import AuthComposition from "~/components/AuthComposition";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const { fetchUser, isFetchedUser } = useAuthStore((state) => state);
@@ -35,7 +37,19 @@ function App() {
                         </DefaultLayout>
                       </>
                     }
-                  />
+                  >
+                    {Boolean(item?.children) && Array.isArray(item?.children) && (
+                      <>
+                        {item.children.map((child) => (
+                          <Route
+                            key={child.path}
+                            path={child.path}
+                            element={createElement(child.component)}
+                          />
+                        ))}
+                      </>
+                    )}
+                  </Route>
                 );
               })}
               )
@@ -44,6 +58,7 @@ function App() {
         </Suspense>
       )}
       {!isFetchedUser && <div>loading user</div>}
+      <ToastContainer position={"bottom-center"} />
     </>
   );
 }

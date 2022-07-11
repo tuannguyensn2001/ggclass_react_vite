@@ -11,6 +11,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import styles from "./styles.module.css";
 import { useMemo } from "react";
 import useAuthStore from "~/store/useAuthStore";
+import { toast } from "react-toastify";
 
 export default function HeaderMenuUser() {
   const logOut = useAuthStore((state) => state.logOut);
@@ -24,7 +25,10 @@ export default function HeaderMenuUser() {
       {
         text: "Đăng xuất",
         icon: LogoutIcon,
-        onClick: () => logOut(),
+        onClick: () => {
+          logOut();
+          toast.success("Đăng xuất thành công");
+        },
       },
     ];
   }, []);
