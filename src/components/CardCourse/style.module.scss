@@ -1,3 +1,42 @@
-.wrapper{
-  background-color: red;
+
+.img {
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+  border-radius: 10px;
+  width: 50%;
+}
+
+.introduce {
+  position: absolute;
+  margin: 30px;
+}
+
+.introduce:hover {
+  cursor: pointer;
+}
+
+.til {
+  padding: 15px 1px 15px 23px;
+  position: absolute;
+  bottom: 5px;
+  border-radius: 0 0 10px 10px;
+  width: 45%;
+  background-color: white;
+  color: #000;
+  display: flex;
+  font-size: 14px;
+  justify-content: space-between;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.icon {
+  width: 19px;
+  padding: 6px 26px;
+}
+
+.icon:hover { 
+  background-color: #ccc;
+  border-radius: 10px;
 }
