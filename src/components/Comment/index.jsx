@@ -1,7 +1,7 @@
 import styles from "./style.module.scss";
 
 function Comment() {
-  return <div className={styles.comment}>comment</div>;
+  return <div className={styles.comment}>comment 1234</div>;
 }
 
 export default Comment;
