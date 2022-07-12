@@ -5,7 +5,7 @@ function DetailClass() {
   return (
     <div>
       <div>
-        <SidebarClass />
+        {/*<SidebarClass />*/}
       </div>
       <div>
         <Outlet />
