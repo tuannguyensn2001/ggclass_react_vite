@@ -5,6 +5,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { createElement } from "react";
 import { useConfirm } from "material-ui-confirm";
+import Comment from "~/components/Comment";
 
 function Post() {
   const confirm = useConfirm();
@@ -67,6 +68,10 @@ function Post() {
       </div>
 
       <div className={"tw-mt-5"}>abc</div>
+
+      <div>
+        <Comment />
+      </div>
     </div>
   );
 }
