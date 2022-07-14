@@ -150,10 +150,14 @@
     top:3px;
     margin-right: 10px;
 }
-.date_text{
+.date_Picker{
     font-size: 14px;
     color: #202227;
     font-weight: 500;
+    padding:4px 8px;
+    cursor: pointer;
+    border:none;
+    outline: none;
 
 }
 .time{

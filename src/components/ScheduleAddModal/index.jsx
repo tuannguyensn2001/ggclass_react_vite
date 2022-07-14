@@ -10,6 +10,10 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
+import {useState} from 'react'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 import styles from './styles.module.css'
 
@@ -22,8 +26,8 @@ export default function ScheduleAddModal({children}) {
   const handleChange = (event) => {
     setAge(event.target.value);
   };
-  const [street,setStreet] = React.useState('offline');
-  const [title,setTitle] = React.useState('Offline');
+  const [street,setStreet] = useState('offline');
+  const [title,setTitle] = useState('Offline');
   const onClick = (e)=>{
     console.log(e.target)
     setStreet(e.target.name);
@@ -72,6 +76,7 @@ export default function ScheduleAddModal({children}) {
   ]
  
   console.log('street',street)
+  const [startDate, setStartDate] = useState(new Date());
 
   return (
           <div>
@@ -111,8 +116,8 @@ export default function ScheduleAddModal({children}) {
                         <div className={styles.date_icon}>
                           <AccessTimeIcon sx={{color: '#202227',fontSize:21}}/>
                         </div>
-                        <div className={styles.date_text}>
-                          18 tháng 7
+                        <div >
+                          <DatePicker className={styles.date_Picker} selected={startDate} onChange={(date=Date) => setStartDate(date)} />
                         </div>
                       </Button>
                       <Button className={styles.time}>Bắt đầu lúc 7:00</Button>
