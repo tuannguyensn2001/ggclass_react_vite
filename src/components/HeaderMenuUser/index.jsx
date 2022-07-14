@@ -13,7 +13,8 @@ import { useMemo } from "react";
 import useAuthStore from "~/store/useAuthStore";
 import { toast } from "react-toastify";
 
-export default function HeaderMenuUser() {
+export default function HeaderMenuUser({handleClick}) {
+
   const logOut = useAuthStore((state) => state.logOut);
 
   const configs = useMemo(() => {
@@ -21,11 +22,18 @@ export default function HeaderMenuUser() {
       {
         text: "Thông tin cá nhân",
         icon: PersonIcon,
+        onClick: ()=>{
+          console.log('click')
+          console.log('ref');
+          handleClick()
+          // ref.click();
+        }
       },
       {
         text: "Đăng xuất",
         icon: LogoutIcon,
         onClick: () => {
+          handleClick()
           logOut();
           toast.success("Đăng xuất thành công");
         },

@@ -31,6 +31,12 @@ const routes = [
     component: Resource,
     layout: DefaultLayout,
   },
+  ,
+      {
+        path: "/schedule",
+        component: Schedule,
+        layout: DefaultLayout,
+      },
   {
     path: "/class/:id",
     component: DetailClass,
@@ -40,11 +46,7 @@ const routes = [
       {
         path: "newsfeed",
         component: Newsfeed,
-      },
-      {
-        path: "schedule",
-        component: Schedule,
-      },
+      }
     ],
   },
   {

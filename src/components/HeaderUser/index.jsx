@@ -7,19 +7,24 @@ import HeaderMenuUser from "~/components/HeaderMenuUser";
 import styles from "./styles.module.css";
 import useAuthStore from "~/store/useAuthStore";
 import avatarDefault from "~/assets/images/avatar_default.png";
+import React from "react";
 
 function HeaderUser() {
   const user = useAuthStore((state) => state.user);
-
+  const refuser = React.useRef();
+  const handleClick = () => {
+      console.log(refuser.current)
+      refuser.current.click();
+  }
   return (
     <>
       <Tippy
         interactive
         trigger="click"
         placement="bottom-end"
-        render={() => <HeaderMenuUser />}
+        render={() => <HeaderMenuUser handleClick={handleClick} />}
       >
-        <div className={styles.user_wrap}>
+        <div className={styles.user_wrap} ref={refuser} >
           <div className={styles.user}>
             <Avatar src={avatarDefault} />
             <div className={styles.user_name}>

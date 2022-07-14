@@ -1,0 +1,10 @@
+.wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border-bottom: 1px solid #ccc; */
+}
+.table{
+    /* border: 2px solid #ccc; */
+}
+
