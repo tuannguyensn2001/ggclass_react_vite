@@ -4,7 +4,6 @@ import { useState } from "react";
 import Tippy from "@tippyjs/react/headless";
 import "tippy.js/dist/tippy.css";
 
-import ScheduleAddModal from "~/components/ScheduleAddModal";
 import ScheduleContentClassesItem from "~/components/ScheduleContentClassesItem";
 import ScheduleHeader from "~/components/ScheduleHeader";
 import ScheduletableHeaderItem from "~/components/ScheduletableHeaderItem";
@@ -126,7 +125,8 @@ const datas = [
                     item.children.map((child,index) =>
                     <Tippy
                     interactive
-                    offset={[16,-50]}
+                    offset={[73,-50]}
+                    placement='right'
                     render={() => <ScheduleDetailclasses />}
                   >
                     <div>
