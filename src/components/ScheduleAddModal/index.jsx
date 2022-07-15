@@ -17,9 +17,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import styles from './styles.module.css'
 
-export default function ScheduleAddModal({children}) {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+export default function ScheduleAddModal({children,isShow}) {
   const handleClose = () => setOpen(false);
   const [age, setAge] = React.useState('');
 
@@ -80,11 +78,11 @@ export default function ScheduleAddModal({children}) {
 
   return (
           <div>
-            <div onClick={handleOpen}>
+            <div >
             {children}  
             </div>
             <Modal
-              open={open}
+              open={isShow}
               onClose={handleClose}
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"

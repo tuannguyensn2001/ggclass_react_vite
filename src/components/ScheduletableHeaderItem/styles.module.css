@@ -3,19 +3,12 @@
     padding: 0;
     box-sizing: border-box;
 }
-.col_wrap{
-    width: 14.2857% ;
-    border-right: 1px solid #D8DCF0;
-}
-.col{
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
+
 .header_item{
     width: 100%;
     padding: 16px;
     border-bottom: 1px solid #D8DCF0;
+    /* margin-top: 40px; */
 }
 
 .header_item_top{

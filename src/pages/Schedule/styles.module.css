@@ -8,4 +8,28 @@ body {
 .wrap{
     height:100%;
     overflow:hidden;
+    border-left: 1px solid #D8DCF0;
+    border-bottom: 1px solid #D8DCF0;
+
+    /* border-bottom: 1px solid #D8DCF0; */
+    /* border-left: 1px solid #D8DCF0; */
+
+}
+.col{
+    display: flex;
+    flex-direction: column;
+    width:14.2857%;
+    border-right: 1px solid #D8DCF0;
+}
+.col_wrap{
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.noClasses{
+    font-size: 14px;
+    text-align: center;
+    margin-top:40px;
+    color:rgb(198, 194, 194);
+
 }
