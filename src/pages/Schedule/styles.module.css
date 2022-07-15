@@ -1,0 +1,18 @@
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+body {
+    min-height: 100%;
+}
+.wrap{
+    height:100%;
+    overflow:hidden;
+    border-left: 1px solid #D8DCF0;
+    border-bottom: 1px solid #D8DCF0;
+
+    /* border-bottom: 1px solid #D8DCF0; */
+    /* border-left: 1px solid #D8DCF0; */
+
+}
+
