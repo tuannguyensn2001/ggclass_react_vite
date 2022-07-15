@@ -1,0 +1,91 @@
+.wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    padding:16px;
+}
+.left{
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgb(216, 220, 240);
+}
+.button{
+    width: 120px;
+    height: 48px;
+    color: #202227;
+    font-size: 14px;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.54);
+    cursor: pointer;
+}
+.button.primary{
+    background: rgb(13, 71, 161);
+    color: white;
+
+}   
+.mid{
+    display: flex;
+    align-items: center;
+}
+.icon{
+    padding: 16px;
+    cursor: pointer;
+    font-size: 21px;
+    position: relative;
+    top:3px;
+}
+.content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: #202227;
+    
+}
+.day{
+    font-size: 14px;
+    font-weight: 600;
+}
+.back{
+    color:#1E88E5;
+    font-size:13px;
+    padding-top:8px;
+    cursor: pointer;
+    display:none;
+}
+.back.active{
+    display: block;
+}
+.right{
+    display: flex;
+    align-items: center;
+}
+.action_btn{
+    height: 48px;
+    box-sizing: border-box;
+    margin-right: 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.23);
+    padding: 5px 15px;
+    border-color: #D8DCF0;
+    display: flex;
+    align-items: center;
+
+}
+
+.text{
+    font-size: 14px;
+    color:#202227;
+    margin-left: 6px;
+    font-weight: 500;
+}
+.comment{
+    background: rgb(32, 34, 39);
+    color: white;
+    
+}
+.comment span{
+    color:white;       
+}
