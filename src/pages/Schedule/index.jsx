@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import styles from './styles.module.css'
 import ScheduleColTable from "~/components/ScheduleColTable";
+import ScheduleHeader from "~/components/ScheduleHeader";
 const datas = [
   {
       text: 'Thứ 2',
@@ -101,13 +102,16 @@ const datas = [
 
     function Schedule() {
       
-        return <div className={styles.wrap}>
-          <Grid container>
-            {datas.map((item, index) => {
-              return <ScheduleColTable key={index} item={item}/>
-            })}
-          </Grid>
-        </div>;
+        return (
+            <div className={styles.wrap}>
+                <ScheduleHeader/>
+                <Grid container>
+                    {datas.map((item, index) => {
+                    return <ScheduleColTable key={index} item={item}/>
+                    })}
+                </Grid>
+            </div>
+            );
     }
 
 export default Schedule;
