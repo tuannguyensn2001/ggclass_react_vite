@@ -2,12 +2,6 @@ import { Grid } from "@mui/material";
 import { Fragment } from "react";
 import { useState } from "react";
 
-
-import ScheduleHeader from "~/components/ScheduleHeader";
-
-
-
-
 import styles from './styles.module.css'
 import ScheduleColTable from "~/components/ScheduleColTable";
 const datas = [
@@ -108,7 +102,6 @@ const datas = [
     function Schedule() {
       
         return <div className={styles.wrap}>
-          <ScheduleHeader/>
           <Grid container>
             {datas.map((item, index) => {
               return <ScheduleColTable key={index} item={item}/>
