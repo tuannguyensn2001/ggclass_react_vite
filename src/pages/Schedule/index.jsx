@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import { useState } from "react";
 
 import styles from './styles.module.css'
+import Scheduleheader from '~/components/Scheduleheader'
 import ScheduleColTable from "~/components/ScheduleColTable";
 const datas = [
   {
@@ -102,6 +103,7 @@ const datas = [
     function Schedule() {
       
         return <div className={styles.wrap}>
+            <Scheduleheader/>
           <Grid container>
             {datas.map((item, index) => {
               return <ScheduleColTable key={index} item={item}/>
