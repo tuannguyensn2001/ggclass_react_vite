@@ -10,7 +10,7 @@ import ScheduleDetailclasses from '~/components/ScheduleDetailclasses'
 import styles from './styles.module.css'
 
 
-function ScheduleContentClassesItem({data}) {
+function ScheduleContentClassesItem({time,name,number}) {
   
    
     return (
@@ -19,18 +19,18 @@ function ScheduleContentClassesItem({data}) {
                     <div className={styles.header}>
                         <img src='https://shub.edu.vn/images/icons/schedule_offline.svg' alt='class' className={styles.img_class}/>
                         <div className={styles.time}>
-                            Bắt đầu: {data?.time ? data.time : ''}
+                            Bắt đầu: {time}
                         </div>
                     </div>  
                     <div className={styles.text}>
-                        {data?.name ? data.name : ''}
+                        {name}
                     </div>
                     <div className={styles.bottom}>
                         <div className={styles.img_checkP}>
                             <img src='https://shub.edu.vn/images/icons/user-check-white.svg' alt='check people'/>
                         </div>
                         <div className={styles.bottom_text}>
-                            Điểm danh: {data?.number ? data.number : ''}
+                            Điểm danh: {number}
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,10 @@ function ScheduleContentClassesItem({data}) {
     );
     }
     ScheduleContentClassesItem.propTypes = {
-        data: PropTypes.object
+        time: PropTypes.string,
+        name: PropTypes.string,
+        number: PropTypes.string,
+        
     }
 
 export default ScheduleContentClassesItem;

@@ -4,16 +4,16 @@ import PropTypes from 'prop-types';
 
 import styles from './styles.module.css'
 
-function ScheduletableHeaderItem({data}) {
+function ScheduletableHeaderItem({text,date}) {
 
 
     
     return (
                 <div className={styles.header_item}>
-                    <h6 className={styles.header_item_top}>{data?.text ? data.text :'' }</h6>
+                    <h6 className={styles.header_item_top}>{text}</h6>
                     <div className={styles.header_item_bottom}>
                         <div className={styles.date}>
-                            {data?.date ? data.date : ''}
+                            {date}
                         </div>
                         <div className={styles.add_icon_wrap}>
                             <div className={styles.add_icon}>
@@ -25,7 +25,8 @@ function ScheduletableHeaderItem({data}) {
     );
 }
 ScheduletableHeaderItem.propTypes ={
-    data : PropTypes.object
+    text : PropTypes.string,
+    date : PropTypes.string,
 }
 
 export default ScheduletableHeaderItem;

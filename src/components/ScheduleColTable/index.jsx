@@ -10,7 +10,7 @@ import ScheduleContentClassesItem from "~/components/ScheduleContentClassesItem"
 function ScheduleColTable({item}) {
     return (
         <div className={styles.col}>
-                <ScheduletableHeaderItem  data={item}/>
+                <ScheduletableHeaderItem text={item?.text}  date={item?.date} />
                 <div className={styles.col_wrap}>
                   {item?.children ? 
                     item.children.map((child,index) =>
@@ -22,7 +22,7 @@ function ScheduleColTable({item}) {
                         render={() => <ScheduleDetailclasses />}
                       >
                         <div>
-                           <ScheduleContentClassesItem data={child}/>
+                           <ScheduleContentClassesItem name={child?.name} time={child?.time} number={child?.number} />
                          </div>
                         </Tippy>
                     </Fragment>
