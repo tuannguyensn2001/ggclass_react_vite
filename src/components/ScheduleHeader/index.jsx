@@ -2,6 +2,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import DateRangeIcon from '@mui/icons-material/DateRange';
+import clsx from 'clsx'
 
 import styles from './styles.module.css'
 
@@ -12,7 +13,7 @@ function ScheduleHeader({data= defaultDatas}) {
     return (
         <div className={styles.wrapper}>
             <div className={styles.left}>
-                <button className={`${styles.button} ${styles.primary}`}>Tuần</button>
+                <button className={clsx(styles.button,styles.primary)}>Tuần</button>
                 <button className={`${styles.button}`}>Tháng</button>
             </div>
             <div className={styles.mid}>
@@ -36,7 +37,7 @@ function ScheduleHeader({data= defaultDatas}) {
                     <ContentCopyIcon sx={{fontSize : 20}}/>
                     <span className={styles.text}>Sao chép lịch</span>
                 </div>
-                <div className={`${styles.action_btn} ${styles.comment}`}>
+                <div className={clsx(styles.action_btn,styles.comment)}>
                     <DateRangeIcon sx={{fontSize : 20}}/>
                     <span className={styles.text}>Nhận xét</span>
                 </div>

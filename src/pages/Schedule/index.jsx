@@ -1,16 +1,15 @@
 import { Grid } from "@mui/material";
 import { Fragment } from "react";
 import { useState } from "react";
-import Tippy from "@tippyjs/react/headless";
-import "tippy.js/dist/tippy.css";
 
-import ScheduleContentClassesItem from "~/components/ScheduleContentClassesItem";
+
 import ScheduleHeader from "~/components/ScheduleHeader";
-import ScheduletableHeaderItem from "~/components/ScheduletableHeaderItem";
+
+
 
 
 import styles from './styles.module.css'
-import ScheduleDetailclasses from "~/components/ScheduleDetailclasses";
+import ScheduleColTable from "~/components/ScheduleColTable";
 const datas = [
   {
       text: 'Thứ 2',
@@ -108,37 +107,11 @@ const datas = [
 
     function Schedule() {
       
-        const [showModal,setShowModal] = useState(false);
-        const handleOpenModal = ()=>{
-          setShowModal(open);
-        }
-      
-
         return <div className={styles.wrap}>
           <ScheduleHeader/>
           <Grid container>
             {datas.map((item, index) => {
-              return <div className={styles.col}>
-                <ScheduletableHeaderItem  data={item}/>
-                <div className={styles.col_wrap}>
-                  {item.children && item.children.length >0 ? 
-                    item.children.map((child,index) =>
-                    <Tippy
-                    interactive
-                    offset={[73,-50]}
-                    placement='right'
-                    render={() => <ScheduleDetailclasses />}
-                  >
-                    <div>
-                       <ScheduleContentClassesItem/>
-                     </div>
-                    </Tippy>
-                    )
-                    : 
-                    <div className={styles.noClasses}>Không có lịch học</div>
-                  }
-                </div>
-              </div>
+              return <ScheduleColTable key={index} item={item}/>
             })}
           </Grid>
         </div>;

@@ -2,19 +2,15 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Tippy from "@tippyjs/react/headless";
 import { Fragment } from 'react';
 import "tippy.js/dist/tippy.css";
+import PropTypes from 'prop-types';
 
 import ScheduleDetailclasses from '~/components/ScheduleDetailclasses'
 
 
 import styles from './styles.module.css'
-const defaultDatas = {
-                 time: '7:00',
-                name: 'Học lập trình',
-                number: '9/9'
-} ;
 
 
-function ScheduleContentClassesItem({data = defaultDatas}) {
+function ScheduleContentClassesItem({data}) {
   
    
     return (
@@ -23,24 +19,26 @@ function ScheduleContentClassesItem({data = defaultDatas}) {
                     <div className={styles.header}>
                         <img src='https://shub.edu.vn/images/icons/schedule_offline.svg' alt='class' className={styles.img_class}/>
                         <div className={styles.time}>
-                            Bắt đầu: {data.time}
+                            Bắt đầu: {data?.time ? data.time : ''}
                         </div>
                     </div>  
                     <div className={styles.text}>
-                        {data.name}
+                        {data?.name ? data.name : ''}
                     </div>
                     <div className={styles.bottom}>
                         <div className={styles.img_checkP}>
                             <img src='https://shub.edu.vn/images/icons/user-check-white.svg' alt='check people'/>
                         </div>
                         <div className={styles.bottom_text}>
-                            Điểm danh: {data.number}
+                            Điểm danh: {data?.number ? data.number : ''}
                         </div>
                     </div>
                 </div>
             </div>
     );
     }
-        
+    ScheduleContentClassesItem.propTypes = {
+        data: PropTypes.object
+    }
 
 export default ScheduleContentClassesItem;
