@@ -10,6 +10,7 @@
     color:#202227;
     margin-right: 16px;
     transition-delay: 0.08s;
+    text-decoration: none;
 }
 
 
@@ -39,10 +40,11 @@
 }
 .footer{
     border-top: 1px solid #D8DCF0;
-    background-color:rgb(177, 162, 162);
     padding:16px 16px;
+    border-radius: 0;
+    background-color:#fff;
 
 }
 .footer:hover{
-    background-color:rgb(177, 162, 162);
+    background-color:#fff;
 }

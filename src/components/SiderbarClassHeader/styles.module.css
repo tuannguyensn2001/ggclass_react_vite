@@ -12,15 +12,17 @@
     align-items: center;
 }
 .header_icon{
-    font-size: 14px;
     cursor: pointer;
-    background-color: #ccc;
-    padding: 0 12px;
+    background-color: rgba(69, 69, 69, 0.6);
+    padding: 0 14px;
     border-radius: 100px;
 }
 .icon{
     position: relative;
     top:2px;
+    font-size: 16px;
+    color:#fff;
+
 }
 .class_code{
     color:#333;

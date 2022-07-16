@@ -23,7 +23,6 @@ function HeaderContent() {
 
     return result?.to;
   }, [location]);
-
   return (
     <div className={styles.wrap}>
       {config.map((item) => (
