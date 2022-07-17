@@ -6,6 +6,7 @@ function DetailClass() {
     <div>
       <div>
         {/*<SidebarClass />*/}
+        <SidebarClass />
       </div>
       <div>
         <Outlet />

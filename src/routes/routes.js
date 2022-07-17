@@ -16,7 +16,7 @@ const routes = [
     component: Home,
     layout: DefaultLayout,
   },
- 
+
   {
     path: "/login",
     component: Login,
@@ -25,7 +25,7 @@ const routes = [
     path: "/class",
     component: Class,
     layout: DefaultLayout,
-    private: false,
+    private: true,
   },
   {
     path: "/resource",
@@ -36,7 +36,7 @@ const routes = [
     path: "/class/:id",
     component: DetailClass,
     layout: DefaultLayout,
-    // private: true,
+    private: true,
     children: [
       {
         path: "newsfeed",
