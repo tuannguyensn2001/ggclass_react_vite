@@ -7,9 +7,8 @@ import styles from "./styles.module.css";
 import ScheduletableHeaderItem from "~/components/ScheduletableHeaderItem";
 import ScheduleDetailclasses from "~/components/ScheduleDetailclasses";
 import ScheduleContentClassesItem from "~/components/ScheduleContentClassesItem";
-function ScheduleColTable({ item, addSchedule, week }) {
-  const text = useMemo(() => {}, [week]);
 
+function ScheduleColTable({ item, addSchedule }) {
   return (
     <div className={styles.col}>
       <ScheduletableHeaderItem
@@ -44,6 +43,7 @@ function ScheduleColTable({ item, addSchedule, week }) {
     </div>
   );
 }
+
 ScheduleColTable.propTypes = {
   item: PropTypes.object,
 };
