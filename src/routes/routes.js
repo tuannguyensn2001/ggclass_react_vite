@@ -8,6 +8,7 @@ const DetailClass = lazy(() => import("~/pages/DetailClass"));
 const Newsfeed = lazy(() => import("~/pages/Newsfeed"));
 const AddHomework = lazy(() => import("~/pages/AddHomework"));
 const Schedule = lazy(() => import("~/pages/Schedule"));
+const Member = lazy(() => import("~/pages/Member"));
 import DefaultLayout from "~/layout/Default";
 
 const routes = [
@@ -25,7 +26,7 @@ const routes = [
     path: "/class",
     component: Class,
     layout: DefaultLayout,
-    private: true,
+    private: false,
   },
   {
     path: "/resource",
@@ -36,7 +37,7 @@ const routes = [
     path: "/class/:id",
     component: DetailClass,
     layout: DefaultLayout,
-    private: true,
+    private: false,
     children: [
       {
         path: "newsfeed",
@@ -45,6 +46,10 @@ const routes = [
       {
         path: "schedule",
         component: Schedule,
+      },
+      {
+        path: "member",
+        component: Member,
       },
     ],
   },

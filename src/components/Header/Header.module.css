@@ -3,10 +3,12 @@
 /*    padding:0;*/
 /*}*/
 .container{
-    padding:0 24px;
+    /*padding:0 24px;*/
     border-bottom:1px solid #ccc;
     text-align: center;
     height:64px;
+    @apply tw-fixed tw-w-full tw-bg-white;
+    z-index: 99;
 }
 .wrap{
     display:flex;

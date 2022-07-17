@@ -8,7 +8,7 @@ function DetailClass() {
         {/*<SidebarClass />*/}
         <SidebarClass />
       </div>
-      <div>
+      <div className={"tw-ml-[240px]"}>
         <Outlet />
       </div>
     </div>
