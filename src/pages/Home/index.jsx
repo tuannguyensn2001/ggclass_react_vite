@@ -1,7 +1,10 @@
+import SidebarClass from "~/components/SidebarClass";
+
 function Home() {
   return (
     <div>
-      <div>home</div>
+      <div></div>
+      <SidebarClass/>
     </div>
   );
 }

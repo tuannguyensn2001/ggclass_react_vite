@@ -1,0 +1,36 @@
+.header{
+    padding:16px;
+}
+.header_name{
+    font-size: 14px;
+    margin-bottom:12px;
+    color:#202227;
+    font-weight: 500;
+}
+.header_class{
+    display: flex;
+    align-items: center;
+}
+.header_icon{
+    cursor: pointer;
+    background-color: rgba(69, 69, 69, 0.6);
+    padding: 0 14px;
+    border-radius: 100px;
+}
+.icon{
+    position: relative;
+    top:2px;
+    font-size: 16px;
+    color:#fff;
+
+}
+.class_code{
+    color:#333;
+    font-size: 14px;
+    margin-left: 8px;
+
+}
+.code{
+    color:#202227;
+    font-weight: 500;
+}

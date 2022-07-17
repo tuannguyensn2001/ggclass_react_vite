@@ -16,6 +16,7 @@ const routes = [
     component: Home,
     layout: DefaultLayout,
   },
+ 
   {
     path: "/login",
     component: Login,
