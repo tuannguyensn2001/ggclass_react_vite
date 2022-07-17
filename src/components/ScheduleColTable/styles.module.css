@@ -3,12 +3,31 @@
     flex-direction: column;
     width:14.2857%;
     border-right: 1px solid #D8DCF0;
+    
 }
 .col_wrap{
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    height: calc(100vh - 64px - 95px - 130px);
+    overflow-y: hidden;
+    scrollbar-gutter: stable both-edges;
 }
+.col_wrap:hover{
+    overflow-y: auto;
+}
+.col_wrap::-webkit-scrollbar{
+    position:sticky;
+    transition: 2s;
+    width: 6px;
+    height:10px;
+    background-color:#ccc;
+    border-radius: 100vh;
+    background: #bbbcbd
+    /* background-image: linear-gradient(135deg, #989f9d 0%, rgba(195, 210, 212, 0.5) 72%, rgba(179, 221, 232, 0.3) 100%); */
+}
+.col_wrap::-webkit-scrollbar-track {
+    height: 12px;
+  }
 .noClasses{
     font-size: 14px;
     text-align: center;

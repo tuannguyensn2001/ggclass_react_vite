@@ -7,7 +7,7 @@ import ScheduleColTable from "~/components/ScheduleColTable";
 import ScheduleHeader from "~/components/ScheduleHeader";
 import dayjs from "~/packages/dayjs";
 
-const datas = [
+const dates = [
   {
     text: "Thứ 2",
     date: "19/7",
@@ -110,7 +110,7 @@ function Schedule() {
     setIsOpenModal(true);
   };
 
-  const dates = useMemo(() => {}, []);
+  // const dates = useMemo(() => {}, []);
 
   const [week, setWeek] = useState(() => {
     return dayjs().week();
