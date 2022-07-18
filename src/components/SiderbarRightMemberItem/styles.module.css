@@ -1,0 +1,53 @@
+
+.accept{
+    width: 100%;
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: unset;
+    border: 1px solid #1E88E5;
+    margin: 8px 0;
+    height:40px;
+}
+.refuse{
+    width: 100%;
+    background-color:rgb(221, 216, 216);
+    color:#202227;
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: unset;
+    margin: 8px 0;
+    height:40px;
+
+}
+.refuse:hover{
+    background-color:rgba(221, 216, 216,0.8);
+
+}
+.user_wrap{
+    margin-bottom: 20px;
+}
+.user{
+    display: flex;
+    align-items: center;
+}
+.avatar{
+}
+.name{
+    font-size: 14px;
+    color:#202227;
+    font-weight: 500;
+    margin-left: 8px;
+}
+.action{
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.ml{
+    margin-left: 6px;
+}
+.small{
+    height:30px;
+    margin: 0 8px;
+}

@@ -1,0 +1,68 @@
+.wrap{
+    width:280px;
+    border: 1px solid #ccc;
+    position:fixed;
+    padding:16px;
+    right:0;
+    height:calc(100vh - 64px );
+}
+.content{
+}
+.header{
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+.info{
+}
+.all{
+    margin-bottom: 20px;
+}
+.accept{
+    width: 100%;
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: unset;
+    border: 1px solid #1E88E5;
+    margin: 8px 0;
+    height:40px;
+}
+.refuse{
+    width: 100%;
+    background-color:rgb(221, 216, 216);
+    color:#202227;
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: unset;
+    margin: 8px 0;
+    height:40px;
+
+}
+.refuse:hover{
+    background-color:rgba(221, 216, 216,0.8);
+
+}
+.listUser{
+    height:calc(100vh - 208px);
+    overflow-y: hidden;
+    scrollbar-gutter: stable both-edges;
+}
+.listUser:hover{
+    overflow-y: auto;
+    
+}
+.listUser::-webkit-scrollbar{
+    width:8px;
+    background-color:#ccc;
+    height:16px;
+}
+.noStudent{
+    font-size: 12.5px;
+    color: #5b5d63;
+}
+.primary{
+    color:     #1E88E5;
+    font-weight: 500;   
+    margin-left: 2px;
+
+}

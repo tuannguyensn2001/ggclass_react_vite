@@ -1,5 +1,7 @@
+import SiderbarRightMember from "~/components/SiderbarRightMember";
+
 function Member() {
-  return <div>member</div>;
+  return <SiderbarRightMember/>;
 }
 
 export default Member;
