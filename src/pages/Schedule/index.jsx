@@ -99,7 +99,6 @@ const dates = [
   {
     text: "Chủ nhật",
     date: "19/7",
-    children: [],
   },
 ];
 
