@@ -1,0 +1,54 @@
+.box{
+    border-radius: 20px;
+    padding:24px;
+    border:none;
+    outline: none;
+}
+.header{
+    font-size: 18px;  
+    color:#202227;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.input{
+    width: 100%;
+    font-size: 14px;
+    margin: 16px 0;
+
+}   
+
+.footer{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content:flex-end;
+}
+.button{
+    min-width: 100px;
+    height: 40px;
+    border:none;
+    outline: none;
+    border-radius: 6px;
+    color: rgba(0, 0, 0, 0.26);
+    background-color: rgba(0, 0, 0, 0.12);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    padding:4px 16px;
+    margin: 0 4px;
+    opacity: 0.8;
+
+}
+.button.cancel{
+    color:#202227;
+
+}
+.button.active{
+    background-color:#1E88E5;
+    color:#fff;
+}
+.button:hover{
+    opacity: 1;
+    transition: linear 0.1s;
+}
