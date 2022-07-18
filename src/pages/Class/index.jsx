@@ -17,7 +17,7 @@ function Class() {
 
   return (
     <div>
-      <div className={"tw-grid tw-grid-cols-6 tw-gap-5 tw-mt-10"}>
+      <div className={"tw-grid tw-grid-cols-2 tw-gap-5 tw-mt-10"}>
         {activeClass.map((item) => (
           <CardCourse
             id={item?.id}

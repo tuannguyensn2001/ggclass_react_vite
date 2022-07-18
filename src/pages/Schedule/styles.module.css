@@ -6,11 +6,12 @@ body {
     min-height: 100%;
 }
 .wrap{
-    height:100%;
-    overflow:hidden;
-    border-left: 1px solid #D8DCF0;
-    border-bottom: 1px solid #D8DCF0;
-    position:fixed;
     height:calc(100vh - 64px);
+    overflow:hidden;
+    border-bottom: 1px solid #D8DCF0;
+    border-right: 1px solid #D8DCF0;
+    position:fixed;
+    width: calc(100% - 242px);
+    margin-right: 1px;
 }
 
