@@ -26,7 +26,7 @@ const routes = [
     path: "/class",
     component: Class,
     layout: DefaultLayout,
-    private: false,
+    private: true,
   },
   {
     path: "/resource",

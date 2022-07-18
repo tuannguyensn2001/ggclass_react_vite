@@ -6,6 +6,7 @@ import styles from "./styles.module.css";
 import ScheduleColTable from "~/components/ScheduleColTable";
 import ScheduleHeader from "~/components/ScheduleHeader";
 import dayjs from "~/packages/dayjs";
+import useWeek from "~/hooks/useWeek";
 
 const dates = [
   {
@@ -110,20 +111,40 @@ function Schedule() {
     setIsOpenModal(true);
   };
 
+<<<<<<< HEAD
   // const dates = useMemo(() => {}, []);
+=======
+  const { week, increaseWeek, decreaseWeek, backToNow, currentWeek } =
+    useWeek();
+>>>>>>> 2cf10c39d5aa47aeccbe16e8a66b99572656918c
 
-  const [week, setWeek] = useState(() => {
-    return dayjs().week();
-  });
+  const dates = useMemo(() => {
+    const [start] = currentWeek;
+    const result = [
+      {
+        date: start.format("DD/MM"),
+      },
+    ];
+    for (let i = 1; i <= 6; i++) {
+      result.push({
+        date: start.add(i, "day").format("DD/MM"),
+      });
+    }
+    return result;
+  }, [currentWeek]);
 
   return (
     <div className={styles.wrap}>
-      <ScheduleHeader />
+      <ScheduleHeader
+        handleClickBackNow={backToNow}
+        handleClickPreviousWeek={decreaseWeek}
+        handleClickNextWeek={increaseWeek}
+        currentWeek={currentWeek}
+      />
       <Grid container>
         {dates?.map((item, index) => {
           return (
             <ScheduleColTable
-              week={week}
               addSchedule={handleOpenModal}
               key={index}
               item={item}
