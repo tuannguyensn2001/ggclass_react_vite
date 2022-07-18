@@ -1,0 +1,58 @@
+Prefix: http://localhost:7000/api
+Bat server:
+- Chay command
+- Switch disk (F:)
+- cd folder ggclass_react_vite/server
+- main server
+
+API create class:
+- url: /v1/classes
+- method: post
+- request:
+    - name: string
+    - description: string
+- response:
+    - message: string
+    - data:
+        - id: int
+        - name: string
+        - description: string
+        - room: string
+        - topic: string
+        - code: string
+        - createdBy: int
+        - createdAt: timestamp
+        - updatedAt: timestamp
+
+API register:
+- url: /v1/auth/register
+- method: post
+- request:
+    - email : string
+    - username: string
+    - password: string
+- response:
+    - message: string
+    - data:
+        - id: int
+        - username:string
+        - email : string
+        - createdAt: timestamp
+        - updatedAt: timestamp
+
+API login:
+- url: /v1/auth/login
+- method: post
+- request:
+    - email : string
+    - password : string
+- response:
+    - message: string
+    - data:
+        - accessToken string
+        - user:
+            - id int
+            - username string
+            - email string
+            - createdAt timestamp
+            - updatedAt timestamp
