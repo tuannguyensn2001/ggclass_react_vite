@@ -30,19 +30,19 @@ function Member() {
   const [isOpenModalDelete,setIsOpenModalDelete] = useState(false);
   const handleOpenAddModal =()=>{
     setOpenAddModal(true)
-  } 
+  }
   const handleCloseAddModal =()=>{
     setOpenAddModal(false)
   }
   const handleOpenModalEdit=()=>{
     setIsOpenModalEdit(true)
-  } 
+  }
   const handleCloseModalEdit=()=>{
     setIsOpenModalEdit(false)
   }
   const handleOpenModalDelete=()=>{
     setIsOpenModalDelete(true)
-  } 
+  }
   const handleCloseModalDelete=()=>{
     setIsOpenModalDelete(false)
   }
@@ -53,9 +53,9 @@ function Member() {
         </div>
         <MemberTableHeader handleOpenAddModal={handleOpenAddModal} />
         <MemberTableContentHeader />
-            {data.map((item, index) => 
+            {data.map((item, index) =>
                 <MemberTableContentItem
-                key={index} 
+                key={index}
                 avatar={item?.avatar}
                 name={item?.name}
                 classes={item?.classes}
