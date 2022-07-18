@@ -19,6 +19,7 @@ const defaultData = [
         name:'Võ Mạnh Cường',
         avatar:''
     }
+    
 ]
 function SiderbarRightMember({data=defaultData}) {
     return (

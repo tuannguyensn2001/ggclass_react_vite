@@ -13,6 +13,17 @@
 .table{
     width: calc(100% - 280px);
 }
+.listStudent{
+    height:calc(100vh - 270px);
+    overflow-y: auto;
+}
+.listStudent::-webkit-scrollbar{
+    width: 6px;
+    height:10%;
+}
+.listStudent::-webkit-scrollbar-thumb{
+    background-color: #dde0e8;
+}
 .header{
         font-size: 14px;
         color:#202227;

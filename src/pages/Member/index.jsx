@@ -18,13 +18,7 @@ const data = [
         classes: '8',
         phone: '096875450',
     },
-    {
-        avatar: '',
-        name: 'Võ Mạnh Cường',
-        school: 'Đại học xyz',
-        classes: '8',
-        phone: '096875450',
-    },
+    
 ];
 
 function Member() {
@@ -52,6 +46,7 @@ function Member() {
                     <div className={styles.table}>
                         <MemberTableHeader handleOpenAddModal={handleOpenAddModal} />
                         <MemberTableContentHeader />
+                        <div className={styles.listStudent}>
                         {data.map((item, index) => (
                             <MemberTableContentItem
                                 key={index}
@@ -64,6 +59,7 @@ function Member() {
                                 handleOpenModalDelete={handleOpenModalDelete}
                             />
                         ))}
+                        </div>
                         <MemberModalAddStudent
                             openAddModal={openAddModal}
                             handleCloseAddModal={handleCloseAddModal}

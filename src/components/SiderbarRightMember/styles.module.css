@@ -1,6 +1,6 @@
 .wrap{
     width:280px;
-    border: 1px solid #ccc;
+    border-left: 1px solid rgb(216, 220, 240);
     position:fixed;
     padding:16px;
     right:0;
