@@ -1,0 +1,31 @@
+
+.cover_input {
+    display: flex;
+    flex-direction: row;
+    margin: 16px 0;
+}
+
+.avatar {
+    width: 38px;
+}
+
+.img {
+    width: inherit;
+    border-radius: 50%;
+}
+
+.input {
+    width: 100%;
+    margin-left: 10px;
+}
+
+.input_text {
+    padding: 8px 10px;
+    border-radius: 20px;
+    border: 1px solid #cccccc8a;
+    width: inherit;
+}
+
+::placeholder {
+    color: #cccccc8a;
+}
