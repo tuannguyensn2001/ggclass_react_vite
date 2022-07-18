@@ -10,10 +10,11 @@ export default function useWeek() {
 
   const currentWeek = useMemo(() => {
     const day = dayjs().weekday(7 * week);
-
+    console.log('day',day);
     return [day.startOf("isoWeek"), day.endOf("isoWeek")];
   }, [week]);
-
+  console.log('currentWeek',currentWeek)
+  console.log('week',week)
   return {
     week,
     increaseWeek,

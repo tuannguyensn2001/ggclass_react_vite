@@ -111,12 +111,8 @@ function Schedule() {
     setIsOpenModal(true);
   };
 
-<<<<<<< HEAD
-  // const dates = useMemo(() => {}, []);
-=======
   const { week, increaseWeek, decreaseWeek, backToNow, currentWeek } =
     useWeek();
->>>>>>> 2cf10c39d5aa47aeccbe16e8a66b99572656918c
 
   const dates = useMemo(() => {
     const [start] = currentWeek;
@@ -132,7 +128,7 @@ function Schedule() {
     }
     return result;
   }, [currentWeek]);
-
+  console.log('date',dates)
   return (
     <div className={styles.wrap}>
       <ScheduleHeader
