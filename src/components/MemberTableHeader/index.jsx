@@ -4,6 +4,7 @@ import LocalPrintshopIcon from '@mui/icons-material/LocalPrintshop';
 import PropTypes from 'prop-types'
 
 import styles from './styles.module.css'
+import { TextField } from '@mui/material';
 
 function MemberTableHeader({handleOpenAddModal = ()=>{}}) {
     return (
@@ -18,7 +19,12 @@ function MemberTableHeader({handleOpenAddModal = ()=>{}}) {
                 </div>
             </div>
             <div className={styles.table_header_mid}>
-              <input type="text" placeholder="Nhập và nhấn enter để tìm kiếm" className={styles.table_header_mid_input}/>
+              <TextField  
+              inputProps={{className:styles.table_header_mid_input}} 
+              fullWidth 
+              type="text" 
+              placeholder="Nhập và nhấn enter để tìm kiếm"
+              />
               <div className={styles.table_header_mid_button}>
                 <SearchIcon sx={{fontSize:20}}/>
               <div className={styles.table_header_mid_text}>Tìm kiếm</div>
