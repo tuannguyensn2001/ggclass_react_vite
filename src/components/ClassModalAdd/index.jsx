@@ -10,9 +10,18 @@ import CloseIcon from '@mui/icons-material/Close';
 import TextField from '@mui/material/TextField';
 import clsx from 'clsx';
 import PropTypes from 'prop-types'
+import { useForm } from "react-hook-form";
+import API from "~/network/API";
 
- function MemberModalAddStudent({openAddModal=false,handleCloseAddModal=()=>{}}) {
 
+ function ClassModalAdd({openAddModal=false,handleCloseAddModal=()=>{},subMitForm}) {
+
+
+  const {
+    register,
+    handleSubmit,
+    reset 
+  } = useForm();
   const style = {
     position: 'absolute',
     top: '50%',
@@ -23,38 +32,47 @@ import PropTypes from 'prop-types'
     boxShadow: 24,
     p: 4,
   };
+  
+
+ 
+  const submit =(data) => {
+    console.log('data',register('name').name)
+      reset({
+        name:'',
+        description:'',
+    })
+    handleCloseAddModal();
+    subMitForm(data);
+  }
   return (
     <div>
       <Modal
         open={openAddModal}
-        // onClose={handleCloseAddModal}  
+        onClose={handleCloseAddModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style} className={styles.box}>
+        <Box sx={style} className={styles.box} component="form"  noValidate onSubmit={handleSubmit(submit)}>
           <div className={styles.header}>
-            <div className={styles.header_text}>Thêm học sinh vào lớp</div>
+            <div className={styles.header_text}>Thêm lớp học mới</div>
             <div className={styles.close}>
                 <CloseIcon onClick={handleCloseAddModal}  sx={{fontSize:21,margin:'auto',color:'rgba(0, 0, 0, 0.54)'}}/>
             </div>
           </div>
-          <div className={styles.text}>Học sinh được giáo viên thêm vào lớp sẽ không cần nhập mã bảo vệ và phê duyệt</div>
           <div className={styles.content}>
-            <TextField className={styles.input}  id="outlined-basic" label="Số điện thoại đăng nhập của học sinh" variant="outlined" />
-            <div className={styles.or}>Hoặc</div>
-            <TextField className={styles.input} id="outlined-basic" label="ID học sinh từ sở giáo dục" variant="outlined" />
+            <TextField {...register('name')} name="name"  className={styles.input}  id="outlined-basic" label="Tên lớp học" variant="outlined" />
+            <TextField {...register('description')} name="description" className={styles.input} id="outlined-basic" label="Mô tả" variant="outlined" />
           </div>
           <div className={styles.footer}>
-            <button className={clsx(styles.submit,{[styles.active]:true})}>Tìm kiếm</button>
-            <div className={styles.excel}>Thêm học sinh bằng file Excel</div>
+            <Button type="submit" className={clsx(styles.submit,{[styles.active]:true})}>Thêm</Button>
           </div>
         </Box>
       </Modal>
     </div>
   );
 }
-MemberModalAddStudent.propTypes = {
+ClassModalAdd.propTypes = {
   openAddModal:PropTypes.bool,
   handleCloseAddModal:PropTypes.func,
 }
-export default MemberModalAddStudent
+export default ClassModalAdd

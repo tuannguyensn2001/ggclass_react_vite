@@ -1,0 +1,21 @@
+.addClass{
+    padding: 16px;
+    border: 1px solid #D8DCF0;
+    width:160px;
+    margin-left: 16px;
+    margin-top: 16px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #fff;
+    background-color:#1E88E5;
+    text-align: center;
+    border-radius:6px;
+    cursor: pointer;
+    opacity: 0.9;
+}
+.addClass:hover{
+    opacity: 1;
+}
+.addClass:active{
+    background-color: rgb(116, 170, 221);
+}

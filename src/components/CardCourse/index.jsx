@@ -39,7 +39,7 @@
 
 import styles from "./style.module.scss";
 
-function CardCourse() {
+function CardCourse({name}) {
   return (
     <div className= {styles.cover}>
       <div  className= {styles.course}>
@@ -48,7 +48,7 @@ function CardCourse() {
         </div>
         <div className= {styles.contant}>
           <div>
-            <p className= {styles.name}>English for beginners</p>
+            <p className= {styles.name}>{name}</p>
             <p>JSLPA</p>
           </div>
           <div>
