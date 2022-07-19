@@ -37,28 +37,33 @@
 
 // export default CardCourse;
 
-import styles from "./style.module.scss";
-import imges from '~/assets/images/default_classes.jpg'
+import styles from './style.module.scss';
+import imges from '~/assets/images/default_classes.jpg';
+import { memo } from 'react';
 
-function CardCourse({name}) {
-  return (
-    <div className= {styles.cover}>
-      <div  className= {styles.course}>
-        <div className= {styles.img_wrap}>
-          <img  className= {styles.img} src={imges} alt="" />
+function CardCourse({ name }) {
+    return (
+        <div className={styles.cover}>
+            <div className={styles.course}>
+                <div className={styles.img_wrap}>
+                    <img className={styles.img} src={imges} alt="" />
+                </div>
+                <div className={styles.contant}>
+                    <div className={styles.text_wrap}>
+                        <p className={styles.name}>{name}</p>
+                        <p className={styles.code}>JSLPA</p>
+                    </div>
+                    <div>
+                        <img
+                            className={styles.btn}
+                            src="https://www.shareicon.net/data/512x512/2016/06/04/775696_interface_512x512.png"
+                            alt=""
+                        />
+                    </div>
+                </div>
+            </div>
         </div>
-        <div className= {styles.contant}>
-          <div className= {styles.text_wrap}>
-            <p className= {styles.name}>{name}</p>
-            <p className= {styles.code}>JSLPA</p>
-          </div>
-          <div>
-            <img className={styles.btn} src="https://www.shareicon.net/data/512x512/2016/06/04/775696_interface_512x512.png" alt="" />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
 
-export default CardCourse;
+export default memo(CardCourse);
