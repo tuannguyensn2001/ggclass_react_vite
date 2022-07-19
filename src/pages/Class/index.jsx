@@ -22,12 +22,14 @@ function Class() {
     // get data 
     const { data } = useQuery("classes", async () => {
       const response = await API.get("/v1/classes");
-      setListData(response.data.data);
       return response.data;
+    },
+    {
+       onSuccess(data) {
+        setListData(data.data);
+      },
     }
     );
-    console.log('data',data)
-    console.log('list Data',listData)
     // Create classes
     const { mutate } = useMutation(
       "submit",
@@ -36,21 +38,16 @@ function Class() {
         return response.data;
       },
       {
-        async onSuccess(classes) {
-          console.log('classes', classes);
+         onSuccess(classes) {
           setListData((prev)=> (
              [ ...prev,
               classes.data
           ]
-          ),()=>(
-            console.log('check kkk',listData)
-            
           ))
           toast.success("Thêm lớp học thành công");
         },
       }
     );
-    console.log('list data duoi',listData)
     const createClasses = (data)=>{
       mutate(data);
     }
