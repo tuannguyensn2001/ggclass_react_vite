@@ -2,8 +2,13 @@
 .cover {
     display: flex;
     flex-direction: column;
-    padding: 5%;
-    width: 38%;
+    width: 25%;
+    box-sizing: border-box;
+    cursor: pointer;
+    padding:8px;
+}
+.course:hover{
+    background-color:#F0F2F5;
 }
 
 .course {
@@ -11,12 +16,22 @@
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
     border-radius: 23px;
 }
+.img_wrap{
+    overflow: hidden;
+    border-radius: 23px 23px 0 0;
 
+}
 .img {
     width: 100%;
     object-fit: cover;
-    height: 141px;
-    border-radius: 23px 23px 0 0;
+    height: 100px;
+}
+.course:hover .img{
+    transform: scale(1.1);
+    transition: linear 0.3s;
+}
+.img:hover{
+  
 }
 
 .contant {    
@@ -37,7 +52,7 @@
     padding: 10px 24px;
     border-radius: 20px;
     background-color: #fff;
-    transition: background-color 2s;
+    transition: background-color 0.2s;
 }
 
 .btn:hover {

@@ -1,4 +1,4 @@
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 import MemberTableHeader from '~/components/MemberTableHeader';
 import MemberTableContentHeader from '~/components/MemberTableContentHeader';
 import MemberTableContentItem from '~/components/MemberTableContentItem';
@@ -25,6 +25,8 @@ const data = [
         classes: '8',
         phone: '096875450',
     },
+    
+   
 ];
 
 function Member() {
@@ -52,18 +54,20 @@ function Member() {
                     <div className={styles.table}>
                         <MemberTableHeader handleOpenAddModal={handleOpenAddModal} />
                         <MemberTableContentHeader />
-                        {data.map((item, index) => (
-                            <MemberTableContentItem
-                                key={index}
-                                avatar={item?.avatar}
-                                name={item?.name}
-                                classes={item?.classes}
-                                school={item?.school}
-                                phone={item?.phone}
-                                handleOpenModalEdit={handleOpenModalEdit}
-                                handleOpenModalDelete={handleOpenModalDelete}
-                            />
-                        ))}
+                        <div className={styles.listStudent}>
+                            {data.map((item, index) => (
+                                <MemberTableContentItem
+                                    key={index}
+                                    avatar={item?.avatar}
+                                    name={item?.name}
+                                    classes={item?.classes}
+                                    school={item?.school}
+                                    phone={item?.phone}
+                                    handleOpenModalEdit={handleOpenModalEdit}
+                                    handleOpenModalDelete={handleOpenModalDelete}
+                                />
+                            ))}
+                        </div>
                         <MemberModalAddStudent
                             openAddModal={openAddModal}
                             handleCloseAddModal={handleCloseAddModal}

@@ -4,11 +4,13 @@
 /*}*/
 .container{
     /*padding:0 24px;*/
+    box-sizing: border-box;
     border-bottom:1px solid #ccc;
     text-align: center;
     height:64px;
     @apply tw-fixed tw-w-full tw-bg-white;
     z-index: 99;
+    padding: 0 16px;
 }
 .wrap{
     display:flex;
