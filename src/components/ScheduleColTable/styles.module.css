@@ -11,6 +11,8 @@
     flex-direction: column;
     height: calc(100vh - 64px - 95px - 130px);
     overflow-y: hidden;
+    box-sizing: border-box;
+
     scrollbar-gutter: stable both-edges;
 }
 .col_wrap:hover{
@@ -21,14 +23,14 @@
     transition: 2s;
     width: 6px;
     height:10px;
-    background-color:#ccc;
+    background-color:#fff;
     border-radius: 100vh;
-    background: #bbbcbd
     /* background-image: linear-gradient(135deg, #989f9d 0%, rgba(195, 210, 212, 0.5) 72%, rgba(179, 221, 232, 0.3) 100%); */
 }
-.col_wrap::-webkit-scrollbar-track {
-    height: 12px;
-  }
+.col_wrap::-webkit-scrollbar-thumb {
+    height: 6px;
+    background-color:#ccc;
+}
 .noClasses{
     font-size: 14px;
     text-align: center;
