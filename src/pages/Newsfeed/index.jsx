@@ -1,18 +1,17 @@
 import Post from '~/components/Post';
 import PostEditor from '~/components/PostEditor';
-import styles from './style.module.scss';
-
+import styles from './style.module.css';
+import NewsfeedHeader from '~/components/NewsfeedHeader'
+import NewsfeedSiderBarRight from '~/components/NewsfeedSiderBarRight';
+import NewsfeedContent from '~/components/NewsfeedContent';
 function Newsfeed() {
     return (
-        <div>
-            <div className={styles.wrapper}>
-                <div className="tw-w-1/2">
-                    <div>
-                        <PostEditor />
-                    </div>
-                    <Post />
-                </div>
+        <div className={styles.wrap}>
+            <div className={styles.content}>
+                <NewsfeedHeader/>
+                <NewsfeedContent/>
             </div>
+            <NewsfeedSiderBarRight/>
         </div>
     );
 }
