@@ -35,7 +35,6 @@ import { useForm } from "react-hook-form";
 
  
   const submit =(data) => {
-    console.log('data',register('name').name)
       reset({
         name:'',
         description:'',

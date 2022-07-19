@@ -1,6 +1,7 @@
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import AddIcon from '@mui/icons-material/Add';
 import { memo } from 'react';
+import TextField from '@mui/material/TextField';
 
 import styles from './styles.module.css';
 
@@ -8,10 +9,14 @@ function ClassContentHeader({ handleOpenAddModal }) {
     return (
         <div className={styles.wrap}>
             <div className={styles.left}>
-                <input
+                <TextField
+                     fullWidth 
                     type="text"
-                    className={styles.input}
-                    placeholder="Nhập để tìm kiếm"
+                    inputProps={{className:`${styles.input}`}}
+                    id="fullWidth"
+                    // className={styles.input}
+                    placeholder="Nhập để tìm kiếm..."
+                    // sx={{height:50}}
                 />
             </div>
             <div className={styles.mid}>

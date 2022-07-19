@@ -106,7 +106,6 @@ function Schedule() {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const handleOpenModal = () => {
-    console.log("open");
     setIsOpenModal(true);
   };
 
@@ -127,7 +126,6 @@ function Schedule() {
     }
     return result;
   }, [currentWeek]);
-  console.log('date',dates)
   return (
     <div className={styles.wrap}>
       <ScheduleHeader
