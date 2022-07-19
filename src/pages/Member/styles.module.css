@@ -9,9 +9,13 @@
 }
 .content{
     display: flex;
+    box-sizing: border-box;
+
 }
 .table{
     width: calc(100% - 280px);
+    box-sizing: border-box;
+
 }
 .header{
         font-size: 14px;
@@ -23,4 +27,21 @@
         align-items: center;
         padding-left: 20px;
         border-bottom: 1px solid rgb(216, 220, 240);
+          -sizing: border-box;
+
 }
+.listStudent{
+    height: calc(100vh - 260px);
+    overflow-y: auto;
+    box-sizing: border-box;
+
+}
+.listStudent::-webkit-scrollbar{
+    background-color: #fff;
+    width: 6px;
+}
+.listStudent::-webkit-scrollbar-thumb{
+    background-color: rgb(237, 230, 230);
+    height:20px;
+}
+

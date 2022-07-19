@@ -10,7 +10,9 @@
     color:#202227;
     margin-right: 16px;
     transition-delay: 0.08s;
-    text-decoration: none;
+    text-decoration: none;    
+    box-sizing: border-box;
+
 }
 
 

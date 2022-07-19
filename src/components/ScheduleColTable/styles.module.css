@@ -3,7 +3,8 @@
     flex-direction: column;
     width:14.2857%;
     border-right: 1px solid #D8DCF0;
-    
+    box-sizing: border-box;
+
 }
 .col_wrap{
     display: flex;
