@@ -18,33 +18,47 @@ function Class() {
         open: handleOpenAddModal,
         close: handleCloseAddModal,
     } = useModal();
+    const [listData,setListData] = useState();
     // get data 
     const { data } = useQuery("classes", async () => {
       const response = await API.get("/v1/classes");
+      setListData(response.data.data);
       return response.data;
     }
     );
+    console.log('data',data)
+    console.log('list Data',listData)
     // Create classes
     const { mutate } = useMutation(
       "submit",
-      async (data) => {
-        const response = await API.post("/v1/classes", data);
+      async (classes) => {
+        const response = await API.post("/v1/classes", classes);
         return response.data;
       },
       {
-        async onSuccess(data) {
+        async onSuccess(classes) {
+          console.log('classes', classes);
+          setListData((prev)=> (
+             [ ...prev,
+              classes.data
+          ]
+          ),()=>(
+            console.log('check kkk',listData)
+            
+          ))
           toast.success("Thêm lớp học thành công");
         },
       }
     );
+    console.log('list data duoi',listData)
     const createClasses = (data)=>{
       mutate(data);
     }
     
     const activeClass = useMemo(() => {
-      if (!Boolean(data?.data) || !Array.isArray(data?.data)) return [];
-      return data?.data.filter((item) => item?.statusClass === STATUS.ACTIVE);
-    }, [data]);
+      if (!Boolean(listData) || !Array.isArray(listData)) return [];
+      return listData.filter((item) => item?.statusClass === STATUS.ACTIVE);
+    }, [listData]);
 
     return (
         <div className={styles.wrap}>
