@@ -48,9 +48,9 @@ function CardCourse({name}) {
           <img  className= {styles.img} src={imges} alt="" />
         </div>
         <div className= {styles.contant}>
-          <div>
+          <div className= {styles.text_wrap}>
             <p className= {styles.name}>{name}</p>
-            <p>JSLPA</p>
+            <p className= {styles.code}>JSLPA</p>
           </div>
           <div>
             <img className={styles.btn} src="https://www.shareicon.net/data/512x512/2016/06/04/775696_interface_512x512.png" alt="" />
