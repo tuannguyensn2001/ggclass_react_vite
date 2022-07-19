@@ -56,3 +56,65 @@ API login:
             - email string
             - createdAt timestamp
             - updatedAt timestamp
+
+
+API Create post:
+- url: /v1/posts
+- method: post
+- request:
+    - content: string
+    - classId: int
+- response:
+    - message : string
+    - data:
+        - id : int
+        - content: string
+        - classId: int
+        - createdBy: int
+        - createdAt: timestamp
+        - updatedAt: timestamp
+
+API Create comment:
+- url: /v1/comments
+- method: post
+- request:
+    - content: string
+    - postId: int
+- response:
+    - message: string
+    - data:
+        - id int
+        - content string
+        - postId string
+        - createdBy int
+        - createdAt timestamp
+        - updatedAt timestamp
+
+API get posts in class:
+- url: /v1/classes/:id/posts
+- method: get
+- request:
+- response:
+    - message: string
+    - data: [
+        {
+            id: int,
+            content: string,
+            createdBy: int,
+            createdByUser: {
+                id : int,
+                username: string,
+            },
+            comments: [
+                {
+                    id: int,
+                    content: string,
+                    createdByUser: {
+                        id : int,
+                        username: string
+                    },
+                    createdAt: timestamp
+                }
+            ]
+        }
+    ]

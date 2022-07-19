@@ -40,10 +40,11 @@
 import styles from './style.module.scss';
 import imges from '~/assets/images/default_classes.jpg';
 import { memo } from 'react';
+import { Link } from 'react-router-dom';
 
-function CardCourse({ name }) {
+function CardCourse({ name, id }) {
     return (
-        <div className={styles.cover}>
+        <Link to={`/class/${id}/newsfeed`} className={styles.cover}>
             <div className={styles.course}>
                 <div className={styles.img_wrap}>
                     <img className={styles.img} src={imges} alt="" />
@@ -62,7 +63,7 @@ function CardCourse({ name }) {
                     </div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 }
 

@@ -6,6 +6,7 @@
     box-sizing: border-box;
     cursor: pointer;
     padding:8px;
+    @apply tw-no-underline tw-text-black;
 }
 .course:hover{
     background-color:#F0F2F5;
