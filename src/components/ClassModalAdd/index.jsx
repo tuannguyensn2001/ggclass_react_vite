@@ -74,5 +74,6 @@ import API from "~/network/API";
 ClassModalAdd.propTypes = {
   openAddModal:PropTypes.bool,
   handleCloseAddModal:PropTypes.func,
+  subMitForm:PropTypes.func,
 }
 export default ClassModalAdd
