@@ -16,7 +16,7 @@ function Class() {
     const [searchValue, setSearchValue] = useState('');
     const [nameSort, setNameSort] = useState('Sắp xếp');
     const { listData, setListData, activeClass, mutate } = useManageMyClass();
-    const [listCard, setListCard] = useState(activeClass);
+    const [listCard, setListCard] = useState();
     const debounced = useDebounce(searchValue.trim(), 500);
     const createClasses = (data) => {
         mutate(data);
@@ -25,26 +25,30 @@ function Class() {
         setSearchValue(e.target.value);
     };
     useEffect(() => {
-        const list = activeClass.filter((item) => {
+        setListCard(activeClass);
+    }, [activeClass]);
+    useEffect(() => {
+        console.log('de', debounced);
+        const list = listCard.filter((item) => {
             if (debounced === '') {
                 return item;
             } else if (item.name.toLowerCase().includes(debounced.toLowerCase())) {
                 return item;
             }
         });
+
         setListCard(list);
     }, [debounced]);
-    console.log('lis', listCard);
-    const handleSortAtoZ = () => {
-        sortAtoZ(listCard);
-    };
+
     const handleClickSort = (e) => {
         console.log('value', e.target.value);
         setNameSort(e.target.innerText);
     };
     const handleSortAToZ = (e) => {
         setNameSort(e.target.innerText);
-        handleSortAtoZ();
+        setListCard((prev) => {
+            return sortAtoZ(prev);
+        });
     };
     return (
         <div className={styles.wrap}>
