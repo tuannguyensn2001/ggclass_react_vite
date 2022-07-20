@@ -21,6 +21,14 @@
 .text{
     width:100%;
     border:none;
+    padding:16px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color:#202227;
+    outline: none;
+}
+.text:focus-within{
+    border:none;
 }
 .text::placeholder{
     color:rgb(171, 165, 165);

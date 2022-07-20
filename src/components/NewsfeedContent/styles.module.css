@@ -6,13 +6,19 @@
     display: flex;
     font-weight: 500;
     border-bottom: 1px solid #D8DCF0;
-    height: 100%;
+    height:calc(100vh - 120px);
+    overflow-y:auto;
     flex-direction: column;
     align-items: center;
 }
 .createPost{
     width:620px;
     margin-bottom: 20px;
+}
+.listPost{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
 }
 .postItem{
     margin-top: 20px;

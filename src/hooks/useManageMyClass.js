@@ -8,9 +8,14 @@ export default function useManageMyClass() {
     const [listData, setListData] = useState();
     const { data } = useQuery('classes', async () => {
         const response = await API.get('/v1/classes');
-        setListData(response.data.data);
         return response.data;
-    });
+    },
+    {
+         onSuccess(data) {
+            setListData(data.data);
+        },
+    }
+    );
 
     const activeClass = useMemo(() => {
         if (!Boolean(listData) || !Array.isArray(listData)) return [];

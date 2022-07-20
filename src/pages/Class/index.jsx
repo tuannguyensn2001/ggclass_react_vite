@@ -27,8 +27,9 @@ function Class() {
                 <ClassContentHeader handleOpenAddModal={handleOpenAddModal} />
             </div>
             <div className={styles.listClasses}>
-                {activeClass.map((item) => (
+                {activeClass.map((item,index) => (
                     <CardCourse
+                        key={index}
                         id={item?.id}
                         name={item?.name}
                         description={'nice'}
