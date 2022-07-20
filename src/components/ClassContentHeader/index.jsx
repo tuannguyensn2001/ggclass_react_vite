@@ -24,7 +24,7 @@ function ClassContentHeader({ handleOpenAddModal }) {
                     {...register('search')}
                 />
             </div>
-            <div className={'tw-w-1/5'}>
+            <div className={styles.select_wrap}>
                 <Controller
                     name={'sort'}
                     control={control}
@@ -33,6 +33,7 @@ function ClassContentHeader({ handleOpenAddModal }) {
                             value={field.value}
                             onChange={field.onChange}
                             label={'Sap xep'}
+                            className={styles.select}
                             options={[
                                 {
                                     value: 'default',

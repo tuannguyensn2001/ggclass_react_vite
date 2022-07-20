@@ -8,7 +8,7 @@ function SelectMaterial({ label, options, value, onChange }) {
             <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                label="Age"
+                label={label}
                 value={value}
                 onChange={onChange}
             >
