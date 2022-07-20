@@ -2,29 +2,55 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import AddIcon from '@mui/icons-material/Add';
 import { memo } from 'react';
 import TextField from '@mui/material/TextField';
-
+import Tippy from '@tippyjs/react/headless';
+import 'tippy.js/dist/tippy.css';
+import clsx from 'clsx';
 import styles from './styles.module.css';
 
-function ClassContentHeader({ handleOpenAddModal }) {
+function ClassContentHeader({ nameSort, handleOpenAddModal, handleChangeSearch, handleClickSort, handleSortAToZ }) {
     return (
         <div className={styles.wrap}>
             <div className={styles.left}>
                 <TextField
-                     fullWidth 
+                    fullWidth
                     type="text"
-                    inputProps={{className:`${styles.input}`}}
+                    inputProps={{ className: `${styles.input}` }}
                     id="fullWidth"
-                    // className={styles.input}
+                    onChange={handleChangeSearch}
                     placeholder="Nhập để tìm kiếm..."
-                    // sx={{height:50}}
                 />
             </div>
-            <div className={styles.mid}>
-                <div className={styles.text}>Mới nhất</div>
-                <div className={styles.icon}>
-                    <ArrowDropDownIcon sx={{ color: 'rgb(87, 86, 86)' }} />
+            <Tippy
+                interactive
+                trigger="click"
+                hideOnClick={true}
+                offset
+                placement="top-start"
+                render={() => (
+                    <div className={styles.sort}>
+                        <div value={0} onClick={handleSortAToZ} className={styles.sortItem}>
+                            Từ a-z
+                        </div>
+                        <div value={1} onClick={handleClickSort} className={styles.sortItem}>
+                            Từ z-a
+                        </div>
+                        <div value={2} onClick={handleClickSort} className={styles.sortItem}>
+                            Mới nhất
+                        </div>
+                        <div value={3} onClick={handleClickSort} className={clsx(styles.sortItem, styles.active)}>
+                            Cũ nhất
+                        </div>
+                    </div>
+                )}
+            >
+                <div className={styles.mid}>
+                    <div className={styles.text}>{nameSort}</div>
+                    <div className={styles.icon}>
+                        <ArrowDropDownIcon sx={{ color: 'rgb(87, 86, 86)' }} />
+                    </div>
                 </div>
-            </div>
+            </Tippy>
+
             <div className={styles.button} onClick={handleOpenAddModal}>
                 <div className={styles.plush}>
                     <AddIcon sx={{ color: '#fff' }} />

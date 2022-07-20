@@ -1,55 +1,52 @@
-.wrap{
+.wrap {
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    justify-content: space-between; 
-    height:50px;
+    justify-content: space-between;
+    height: 50px;
     font-size: 14px;
     box-sizing: border-box;
-
 }
-.left{
+.left {
     display: flex;
     align-items: center;
-    flex:1;
-    height:100%;
+    flex: 1;
+    height: 100%;
     border-radius: 6px;
     box-sizing: border-box;
 }
 
-.input{
+.input {
     height: 50px;
-    border:none;
+    border: none;
     outline: none;
-    padding:0;
+    padding: 0;
     width: inherit;
-    padding:16px;
+    padding: 16px;
     box-sizing: border-box;
 }
-.mid{
+.mid {
     width: 160px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid  #D8DCF0;
+    border: 1px solid #d8dcf0;
     margin-left: 20px;
     height: 100%;
     padding: 16px;
     border-radius: 6px;
     box-sizing: border-box;
-
+    cursor: pointer;
 }
-.mid:hover{
+.mid:hover {
     border-color: #202227;
 }
-.text{
-    color:rgb(87, 86, 86);
-
+.text {
+    color: rgb(87, 86, 86);
 }
-.icon{
-
+.icon {
 }
-.button{
+.button {
     width: 160px;
     display: flex;
     align-items: center;
@@ -58,21 +55,41 @@
     padding: 16px;
     border-radius: 6px;
     box-sizing: border-box;
-    background-color:rgb(24, 123, 221);
-    color:#fff;
-    justify-content:center;
+    background-color: rgb(24, 123, 221);
+    color: #fff;
+    justify-content: center;
 }
-.button:hover{
-    background-color:rgb(21, 95, 160);
+.button:hover {
+    background-color: rgb(21, 95, 160);
     cursor: pointer;
     transition: linear 0.1s;
 }
-.plush{
+.plush {
     position: relative;
-    top:2px;
-    color: #202227;;
+    top: 2px;
+    color: #202227;
 }
-.info{
+.info {
     font-size: 14px;
     font-weight: 500;
+}
+.sort {
+    background-color: #fff;
+    box-sizing: border-box;
+    color: #202227;
+    width: 160px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 8px 0;
+    border-radius: 4px;
+}
+.sortItem {
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.sortItem.active {
+    background-color: rgb(235, 235, 235);
+}
+.sortItem:hover {
+    background-color: rgb(243, 241, 241);
 }

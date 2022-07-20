@@ -1,24 +1,43 @@
-
-.wrap{
-    margin:0;
-    padding:0;
+.wrap {
+    margin: 0;
+    padding: 0;
     overflow: hidden;
 }
-.header{
-    background-color:#fff;
+.header {
+    background-color: #fff;
     z-index: 100;
     padding: 0 24px;
     padding-bottom: 26px;
     box-sizing: border-box;
 }
-.listClasses{
+.listClasses {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     max-height: calc(100vh - 200px);
-    position:fixed;
+    position: fixed;
     overflow-y: auto;
-    padding:0 26px;
-    width:100%;
+    padding: 0 26px;
+    width: 100%;
     box-sizing: border-box;
+}
+.noCard {
+    background-size: contain;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    height: 100%;
+    margin-top: 20px;
+}
+.noText {
+    font-size: 14px;
+    color: rgb(193, 188, 188);
+}
+.image {
+    margin-top: 20px;
+    object-fit: contain;
+    height: 400px;
+    width: 800px;
 }
