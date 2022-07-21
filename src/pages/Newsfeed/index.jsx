@@ -135,19 +135,19 @@ function Newsfeed() {
     console.log('id', +pathname.split('/')[2]);
     const classId = +pathname.split('/')[2];
 
-    // const { data } = useQuery(
-    //     'getPost',
-    //     async () => {
-    //         const res = await API.get(`/v1/classes/:${classId}/posts`);
-    //         return res.data;
-    //     },
-    //     {
-    //         onSuccess(data) {
-    //             console.log('data', data);
-    //             setListPost(data.data);
-    //         },
-    //     },
-    // );
+    const { data } = useQuery(
+        'getPost',
+        async () => {
+            const res = await API.get(`/v1/classes/:${classId}/posts`);
+            return res.data;
+        },
+        {
+            onSuccess(data) {
+                console.log('data', data);
+                setListPost(data.data);
+            },
+        },
+    );
 
     const { mutate: mutateP } = useMutation(
         'addPost',
