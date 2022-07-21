@@ -1,6 +1,6 @@
 import styles from "./style.module.scss";
 
-function Comment() {
+function Comment({name,content}) {
   return (
     <div className={styles.cover}>
       <div className={styles.avatar}>
@@ -9,11 +9,11 @@ function Comment() {
 
       <div className={styles.cover_comment}>
         <div className={styles.comment}>
-          <div>
-            <p className={styles.name}>Anh Phung <span className={styles.day}> - 12 phút trước</span></p>
+          <div className={styles.time}>
+            <div className={styles.name}>{name}<span className={styles.day}> - 12 phút trước</span></div>
           </div>
-          <div>
-            <p>Bạn ơi bạn tìm hiểu thử trung tâm IELTS Lingo Connector nhé. Có cả lớp onl lẫn off nè mà học phí onl thấp hơn ý. Trung tâm chuyên luyện Ielts cho các anh/chị định cư và các bạn đi du học nên bạn yên tâm về uy tín và chất lượng giảng dạy ạ. Có chữa Writing á</p>
+          <div className={styles.text}>
+            {content}
           </div>
         </div>
         <div>

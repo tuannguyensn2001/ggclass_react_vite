@@ -1,0 +1,9 @@
+.wrap {
+    display: flex;
+    height: calc(100vh - 64px);
+    box-sizing: border-box;
+}
+.content {
+    flex: 1;
+    box-sizing: border-box;
+}

@@ -20,7 +20,7 @@ export default function useManageMyClass() {
                 setListData(response.data);
                 originData.current = response.data;
             },
-        }
+        },
     );
 
     const activeClass = useMemo(() => {
@@ -36,19 +36,17 @@ export default function useManageMyClass() {
         },
         {
             async onSuccess(classes) {
-                setListData((prev) => [...prev, classes.data]);
+                setListData((prev) => [classes.data, ...prev]);
                 toast.success('Thêm lớp học thành công');
             },
-        }
+        },
     );
 
     const handleSearch = useDebounceFunction(({ search, sort }) => {
         const origin = structuredClone(originData.current);
         if (!Array.isArray(origin)) return;
 
-        const filter = origin?.filter((item) =>
-            item.name.toLowerCase().includes(search?.trim()?.toLowerCase())
-        );
+        const filter = origin?.filter((item) => item.name.toLowerCase().includes(search?.trim()?.toLowerCase()));
 
         if (sort === 'A-Z') {
             filter.sort((a, b) => a?.name?.localeCompare(b?.name));
@@ -57,9 +55,7 @@ export default function useManageMyClass() {
         } else if (sort === 'time_asc') {
             filter.sort((a, b) => dayjs(b.updatedAt).diff(dayjs(a.updatedAt)));
         } else if (sort === 'time_desc') {
-            filter.sort((a, b) =>
-                dayjs(a?.updatedAt).diff(dayjs(b?.updatedAt))
-            );
+            filter.sort((a, b) => dayjs(a?.updatedAt).diff(dayjs(b?.updatedAt)));
         }
 
         setListData(filter);

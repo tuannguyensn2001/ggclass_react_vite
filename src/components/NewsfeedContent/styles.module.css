@@ -1,0 +1,29 @@
+.wrap {
+    background-color: rgb(240, 242, 245);
+    font-size: 14px;
+    color: #202227;
+    box-sizing: border-box;
+    display: flex;
+    font-weight: 500;
+    border-bottom: 1px solid #d8dcf0;
+    height: calc(100vh - 120px);
+    overflow-y: auto;
+    flex-direction: column;
+    align-items: center;
+}
+.createPost {
+    width: 620px;
+    margin-bottom: 20px;
+}
+.listPost {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 28px;
+}
+.postItem {
+    margin-top: 20px;
+    display: flex;
+    width: 620px;
+    display: inline-block;
+}
