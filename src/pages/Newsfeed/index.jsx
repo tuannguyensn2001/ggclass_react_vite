@@ -4,19 +4,20 @@ import NewsfeedSiderBarRight from '~/components/NewsfeedSiderBarRight';
 import NewsfeedContent from '~/components/NewsfeedContent';
 
 import useManageMyNewFeeds from '~/hooks/useManageMyNewFeeds';
+import { useCallback } from 'react';
 
 function Newsfeed() {
     const { listPost, setListPost, mutateP, mutateC, classId } = useManageMyNewFeeds();
 
-    const handleCreatePost = (data) => {
+    const handleCreatePost = useCallback((data) => {
         mutateP({
             ...data,
             classId: classId,
         });
-    };
-    const handleCreateComment = (data) => {
+    }, []);
+    const handleCreateComment = useCallback((data) => {
         mutateC(data);
-    };
+    }, []);
     return (
         <div className={styles.wrap}>
             <div className={styles.content}>

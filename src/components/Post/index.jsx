@@ -8,31 +8,19 @@ import { useConfirm } from 'material-ui-confirm';
 import Comment from '~/components/Comment';
 import CommentWrite from '~/components/CommentWrite';
 import styles from './styles.module.css';
-function Post({ postId, content, byUserName, comments, handleCreateComment }) {
+import { memo } from 'react';
+function Post({ postId, content, byUserName, comments, handleCreateComment, avatar, authAvatar }) {
     const confirm = useConfirm();
 
     return (
-        <div
-            className={
-                'tw-border tw-p-5 tw-rounded-xl tw-border-solid tw-border-slate-300 tw-bg-white '
-            }
-        >
+        <div className={'tw-border tw-p-5 tw-rounded-xl tw-border-solid tw-border-slate-300 tw-bg-white '}>
             <div className={'tw-flex tw-justify-between '}>
                 <div className={'tw-flex'}>
-                    <img
-                        src={avatarDefault}
-                        alt=""
-                        className={'tw-h-12 tw-w-12 tw-rounded-full'}
-                    />
-                    <div
-                        className={
-                            'tw-flex tw-flex-col tw-justify-center tw-ml-2'
-                        }
-                    >
+                    <img src={avatar || avatarDefault} alt="" className={'tw-h-12 tw-w-12 tw-rounded-full'} />
+                    <div className={'tw-flex tw-flex-col tw-justify-center tw-ml-2'}>
                         <div className={'tw-font-bold'}>{byUserName}</div>
                         <div className={'tw-text-xs tw-font-normal'}>
-                            Vao luc{' '}
-                            {dayjs().format('D/M/YYYY, HH:MM:ss').toString()}
+                            Vao luc {dayjs().format('D/M/YYYY, HH:MM:ss').toString()}
                         </div>
                     </div>
                 </div>
@@ -45,8 +33,7 @@ function Post({ postId, content, byUserName, comments, handleCreateComment }) {
                                 props: {
                                     onClick() {
                                         confirm({
-                                            description:
-                                                ' Xoa bai viet nay khong ban',
+                                            description: ' Xoa bai viet nay khong ban',
                                         })
                                             .then(() => {})
                                             .catch((err) => {});
@@ -56,18 +43,10 @@ function Post({ postId, content, byUserName, comments, handleCreateComment }) {
                         ]}
                         renderTextMenu={({ text, icon }) => (
                             <div className={'tw-px-5 tw-flex'}>
-                                <div
-                                    className={
-                                        'tw-flex tw-flex-col tw-justify-center'
-                                    }
-                                >
+                                <div className={'tw-flex tw-flex-col tw-justify-center'}>
                                     {createElement(icon, { fontSize: 'small' })}
                                 </div>
-                                <div
-                                    className={
-                                        'tw-flex tw-flex-col tw-justify-center tw-ml-1 tw-mt-0.5 tw-text-sm'
-                                    }
-                                >
+                                <div className={'tw-flex tw-flex-col tw-justify-center tw-ml-1 tw-mt-0.5 tw-text-sm'}>
                                     {text}
                                 </div>
                             </div>
@@ -83,10 +62,7 @@ function Post({ postId, content, byUserName, comments, handleCreateComment }) {
             <div className={styles.content}>{content}</div>
 
             <div>
-                <CommentWrite
-                    postId={postId}
-                    handleCreateComment={handleCreateComment}
-                />
+                <CommentWrite avatar={authAvatar} postId={postId} handleCreateComment={handleCreateComment} />
             </div>
 
             <div>
@@ -94,7 +70,8 @@ function Post({ postId, content, byUserName, comments, handleCreateComment }) {
                     comments.length > 0 &&
                     comments.map((item, index) => (
                         <Comment
-                            key={index}
+                            avatar={item?.createdByUser?.profile?.avatar}
+                            key={item?.id}
                             name={item?.createdByUser?.username}
                             content={item?.content}
                         />
@@ -104,4 +81,4 @@ function Post({ postId, content, byUserName, comments, handleCreateComment }) {
     );
 }
 
-export default Post;
+export default memo(Post);

@@ -1,5 +1,5 @@
-import { useLocation } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import API from '~/network/API';
@@ -7,10 +7,10 @@ import { useMutation, useQuery } from 'react-query';
 
 export default function useManageMyNewFeeds() {
     const [listPost, setListPost] = useState();
-    const originData = useRef(null);
-    let location = useLocation();
-    const { pathname } = location;
-    const classId = +pathname.split('/')[2];
+    const { id } = useParams();
+    const classId = useMemo(() => {
+        return Number(id);
+    }, [id]);
     const { data } = useQuery(
         'getPost',
         async () => {
@@ -20,8 +20,12 @@ export default function useManageMyNewFeeds() {
         {
             onSuccess(data) {
                 data.data.reverse();
+                data.data.forEach((item) => {
+                    if (!Boolean(item?.comments)) {
+                        item.comments = [];
+                    }
+                });
                 setListPost(data.data);
-                originData.current = data.data;
             },
         },
     );
@@ -33,12 +37,11 @@ export default function useManageMyNewFeeds() {
         },
         {
             async onSuccess(post) {
-                toast.success('Thêm Bài viết thành công');
-                if (!post.comments) {
+                if (!Boolean(post?.comments)) {
                     post.comments = [];
                 }
-                originData.current = [post, ...originData.current];
-                setListPost(originData.current);
+
+                setListPost((prevState) => [post, ...prevState]);
             },
             onError(err) {
                 console.log(err);
@@ -54,14 +57,13 @@ export default function useManageMyNewFeeds() {
         },
         {
             async onSuccess(comment) {
-                toast.success('Thêm comment thành công');
-                originData.current.find((item) => {
-                    if (item.id === comment.postId) {
-                        item?.comments.unshift(comment);
-                    }
-                });
+                const clone = structuredClone(listPost);
 
-                setListPost(originData.current);
+                const post = clone.find((item) => Number(item?.id) === Number(comment?.postId));
+                if (!post) return;
+                post?.comments?.unshift(comment);
+
+                setListPost(clone);
             },
             onError(err) {
                 console.log(err);
