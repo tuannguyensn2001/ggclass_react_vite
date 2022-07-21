@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import API from '~/network/API';
 import { useMutation, useQuery } from 'react-query';
 import { getSocket } from '~/packages/socket';
+import pusher from '~/packages/pusher';
 
 export default function useManageMyNewFeeds() {
     const [listPost, setListPost] = useState();
@@ -69,10 +70,10 @@ export default function useManageMyNewFeeds() {
 
     useEffect(() => {
         if (!id) return;
-        const socket = getSocket();
 
-        socket.emit('join-room', `class-${id}-newsfeed`);
-        socket.on('create-post', (post) => {
+        const channel = pusher.subscribe(`class-${id}-newsfeed`);
+
+        channel.bind('create-post', (post) => {
             setListPost((prevState) => {
                 if (prevState.length === 0) return [post];
                 if (Number(prevState[0]?.id) === Number(post?.id)) return prevState;
