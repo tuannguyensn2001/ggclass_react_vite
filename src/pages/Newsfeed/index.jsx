@@ -156,7 +156,7 @@ function Newsfeed() {
         {
             async onSuccess(post) {
                 toast.success('Thêm Bài viết thành công');
-                setListPost((prev) => [...prev, post]);
+                setListPost((prev) => [post, ...prev]);
             },
             onError(err) {
                 console.log(err);
@@ -179,7 +179,7 @@ function Newsfeed() {
                             if (!item.comments) {
                                 item.comments = [];
                             }
-                            item?.comments.push(comment);
+                            item?.comments.unshift(comment);
                         }
                     });
                     return prev;
