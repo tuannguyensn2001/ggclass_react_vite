@@ -1,14 +1,12 @@
 import CardCourse from '~/components/CardCourse';
-
 import styles from './styles.module.css';
 import ClassModalAdd from '~/components/ClassModalAdd';
 import useModal from '~/hooks/useModal';
 import ClassHeader from '~/components/ClassHeader';
 import ClassContentHeader from '~/components/ClassContentHeader';
 import useManageMyClass from '~/hooks/useManageMyClass';
-import { useForm, FormProvider } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { useEffect } from 'react';
-import useDebounceFunction from '~/hooks/useDebounceFunction';
 
 function Class() {
     const {
