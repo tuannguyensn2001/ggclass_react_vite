@@ -130,34 +130,33 @@ const defaultData = [
 
 function Newsfeed() {
     let location = useLocation();
-    const [listPost, setListPost] = useState(defaultData);
+    const [listPost, setListPost] = useState();
     const { pathname } = location;
-    console.log('id', +pathname.split('/')[2]);
     const classId = +pathname.split('/')[2];
 
     const { data } = useQuery(
         'getPost',
         async () => {
-            const res = await API.get(`/v1/classes/:${classId}/posts`);
+            const res = await API.get(`/v1/classes/${classId}/posts`);
             return res.data;
         },
         {
             onSuccess(data) {
-                console.log('data', data);
                 setListPost(data.data);
             },
         },
     );
-
+    useEffect(() => {});
     const { mutate: mutateP } = useMutation(
         'addPost',
         async (data) => {
             const response = await API.post('/v1/posts', data);
-            return response.data;
+            return response.data.data;
         },
         {
-            async onSuccess(data) {
+            async onSuccess(post) {
                 toast.success('Thêm Bài viết thành công');
+                setListPost((prev) => [...prev, post]);
             },
             onError(err) {
                 console.log(err);
@@ -169,11 +168,22 @@ function Newsfeed() {
         'addComment',
         async (data) => {
             const response = await API.post('/v1/comments', data);
-            return response.data;
+            return response.data.data;
         },
         {
-            async onSuccess(data) {
+            async onSuccess(comment) {
                 toast.success('Thêm comment thành công');
+                setListPost((prev) => {
+                    prev.map((item) => {
+                        if (item.id === comment.postId) {
+                            if (!item.comments) {
+                                item.comments = [];
+                            }
+                            item?.comments.push(comment);
+                        }
+                    });
+                    return prev;
+                });
             },
             onError(err) {
                 console.log(err);
@@ -186,13 +196,8 @@ function Newsfeed() {
             ...data,
             classId: classId,
         });
-        console.log({
-            ...data,
-            classId: classId,
-        });
     };
     const handleCreateComment = (data) => {
-        console.log(typeof data.postId);
         mutateC(data);
     };
     return (
