@@ -4,7 +4,9 @@ import NewsfeedSiderBarRight from '~/components/NewsfeedSiderBarRight';
 import NewsfeedContent from '~/components/NewsfeedContent';
 
 import useManageMyNewFeeds from '~/hooks/useManageMyNewFeeds';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
+import { getSocket } from '~/packages/socket';
+import { useParams } from 'react-router-dom';
 
 function Newsfeed() {
     const { listPost, setListPost, mutateP, mutateC, classId } = useManageMyNewFeeds();
@@ -18,6 +20,7 @@ function Newsfeed() {
     const handleCreateComment = useCallback((data) => {
         mutateC(data);
     }, []);
+
     return (
         <div className={styles.wrap}>
             <div className={styles.content}>

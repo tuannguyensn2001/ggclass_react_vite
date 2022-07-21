@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 
 import API from '~/network/API';
 import { useMutation, useQuery } from 'react-query';
+import { getSocket } from '~/packages/socket';
 
 export default function useManageMyNewFeeds() {
     const [listPost, setListPost] = useState();
@@ -36,13 +37,7 @@ export default function useManageMyNewFeeds() {
             return response.data.data;
         },
         {
-            async onSuccess(post) {
-                if (!Boolean(post?.comments)) {
-                    post.comments = [];
-                }
-
-                setListPost((prevState) => [post, ...prevState]);
-            },
+            async onSuccess(post) {},
             onError(err) {
                 console.log(err);
                 toast.error('Thêm bài viết thất bại vui lòng thử lại');
@@ -71,6 +66,24 @@ export default function useManageMyNewFeeds() {
             },
         },
     );
+
+    useEffect(() => {
+        if (!id) return;
+        const socket = getSocket();
+
+        socket.emit('join-room', `class-${id}-newsfeed`);
+        socket.on('create-post', (post) => {
+            setListPost((prevState) => {
+                if (prevState.length === 0) return [post];
+                if (Number(prevState[0]?.id) === Number(post?.id)) return prevState;
+
+                if (!Boolean(post?.comments)) {
+                    post.comments = [];
+                }
+                return [post, ...prevState];
+            });
+        });
+    }, [id]);
 
     return {
         listPost,
