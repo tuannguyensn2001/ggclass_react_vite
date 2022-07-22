@@ -1,7 +1,7 @@
-import create from "zustand";
-import {devtools} from "zustand/middleware";
-import {immer} from "zustand/middleware/immer";
-import API from "~/network/API";
+import create from 'zustand';
+import { devtools } from 'zustand/middleware';
+import { immer } from 'zustand/middleware/immer';
+import API from '~/network/API';
 
 const useAuthStore = create()(
     devtools(
@@ -17,14 +17,14 @@ const useAuthStore = create()(
                 set((state) => {
                     state.user = null;
                 });
-                localStorage.removeItem("accessToken");
+                localStorage.removeItem('accessToken');
             },
             fetchUser: async () => {
-                if (!localStorage.getItem("accessToken")) {
-                    set(state => {
+                if (!localStorage.getItem('accessToken')) {
+                    set((state) => {
                         state.isFetchedUser = true;
-                    })
-                    return
+                    });
+                    return;
                 }
 
                 set((state) => {
@@ -32,12 +32,12 @@ const useAuthStore = create()(
                 });
 
                 try {
-                    const response = await API.get("/v1/auth/me");
+                    const response = await API.get('/v1/auth/me');
                     set((state) => {
                         state.user = response.data.data;
                     });
                 } catch (e) {
-                    localStorage.removeItem("accessToken");
+                    localStorage.removeItem('accessToken');
                 } finally {
                     set((state) => {
                         state.isLoading = false;
@@ -45,8 +45,12 @@ const useAuthStore = create()(
                     });
                 }
             },
-        }))
-    )
+            getAvatar: () => {
+                const user = get().user;
+                return user?.profile?.avatar;
+            },
+        })),
+    ),
 );
 
 export default useAuthStore;

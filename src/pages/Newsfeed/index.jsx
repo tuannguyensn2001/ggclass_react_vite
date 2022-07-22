@@ -1,18 +1,37 @@
-import Post from '~/components/Post';
-import PostEditor from '~/components/PostEditor';
-import styles from './style.module.scss';
+import styles from './style.module.css';
+import NewsfeedHeader from '~/components/NewsfeedHeader';
+import NewsfeedSiderBarRight from '~/components/NewsfeedSiderBarRight';
+import NewsfeedContent from '~/components/NewsfeedContent';
+
+import useManageMyNewFeeds from '~/hooks/useManageMyNewFeeds';
+import { useCallback, useEffect } from 'react';
+import { getSocket } from '~/packages/socket';
+import { useParams } from 'react-router-dom';
 
 function Newsfeed() {
+    const { listPost, setListPost, mutateP, mutateC, classId } = useManageMyNewFeeds();
+
+    const handleCreatePost = useCallback((data) => {
+        mutateP({
+            ...data,
+            classId: classId,
+        });
+    }, []);
+    const handleCreateComment = useCallback((data) => {
+        mutateC(data);
+    }, []);
+
     return (
-        <div>
-            <div className={styles.wrapper}>
-                <div className="tw-w-1/2">
-                    <div>
-                        <PostEditor />
-                    </div>
-                    <Post />
-                </div>
+        <div className={styles.wrap}>
+            <div className={styles.content}>
+                <NewsfeedHeader />
+                <NewsfeedContent
+                    handleCreateComment={handleCreateComment}
+                    handleCreatePost={handleCreatePost}
+                    data={listPost}
+                />
             </div>
+            <NewsfeedSiderBarRight />
         </div>
     );
 }

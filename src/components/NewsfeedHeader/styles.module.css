@@ -1,0 +1,12 @@
+.wrap{
+    height:64px;
+    background-color:#fff;
+    font-size: 14px;
+    color:#202227;
+    box-sizing: border-box;
+    padding-left: 20px;
+    align-items: center;
+    display: flex;
+    font-weight: 500;
+    border-bottom: 1px solid #D8DCF0;
+}

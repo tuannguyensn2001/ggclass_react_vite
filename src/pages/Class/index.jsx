@@ -7,16 +7,12 @@ import ClassContentHeader from '~/components/ClassContentHeader';
 import useManageMyClass from '~/hooks/useManageMyClass';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useEffect } from 'react';
+import { getSocket } from '~/packages/socket';
 
 function Class() {
-    const {
-        isOpen: openAddModal,
-        open: handleOpenAddModal,
-        close: handleCloseAddModal,
-    } = useModal();
+    const { isOpen: openAddModal, open: handleOpenAddModal, close: handleCloseAddModal } = useModal();
 
-    const { listData, setListData, activeClass, mutate, handleSearch } =
-        useManageMyClass();
+    const { listData, setListData, activeClass, mutate, handleSearch } = useManageMyClass();
 
     const createClasses = (data) => {
         mutate(data);
@@ -41,9 +37,7 @@ function Class() {
             <div className={styles.header}>
                 <ClassHeader />
                 <FormProvider {...methods}>
-                    <ClassContentHeader
-                        handleOpenAddModal={handleOpenAddModal}
-                    />
+                    <ClassContentHeader handleOpenAddModal={handleOpenAddModal} />
                 </FormProvider>
             </div>
             <div className={styles.listClasses}>

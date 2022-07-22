@@ -11,6 +11,7 @@ import TextField from '@mui/material/TextField';
 import clsx from 'clsx';
 import PropTypes from 'prop-types'
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 
  function ClassModalAdd({openAddModal=false,handleCloseAddModal=()=>{},subMitForm}) {
@@ -35,13 +36,25 @@ import { useForm } from "react-hook-form";
 
  
   const submit =(data) => {
-      reset({
-        name:'',
-        description:'',
-    })
+
+      const name = data.name.trim();
+      const description = data.description.trim();
+
+      if(name !== ''){
+          reset({
+            name:'',
+            description:'',
+        })
+
+        handleCloseAddModal();
+        subMitForm({
+          name,
+          description
+        });
+      }else{
+          toast.error('Vui lòng nhập tên lớp học')
+      }
    
-    handleCloseAddModal();
-    subMitForm(data);
   }
   return (
     <div>
