@@ -118,3 +118,36 @@ API get posts in class:
             ]
         }
     ]
+
+API get members in class:
+url: /v1/classes/members/:id
+method: get
+response:
+    - message: string
+    - data: [
+        {
+            id: int,
+            username:string,
+            profile: {
+                avatar: string
+            }
+        }
+    ]
+
+API delete members:
+url: /v1/classes/members
+method: delete
+request:
+    - userId: int
+    - classId: int
+response:
+    - message: string
+
+API invite members:
+url: /v1/classes/members
+request:
+    - classId: int
+    - email : string
+    - role: 2
+response:
+    - message
