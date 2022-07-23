@@ -25,65 +25,55 @@ const data = [
         classes: '8',
         phone: '096875450',
     },
-    
-   
 ];
 
 function Member() {
-    const {
-        isOpen: openAddModal,
-        open: handleOpenAddModal,
-        close: handleCloseAddModal,
-    } = useModal();
+    const { isOpen: openAddModal, open: handleOpenAddModal, close: handleCloseAddModal } = useModal();
 
-    const {
-        isOpen: isOpenModalEdit,
-        open: handleOpenModalEdit,
-        close: handleCloseModalEdit,
-    } = useModal();
+    const { isOpen: isOpenModalEdit, open: handleOpenModalEdit, close: handleCloseModalEdit } = useModal();
 
-    const {
-        isOpen: isOpenModalDelete,
-        open: handleOpenModalDelete,
-        close: handleCloseModalDelete,
-    } = useModal();
+    const { isOpen: isOpenModalDelete, open: handleOpenModalDelete, close: handleCloseModalDelete } = useModal();
+
+    const handleAddStudent = () => {};
+
     return (
-            <div className={styles.wrap}>
-                <div className={styles.header}>Thành viên lớp học (1)</div>
-               <div className={styles.content}>
-                    <div className={styles.table}>
-                        <MemberTableHeader handleOpenAddModal={handleOpenAddModal} />
-                        <MemberTableContentHeader />
-                        <div className={styles.listStudent}>
-                            {data.map((item, index) => (
-                                <MemberTableContentItem
-                                    key={index}
-                                    avatar={item?.avatar}
-                                    name={item?.name}
-                                    classes={item?.classes}
-                                    school={item?.school}
-                                    phone={item?.phone}
-                                    handleOpenModalEdit={handleOpenModalEdit}
-                                    handleOpenModalDelete={handleOpenModalDelete}
-                                />
-                            ))}
-                        </div>
-                        <MemberModalAddStudent
-                            openAddModal={openAddModal}
-                            handleCloseAddModal={handleCloseAddModal}
-                        />
-                        <MemberModalEditStudent
-                            handleCloseModalEdit={handleCloseModalEdit}
-                            isOpenModalEdit={isOpenModalEdit}
-                        />
-                        <MemberModalDeleteStudent
-                            isOpenModalDelete={isOpenModalDelete}
-                            handleCloseModalDelete={handleCloseModalDelete}
-                        />
+        <div className={styles.wrap}>
+            <div className={styles.header}>Thành viên lớp học (1)</div>
+            <div className={styles.content}>
+                <div className={styles.table}>
+                    <MemberTableHeader handleOpenAddModal={handleOpenAddModal} />
+                    <MemberTableContentHeader />
+                    <div className={styles.listStudent}>
+                        {data?.map((item, index) => (
+                            <MemberTableContentItem
+                                key={index}
+                                avatar={item?.avatar}
+                                name={item?.name}
+                                classes={item?.classes}
+                                school={item?.school}
+                                phone={item?.phone}
+                                handleOpenModalEdit={handleOpenModalEdit}
+                                handleOpenModalDelete={handleOpenModalDelete}
+                            />
+                        ))}
                     </div>
-                    <SiderbarRightMember/>
-               </div>
+                    <MemberModalAddStudent
+                        handleAddStudent={handleAddStudent}
+                        openAddModal={openAddModal}
+                        handleCloseAddModal={handleCloseAddModal}
+                    />
+                    <MemberModalEditStudent
+                        handleCloseModalEdit={handleCloseModalEdit}
+                        isOpenModalEdit={isOpenModalEdit}
+                    />
+                    <MemberModalDeleteStudent
+                        isOpenModalDelete={isOpenModalDelete}
+                        handleCloseModalDelete={handleCloseModalDelete}
+                    />
+                </div>
+                <SiderbarRightMember />
             </div>
+        </div>
     );
 }
 
