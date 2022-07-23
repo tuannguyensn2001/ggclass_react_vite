@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import styles from './styles.module.css';
 import { TextField } from '@mui/material';
+import { memo } from 'react';
 
 function MemberTableHeader({ handleOpenAddModal = () => {} }) {
     return (
@@ -40,4 +41,4 @@ function MemberTableHeader({ handleOpenAddModal = () => {} }) {
 MemberTableHeader.propTypes = {
     handleOpenAddModal: PropTypes.func,
 };
-export default MemberTableHeader;
+export default memo(MemberTableHeader);
