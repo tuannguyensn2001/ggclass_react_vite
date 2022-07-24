@@ -15,16 +15,11 @@ import { toast } from 'react-toastify';
 function MemberModalAddStudent({ openAddModal = false, handleCloseAddModal = () => {}, handleAddStudent }) {
     const { register, handleSubmit, reset } = useForm({ shouldUseNativeValidation: true });
     const onSubmit = (data) => {
-        console.log('dataa', data);
-        if (data.email.trim() === '') {
-            // toast.error('Vui lòng nhập đầy đủ thông tin');
-        } else {
-            handleAddStudent(data);
-            reset({
-                email: '',
-            });
-            handleCloseAddModal();
-        }
+        handleAddStudent(data);
+        reset({
+            email: '',
+        });
+        handleCloseAddModal();
     };
     const style = {
         position: 'absolute',
