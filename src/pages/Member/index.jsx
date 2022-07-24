@@ -50,6 +50,7 @@ function Member() {
         });
     }, []);
     const handleDeleteUser = useCallback(() => {
+        handleCloseModalDelete();
         mutateD({
             classId: classId,
             userId: userIdDelete,

@@ -30,36 +30,38 @@ export default function useManageMyNewFeeds(userIdDelete) {
     const { mutate: mutateS } = useMutation(
         'addStudent',
         async (data) => {
-            console.log(data);
-
             const response = await API.post('/v1/classes/members', data);
-            return response.data;
+            return response.data.data;
         },
         {
             async onSuccess(data) {
-                toast.success('Mời học sinh thành công');
+                setListStudent((prev) => [data, ...prev]);
+                toast.success('Thêm học sinh thành công');
             },
             onError(err) {
                 console.log(err);
-                toast.error('Mời học học sinh thất bại vui lòng thử lại');
+                if (err.response.data.statusCode === 404) {
+                    toast.error('Không tồn tại học sinh này');
+                } else if (err.response.data.statusCode === 409) {
+                    toast.error('Đã tồn tại học sinh này trong lớp học');
+                }
             },
         },
     );
     const { mutate: mutateD } = useMutation(
         'deleteStudent',
         async (data) => {
-            console.log(data);
-            const response = await API.delete('/v1/classes/members', data);
+            const response = await API.delete('/v1/classes/members', { data });
             return response.data;
         },
         {
             async onSuccess(data) {
                 const clone = structuredClone(listStudent);
-                const index = listStudent.forEach((item, index) => {
-                    if (item.id === userIdDelete) return index;
+                const indexOfObject = clone.findIndex((object) => {
+                    return object.id === userIdDelete;
                 });
-                const clone2 = clone.splice(index, 1);
-                setListStudent(clone2);
+                clone.splice(indexOfObject, 1);
+                setListStudent(clone);
                 toast.success('Xóa học sinh thành công');
             },
             onError(err) {
