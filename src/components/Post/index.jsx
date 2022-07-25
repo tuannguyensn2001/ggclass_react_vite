@@ -9,7 +9,7 @@ import Comment from '~/components/Comment';
 import CommentWrite from '~/components/CommentWrite';
 import styles from './styles.module.css';
 import { memo } from 'react';
-function Post({ postId, content, byUserName, comments, handleCreateComment, avatar, authAvatar }) {
+function Post({ postId, time, content, byUserName, comments, handleCreateComment, avatar, authAvatar }) {
     const confirm = useConfirm();
 
     return (
@@ -20,7 +20,7 @@ function Post({ postId, content, byUserName, comments, handleCreateComment, avat
                     <div className={'tw-flex tw-flex-col tw-justify-center tw-ml-2'}>
                         <div className={'tw-font-bold'}>{byUserName}</div>
                         <div className={'tw-text-xs tw-font-normal'}>
-                            Vao luc {dayjs().format('D/M/YYYY, HH:MM:ss').toString()}
+                            Vao luc {dayjs(time).format('D/M/YYYY, HH:mm:ss').toString()}
                         </div>
                     </div>
                 </div>
@@ -74,6 +74,7 @@ function Post({ postId, content, byUserName, comments, handleCreateComment, avat
                             key={item?.id}
                             name={item?.createdByUser?.username}
                             content={item?.content}
+                            time={item?.updatedAt}
                         />
                     ))}
             </div>

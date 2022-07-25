@@ -23,6 +23,7 @@ function NewsfeedContent({ data, handleCreatePost, handleCreateComment }) {
                                 content={item?.content}
                                 byUserName={item?.createdByUser?.username}
                                 comments={item?.comments}
+                                time={item?.updatedAt}
                                 handleCreateComment={handleCreateComment}
                             />
                         </div>
