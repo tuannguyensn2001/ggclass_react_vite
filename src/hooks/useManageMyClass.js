@@ -39,6 +39,14 @@ export default function useManageMyClass() {
                 setListData((prev) => [classes.data, ...prev]);
                 toast.success('Thêm lớp học thành công');
             },
+            onError(err) {
+                console.log(err);
+                if (err.response.data.statusCode === 409) {
+                    toast.error('Lớp học đã tồn tại');
+                } else {
+                    toast.error('Thêm lớp học thất bại');
+                }
+            },
         },
     );
 
