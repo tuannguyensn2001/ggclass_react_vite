@@ -8,9 +8,11 @@ import useManageMyClass from '~/hooks/useManageMyClass';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 import { getSocket } from '~/packages/socket';
+import ClassModalJoin from '~/components/ClassModalJoin';
 
 function Class() {
     const { isOpen: openAddModal, open: handleOpenAddModal, close: handleCloseAddModal } = useModal();
+    const { isOpen: openJoinModal, open: handleOpenJoinModal, close: handleCloseJoinModal } = useModal();
 
     const { listData, setListData, activeClass, mutate, handleSearch } = useManageMyClass();
 
@@ -35,7 +37,7 @@ function Class() {
     return (
         <div className={styles.wrap}>
             <div className={styles.header}>
-                <ClassHeader />
+                <ClassHeader handleOpenJoinModal={handleOpenJoinModal} />
                 <FormProvider {...methods}>
                     <ClassContentHeader handleOpenAddModal={handleOpenAddModal} />
                 </FormProvider>
@@ -58,12 +60,13 @@ function Class() {
                 openAddModal={openAddModal}
                 handleCloseAddModal={handleCloseAddModal}
             />
+            <ClassModalJoin
+                subMitForm={createClasses}
+                openJoinModal={openJoinModal}
+                handleCloseJoinModal={handleCloseJoinModal}
+            />
         </div>
     );
 }
 
 export default Class;
-
-// 0a 1b 2c 3d 4e
-// 0a 1c 2b 3d 4e
-// [] -> [a,b,c] -> x
