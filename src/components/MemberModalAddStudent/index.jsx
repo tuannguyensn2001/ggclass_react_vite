@@ -10,15 +10,16 @@ import TextField from '@mui/material/TextField';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 function MemberModalAddStudent({ openAddModal = false, handleCloseAddModal = () => {}, handleAddStudent }) {
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm({ shouldUseNativeValidation: true });
     const onSubmit = (data) => {
-        console.log('dataa', data);
         handleAddStudent(data);
+        reset({
+            email: '',
+        });
+        handleCloseAddModal();
     };
     const style = {
         position: 'absolute',
@@ -34,7 +35,7 @@ function MemberModalAddStudent({ openAddModal = false, handleCloseAddModal = () 
         <div>
             <Modal
                 open={openAddModal}
-                onClose={handleClose}
+                onClose={handleCloseAddModal}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
@@ -57,12 +58,18 @@ function MemberModalAddStudent({ openAddModal = false, handleCloseAddModal = () 
                             id="outlined-basic"
                             label="Email của học sinh"
                             variant="outlined"
-                            {...register('email')}
+                            {...register('email', {
+                                required: 'Email is required',
+                                pattern: {
+                                    value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                                    message: 'Please enter a valid email',
+                                },
+                            })}
                         />
                     </div>
                     <div className={styles.footer}>
                         <button type="submit" className={clsx(styles.submit, { [styles.active]: true })}>
-                            Mời
+                            Thêm
                         </button>
                         <div className={styles.excel}>Thêm học sinh bằng file Excel</div>
                     </div>

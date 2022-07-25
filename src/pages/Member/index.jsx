@@ -5,10 +5,12 @@ import MemberTableContentItem from '~/components/MemberTableContentItem';
 import MemberModalAddStudent from '~/components/MemberModalAddStudent';
 import MemberModalEditStudent from '~/components/MemberModalEditStudent';
 import MemberModalDeleteStudent from '~/components/MemberModalDeleteStudent';
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import useModal from '~/hooks/useModal';
+import useModalDelete from '~/hooks/useModalDelete';
 import SiderbarRightMemberItem from '~/components/SiderbarRightMemberItem';
 import SiderbarRightMember from '~/components/SiderbarRightMember';
+import useManageMember from '~/hooks/useManageMember';
 
 const data = [
     {
@@ -32,9 +34,28 @@ function Member() {
 
     const { isOpen: isOpenModalEdit, open: handleOpenModalEdit, close: handleCloseModalEdit } = useModal();
 
-    const { isOpen: isOpenModalDelete, open: handleOpenModalDelete, close: handleCloseModalDelete } = useModal();
-
-    const handleAddStudent = () => {};
+    const {
+        isOpen: isOpenModalDelete,
+        nameDelete,
+        open: handleOpenModalDelete,
+        close: handleCloseModalDelete,
+        userIdDelete,
+    } = useModalDelete();
+    const { listStudent, mutateS, mutateD, classId } = useManageMember(userIdDelete);
+    const handleAddStudent = useCallback((data) => {
+        mutateS({
+            ...data,
+            classId: classId,
+            role: 2,
+        });
+    }, []);
+    const handleDeleteUser = useCallback(() => {
+        handleCloseModalDelete();
+        mutateD({
+            classId: classId,
+            userId: userIdDelete,
+        });
+    }, [userIdDelete]);
 
     return (
         <div className={styles.wrap}>
@@ -44,14 +65,15 @@ function Member() {
                     <MemberTableHeader handleOpenAddModal={handleOpenAddModal} />
                     <MemberTableContentHeader />
                     <div className={styles.listStudent}>
-                        {data?.map((item, index) => (
+                        {listStudent?.map((item, index) => (
                             <MemberTableContentItem
-                                key={index}
-                                avatar={item?.avatar}
-                                name={item?.name}
+                                key={item?.id}
+                                avatar={item?.profile?.avatar}
+                                name={item?.username}
                                 classes={item?.classes}
                                 school={item?.school}
                                 phone={item?.phone}
+                                id={item?.id}
                                 handleOpenModalEdit={handleOpenModalEdit}
                                 handleOpenModalDelete={handleOpenModalDelete}
                             />
@@ -67,6 +89,8 @@ function Member() {
                         isOpenModalEdit={isOpenModalEdit}
                     />
                     <MemberModalDeleteStudent
+                        nameDelete={nameDelete}
+                        handleDeleteUser={handleDeleteUser}
                         isOpenModalDelete={isOpenModalDelete}
                         handleCloseModalDelete={handleCloseModalDelete}
                     />
