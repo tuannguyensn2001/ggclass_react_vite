@@ -151,3 +151,36 @@ request:
     - role: 2
 response:
     - message
+
+API member join class
+url: /v1/members
+method: post
+request:
+    - code: string
+response:
+    - message: string
+
+API accept invite
+url: /v1/members
+method: put
+request:
+    - userId: int
+    - classId: int
+response:
+    - message: string
+
+API get members pending:
+url: /v1/members/class/:id/pending
+method: get
+response:
+    - message: string
+    - data: [
+        {
+            - id : int
+            - username: string
+            - email: string
+            - profile: {
+                - avatar: string
+            }
+        }
+    ]
