@@ -5,21 +5,7 @@ import { Avatar } from '@mui/material';
 import SiderbarRightMemberItem from '../SiderbarRightMemberItem';
 import PropTypes from 'prop-types';
 
-const defaultData = [
-    {
-        name: 'Võ Mạnh Cường',
-        avatar: '',
-    },
-    {
-        name: 'Võ Mạnh Cường',
-        avatar: '',
-    },
-    {
-        name: 'Võ Mạnh Cường',
-        avatar: '',
-    },
-];
-function SiderbarRightMember({ data = defaultData, handleAcceptMember }) {
+function SiderbarRightMember({ data = [], handleAcceptMember, handleAcceptAll }) {
     return (
         <div className={styles.wrap}>
             <div className={styles.content}>
@@ -27,16 +13,19 @@ function SiderbarRightMember({ data = defaultData, handleAcceptMember }) {
                 {data.length > 0 ? (
                     <div className={styles.info}>
                         <div className={styles.all}>
-                            <Button className={styles.accept}>Phê duyệt tất cả</Button>
+                            <Button onClick={handleAcceptAll} className={styles.accept}>
+                                Phê duyệt tất cả
+                            </Button>
                             <Button className={styles.refuse}>Từ chôí tất cả</Button>
                         </div>
                         <div className={styles.listUser}>
                             {data.map((item, index) => (
                                 <SiderbarRightMemberItem
                                     handleAcceptMember={handleAcceptMember}
-                                    name={item.name}
-                                    avatar={item.avatar}
-                                    key={index}
+                                    name={item?.username}
+                                    avatar={item?.profile?.avatar}
+                                    key={item?.id}
+                                    id={item?.id}
                                 />
                             ))}
                         </div>

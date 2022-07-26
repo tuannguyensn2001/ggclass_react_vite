@@ -26,19 +26,14 @@ function ClassModalJoin({ openJoinModal = false, handleCloseJoinModal = () => {}
     };
 
     const submit = (data) => {
-        const name = data.name.trim();
-        const description = data.description.trim();
+        const code = data.code.trim();
 
         reset({
-            name: '',
-            description: '',
+            code: '',
         });
 
         handleCloseJoinModal();
-        subMitForm({
-            name,
-            description,
-        });
+        subMitForm(data);
     };
     return (
         <div>
@@ -60,8 +55,8 @@ function ClassModalJoin({ openJoinModal = false, handleCloseJoinModal = () => {}
                     </div>
                     <div className={styles.content}>
                         <TextField
-                            {...register('name', { required: 'Please enter your class name.' })}
-                            name="name"
+                            {...register('code', { required: 'Please enter  classes code.' })}
+                            name="code"
                             className={styles.input}
                             id="outlined-basic"
                             label="Nhập code lớp học"
@@ -70,7 +65,7 @@ function ClassModalJoin({ openJoinModal = false, handleCloseJoinModal = () => {}
                     </div>
                     <div className={styles.footer}>
                         <Button type="submit" className={clsx(styles.submit, { [styles.active]: true })}>
-                            Thêm
+                            Gửi yêu cầu tham gia lớp
                         </Button>
                     </div>
                 </Box>

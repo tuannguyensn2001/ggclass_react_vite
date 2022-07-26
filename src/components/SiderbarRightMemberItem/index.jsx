@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import { Avatar } from '@mui/material';
 import PropTypes from 'prop-types';
 
-function SiderbarRightMemberItem({ name, avatar, handleAcceptMember }) {
+function SiderbarRightMemberItem({ name, avatar, handleAcceptMember, id }) {
     return (
         <div className={styles.user_wrap}>
             <div className={styles.user}>
@@ -14,7 +14,10 @@ function SiderbarRightMemberItem({ name, avatar, handleAcceptMember }) {
                 <div className={styles.name}>{name}</div>
             </div>
             <div className={styles.action}>
-                <Button onClick={handleAcceptMember} className={clsx(styles.accept, styles.small)}>
+                <Button
+                    onClick={({ userId = id }) => handleAcceptMember(userId)}
+                    className={clsx(styles.accept, styles.small)}
+                >
                     Duyệt
                 </Button>
             </div>

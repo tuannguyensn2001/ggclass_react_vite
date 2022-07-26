@@ -9,6 +9,7 @@ import pusher from '~/packages/pusher';
 
 export default function useManageMyNewFeeds(userIdDelete) {
     const [listStudent, setListStudent] = useState([]);
+    const [listPendingMember, setListPendingMember] = useState();
     const { id } = useParams();
     const classId = useMemo(() => {
         return Number(id);
@@ -70,11 +71,59 @@ export default function useManageMyNewFeeds(userIdDelete) {
             },
         },
     );
+    const { data: dataP } = useQuery(
+        'pendingMember',
+        async () => {
+            const response = await API.get(`/v1/members/class/${classId}/pending`);
+            return response.data.data;
+        },
+        {
+            onSuccess(data) {
+                setListPendingMember(data);
+            },
+        },
+    );
+    const { mutate: mutateA } = useMutation(
+        'acceptPending',
+        async (user) => {
+            const response = await API.put('/v1/members', user);
+            return user.userId;
+        },
+        {
+            async onSuccess(idPending) {
+                console.log('idPending', idPending);
+                const clonePending = structuredClone(listPendingMember);
+                const indexOfObject = clonePending.findIndex((item) => {
+                    return item.id === idPending;
+                });
+                const newUser = clonePending.filter((item) => item.id === idPending);
+                console.log('newUser', ...newUser);
+                clonePending.splice(indexOfObject, 1);
+
+                setListStudent((prev) => [...newUser, ...prev]);
+                console.log('new list', listStudent);
+                setListPendingMember(clonePending);
+                console.log('new Pending', listPendingMember);
+
+                toast.success('Chấp thuận thành công');
+            },
+            onError(err) {
+                console.log(err);
+                if (err.response.data.statusCode === 409) {
+                    toast.error('Có lỗi');
+                } else {
+                    toast.error('Có lỗi ');
+                }
+            },
+        },
+    );
 
     return {
         listStudent,
         mutateS,
         mutateD,
         classId,
+        listPendingMember,
+        mutateA,
     };
 }

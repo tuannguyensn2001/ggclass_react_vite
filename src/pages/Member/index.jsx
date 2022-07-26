@@ -24,7 +24,7 @@ function Member() {
         close: handleCloseModalDelete,
         userIdDelete,
     } = useModalDelete();
-    const { listStudent, mutateS, mutateD, classId } = useManageMember(userIdDelete);
+    const { listStudent, listPendingMember, mutateA, mutateS, mutateD, classId } = useManageMember(userIdDelete);
     const handleAddStudent = useCallback((data) => {
         mutateS({
             ...data,
@@ -40,7 +40,21 @@ function Member() {
         });
     }, [userIdDelete]);
 
-    const handleAcceptMember = () => {};
+    const handleAcceptMember = (userId) => {
+        mutateA({
+            classId: classId,
+            userId: userId,
+        });
+        console.log('usrId', userId);
+    };
+    const handleAcceptAll = () => {
+        listPendingMember.forEach((member) => {
+            mutateA({
+                classId: classId,
+                userId: member.id,
+            });
+        });
+    };
     return (
         <div className={styles.wrap}>
             <div className={styles.header}>Thành viên lớp học (1)</div>
@@ -51,7 +65,7 @@ function Member() {
                     <div className={styles.listStudent}>
                         {listStudent?.map((item, index) => (
                             <MemberTableContentItem
-                                key={item?.id}
+                                key={index}
                                 avatar={item?.profile?.avatar}
                                 name={item?.username}
                                 classes={item?.classes}
@@ -79,7 +93,11 @@ function Member() {
                         handleCloseModalDelete={handleCloseModalDelete}
                     />
                 </div>
-                <SiderbarRightMember handleAcceptMember={handleAcceptMember} />
+                <SiderbarRightMember
+                    handleAcceptAll={handleAcceptAll}
+                    data={listPendingMember}
+                    handleAcceptMember={handleAcceptMember}
+                />
             </div>
         </div>
     );

@@ -6,16 +6,20 @@ import ClassHeader from '~/components/ClassHeader';
 import ClassContentHeader from '~/components/ClassContentHeader';
 import useManageMyClass from '~/hooks/useManageMyClass';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { getSocket } from '~/packages/socket';
 import ClassModalJoin from '~/components/ClassModalJoin';
+import { useMutation, useQuery } from 'react-query';
+import API from '~/network/API';
+import { toast } from 'react-toastify';
+import useManageJoinClasses from '~/hooks/useManageJoinClasses';
 
 function Class() {
     const { isOpen: openAddModal, open: handleOpenAddModal, close: handleCloseAddModal } = useModal();
     const { isOpen: openJoinModal, open: handleOpenJoinModal, close: handleCloseJoinModal } = useModal();
 
     const { listData, setListData, activeClass, mutate, handleSearch } = useManageMyClass();
-
+    const { mutateJ } = useManageJoinClasses();
     const createClasses = (data) => {
         mutate(data);
     };
@@ -33,6 +37,11 @@ function Class() {
             sort: methods.watch('sort'),
         });
     }, [methods.watch('search'), methods.watch('sort')]);
+
+    const handleJoinClass = useCallback((data) => {
+        console.log(data);
+        mutateJ(data);
+    }, []);
 
     return (
         <div className={styles.wrap}>
@@ -61,7 +70,7 @@ function Class() {
                 handleCloseAddModal={handleCloseAddModal}
             />
             <ClassModalJoin
-                subMitForm={createClasses}
+                subMitForm={handleJoinClass}
                 openJoinModal={openJoinModal}
                 handleCloseJoinModal={handleCloseJoinModal}
             />
