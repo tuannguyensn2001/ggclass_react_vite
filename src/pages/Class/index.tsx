@@ -1,4 +1,5 @@
 import CardCourse from '~/components/CardCourse';
+// @ts-ignore
 import styles from './styles.module.css';
 import ClassModalAdd from '~/components/ClassModalAdd';
 import useModal from '~/hooks/useModal';
@@ -7,18 +8,18 @@ import ClassContentHeader from '~/components/ClassContentHeader';
 import useManageMyClass from '~/hooks/useManageMyClass';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useEffect } from 'react';
-import { getSocket } from '~/packages/socket';
+import { CreateClassForm, SearchClassForm } from '~/types/class';
 
 function Class() {
     const { isOpen: openAddModal, open: handleOpenAddModal, close: handleCloseAddModal } = useModal();
 
-    const { listData, setListData, activeClass, mutate, handleSearch } = useManageMyClass();
+    const { activeClass, mutate, handleSearch } = useManageMyClass();
 
-    const createClasses = (data) => {
+    const createClasses = (data: CreateClassForm) => {
         mutate(data);
     };
 
-    const methods = useForm({
+    const methods = useForm<SearchClassForm>({
         defaultValues: {
             sort: 'default',
         },
@@ -42,15 +43,7 @@ function Class() {
             </div>
             <div className={styles.listClasses}>
                 {activeClass.map((item, index) => (
-                    <CardCourse
-                        key={item?.id}
-                        id={item?.id}
-                        name={item?.name}
-                        description={'nice'}
-                        imageUrl={
-                            'https://upload.wikimedia.org/wikipedia/commons/9/94/Martin_Garrix_Come_Up_Show_cropped.jpg'
-                        }
-                    />
+                    <CardCourse key={item?.id} id={item?.id} name={item?.name} />
                 ))}
             </div>
             <ClassModalAdd
@@ -63,7 +56,3 @@ function Class() {
 }
 
 export default Class;
-
-// 0a 1b 2c 3d 4e
-// 0a 1c 2b 3d 4e
-// [] -> [a,b,c] -> x

@@ -37,17 +37,22 @@
 
 // export default CardCourse;
 
+// @ts-ignore
 import styles from './style.module.scss';
-import imges from '~/assets/images/default_classes.jpg';
+// @ts-ignore
+import images from '~/assets/images/default_classes.jpg';
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
+import { IClass } from '~/models/IClass';
 
-function CardCourse({ name, id }) {
+type Prop = Pick<IClass, 'name' | 'id'>;
+
+function CardCourse({ name, id }: Prop) {
     return (
         <Link to={`/class/${id}/newsfeed`} className={styles.cover}>
             <div className={styles.course}>
                 <div className={styles.img_wrap}>
-                    <img className={styles.img} src={imges} alt="" />
+                    <img className={styles.img} src={images} alt="" />
                 </div>
                 <div className={styles.contant}>
                     <div className={styles.text_wrap}>

@@ -1,7 +1,20 @@
 import { FormControl, InputLabel, Select } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
+import { SelectInputProps } from '@mui/material/Select/SelectInput';
 
-function SelectMaterial({ label, options, value, onChange }) {
+interface Option {
+    text: string;
+    value: string;
+}
+
+interface Prop {
+    label: string;
+    value: any;
+    options: Option[];
+    onChange: SelectInputProps['onChange'];
+}
+
+function SelectMaterial({ label, options, value, onChange }: Prop) {
     return (
         <FormControl size={'small'} fullWidth>
             <InputLabel id="demo-simple-select-label">{label}</InputLabel>

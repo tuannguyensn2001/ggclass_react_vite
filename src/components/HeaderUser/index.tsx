@@ -4,15 +4,18 @@ import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 
 import HeaderMenuUser from '~/components/HeaderMenuUser';
+// @ts-ignore
 import styles from './styles.module.css';
 import useAuthStore from '~/store/useAuthStore';
+// @ts-ignore
 import avatarDefault from '~/assets/images/avatar_default.png';
 import { useRef } from 'react';
+import { Instance } from 'tippy.js';
 
 function HeaderUser() {
     const { user, getAvatar } = useAuthStore((state) => state);
 
-    const tippy = useRef(null);
+    const tippy = useRef<Instance | null>(null);
 
     const handleClickInside = () => {
         tippy.current?.hide();
@@ -22,7 +25,9 @@ function HeaderUser() {
 
     return (
         <Tippy
-            onMount={(instance) => (tippy.current = instance)}
+            onMount={(instance) => {
+                tippy.current = instance;
+            }}
             interactive
             trigger="click"
             placement="bottom-end"

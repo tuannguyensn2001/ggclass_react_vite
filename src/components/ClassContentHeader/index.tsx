@@ -3,12 +3,18 @@ import AddIcon from '@mui/icons-material/Add';
 import { memo } from 'react';
 import TextField from '@mui/material/TextField';
 
+// @ts-ignore
 import styles from './styles.module.css';
 import { useFormContext, Controller } from 'react-hook-form';
-import SelectMaterial from '~/components/SelectMaterial';
+import SelectMaterial from '~/components/SelectMaterial/index';
+import { SearchClassForm } from '~/types/class';
 
-function ClassContentHeader({ handleOpenAddModal }) {
-    const { register, control } = useFormContext();
+interface Prop {
+    handleOpenAddModal: () => void;
+}
+
+function ClassContentHeader({ handleOpenAddModal }: Prop) {
+    const { register, control } = useFormContext<SearchClassForm>();
 
     return (
         <div className={styles.wrap}>
@@ -33,7 +39,7 @@ function ClassContentHeader({ handleOpenAddModal }) {
                             value={field.value}
                             onChange={field.onChange}
                             label={'Sap xep'}
-                            className={styles.select}
+                            // className={styles.select}
                             options={[
                                 {
                                     value: 'default',
@@ -70,7 +76,4 @@ function ClassContentHeader({ handleOpenAddModal }) {
     );
 }
 
-// ClassContentHeader.propTypes = {
-//   handleOpenAddModal: PropTypes.func
-// }
 export default memo(ClassContentHeader);
