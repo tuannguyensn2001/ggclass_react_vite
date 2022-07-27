@@ -10,16 +10,16 @@ import { IPost } from '~/models/IPost';
 import { IComment } from '~/models/IComment';
 
 function Newsfeed() {
-    const { listPost, setListPost, mutateP, mutateC, classId } = useManageMyNewFeeds();
+    const { listPost, setListPost, mutateAddPost, mutateAddComment, classId } = useManageMyNewFeeds();
 
     const handleCreatePost = useCallback((data: Pick<IPost, 'content'>) => {
-        mutateP({
+        mutateAddPost({
             ...data,
             classId: classId,
         });
     }, []);
     const handleCreateComment = useCallback((data: Pick<IComment, 'content' | 'postId'>) => {
-        mutateC(data);
+        mutateAddComment(data);
     }, []);
 
     return (

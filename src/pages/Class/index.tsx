@@ -15,7 +15,7 @@ import ClassModalJoin from '~/components/ClassModalJoin';
 function Class() {
     const { isOpen: openAddModal, open: handleOpenAddModal, close: handleCloseAddModal } = useModal();
     const { isOpen: openJoinModal, open: handleOpenJoinModal, close: handleCloseJoinModal } = useModal();
-    const { mutateJ } = useManageJoinClasses();
+    const { mutateJoin } = useManageJoinClasses();
 
     const { activeClass, mutate, handleSearch } = useManageMyClass();
 
@@ -39,7 +39,7 @@ function Class() {
     // moi
     const handleJoinClass = (data) => {
         console.log(data);
-        mutateJ(data);
+        mutateJoin(data);
     };
 
     return (

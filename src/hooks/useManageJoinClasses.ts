@@ -4,7 +4,7 @@ import API from '~/network/API';
 import { useMutation, useQuery } from 'react-query';
 
 export default function useManageJoinClasses() {
-    const { mutate: mutateJ } = useMutation(
+    const { mutate: mutateJoin } = useMutation(
         'joinClass',
         async (data) => {
             const res = await API.post('/v1/members', data);
@@ -26,6 +26,6 @@ export default function useManageJoinClasses() {
     );
 
     return {
-        mutateJ,
+        mutateJoin,
     };
 }
