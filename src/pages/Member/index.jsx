@@ -12,23 +12,6 @@ import SiderbarRightMemberItem from '~/components/SiderbarRightMemberItem';
 import SiderbarRightMember from '~/components/SiderbarRightMember';
 import useManageMember from '~/hooks/useManageMember';
 
-const data = [
-    {
-        avatar: '',
-        name: 'Võ Mạnh Cường',
-        school: 'Đại học xyz',
-        classes: '8',
-        phone: '096875450',
-    },
-    {
-        avatar: '',
-        name: 'Võ Mạnh Cường',
-        school: 'Đại học xyz',
-        classes: '8',
-        phone: '096875450',
-    },
-];
-
 function Member() {
     const { isOpen: openAddModal, open: handleOpenAddModal, close: handleCloseAddModal } = useModal();
 
@@ -41,7 +24,8 @@ function Member() {
         close: handleCloseModalDelete,
         userIdDelete,
     } = useModalDelete();
-    const { listStudent, mutateS, mutateD, classId } = useManageMember(userIdDelete);
+    const { listStudent, listPendingMember, mutateA, mutateS, mutateD, classId, mutateAAll } =
+        useManageMember(userIdDelete);
     const handleAddStudent = useCallback((data) => {
         mutateS({
             ...data,
@@ -57,6 +41,15 @@ function Member() {
         });
     }, [userIdDelete]);
 
+    const handleAcceptMember = (userId) => {
+        mutateA({
+            classId: classId,
+            userId: userId,
+        });
+    };
+    const handleAcceptAll = () => {
+        mutateAAll();
+    };
     return (
         <div className={styles.wrap}>
             <div className={styles.header}>Thành viên lớp học (1)</div>
@@ -95,7 +88,11 @@ function Member() {
                         handleCloseModalDelete={handleCloseModalDelete}
                     />
                 </div>
-                <SiderbarRightMember />
+                <SiderbarRightMember
+                    handleAcceptAll={handleAcceptAll}
+                    data={listPendingMember}
+                    handleAcceptMember={handleAcceptMember}
+                />
             </div>
         </div>
     );

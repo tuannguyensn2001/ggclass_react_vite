@@ -9,6 +9,8 @@ import pusher from '~/packages/pusher';
 
 export default function useManageMyNewFeeds(userIdDelete) {
     const [listStudent, setListStudent] = useState([]);
+    const [listPendingMember, setListPendingMember] = useState();
+
     const { id } = useParams();
     const classId = useMemo(() => {
         return Number(id);
@@ -71,10 +73,70 @@ export default function useManageMyNewFeeds(userIdDelete) {
         },
     );
 
+    const { data: dataP } = useQuery(
+        'pendingMember',
+        async () => {
+            const response = await API.get(`/v1/members/class/${classId}/pending`);
+            return response.data.data;
+        },
+        {
+            onSuccess(data) {
+                setListPendingMember(data);
+            },
+        },
+    );
+    const { mutate: mutateA } = useMutation(
+        'acceptPending',
+        async (user) => {
+            const response = await API.put('/v1/members', user);
+            return user.userId;
+        },
+        {
+            async onSuccess(idPending) {
+                const clonePending = structuredClone(listPendingMember);
+                const newUser = clonePending.find((item) => item.id === idPending);
+                setListStudent((prev) => [newUser, ...prev]);
+                const indexOfObject = clonePending.findIndex((item) => {
+                    return item.id === idPending;
+                });
+                clonePending.splice(indexOfObject, 1);
+                setListPendingMember(clonePending);
+
+                toast.success('Chấp thuận thành công');
+            },
+            onError(err) {
+                console.log(err);
+                toast.error('Có lỗi');
+            },
+        },
+    );
+    const { mutate: mutateAAll } = useMutation(
+        'acceptPending',
+        async (data) => {
+            const response = await API.post(`/v1/members/class/${classId}/accept`);
+            return response.data;
+        },
+        {
+            async onSuccess(data) {
+                setListStudent((prev) => [...listPendingMember, ...prev]);
+                setListPendingMember([]);
+
+                toast.success('Chấp thuận tất cả thành công');
+            },
+            onError(err) {
+                console.log(err);
+                toast.error('Có lỗi');
+            },
+        },
+    );
+
     return {
         listStudent,
         mutateS,
         mutateD,
         classId,
+        listPendingMember,
+        mutateA,
+        mutateAAll,
     };
 }
