@@ -91,29 +91,20 @@ export default function useManageMyNewFeeds(userIdDelete) {
         },
         {
             async onSuccess(idPending) {
-                console.log('idPending', idPending);
                 const clonePending = structuredClone(listPendingMember);
+                const newUser = clonePending.find((item) => item.id === idPending);
+                setListStudent((prev) => [newUser, ...prev]);
                 const indexOfObject = clonePending.findIndex((item) => {
                     return item.id === idPending;
                 });
-                const newUser = clonePending.filter((item) => item.id === idPending);
-                console.log('newUser', ...newUser);
                 clonePending.splice(indexOfObject, 1);
-
-                setListStudent((prev) => [...newUser, ...prev]);
-                console.log('new list', listStudent);
                 setListPendingMember(clonePending);
-                console.log('new Pending', listPendingMember);
 
                 toast.success('Chấp thuận thành công');
             },
             onError(err) {
                 console.log(err);
-                if (err.response.data.statusCode === 409) {
-                    toast.error('Có lỗi');
-                } else {
-                    toast.error('Có lỗi ');
-                }
+                toast.error('Có lỗi');
             },
         },
     );

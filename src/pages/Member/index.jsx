@@ -45,16 +45,8 @@ function Member() {
             classId: classId,
             userId: userId,
         });
-        console.log('usrId', userId);
     };
-    const handleAcceptAll = () => {
-        listPendingMember.forEach((member) => {
-            mutateA({
-                classId: classId,
-                userId: member.id,
-            });
-        });
-    };
+    const handleAcceptAll = () => {};
     return (
         <div className={styles.wrap}>
             <div className={styles.header}>Thành viên lớp học (1)</div>
@@ -65,7 +57,7 @@ function Member() {
                     <div className={styles.listStudent}>
                         {listStudent?.map((item, index) => (
                             <MemberTableContentItem
-                                key={index}
+                                key={item?.id}
                                 avatar={item?.profile?.avatar}
                                 name={item?.username}
                                 classes={item?.classes}

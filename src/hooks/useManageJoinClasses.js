@@ -11,10 +11,13 @@ export default function useManageJoinClasses() {
             return res.data;
         },
         {
+            onSuccess(data) {
+                toast.success('Gửi yêu cầu tham gia lớp học thành công vui lòng chờ xét duyệt');
+            },
             onError(err) {
                 console.log(err);
                 if (err.response.data.statusCode === 409) {
-                    toast.success('Gửi yêu cầu tham gia lớp học thành công vui lòng chờ xét duyệt');
+                    toast.error('Bạn đã gửi yêu câù vào lớp này rồi');
                 } else if (err.response.data.statusCode === 404) {
                     toast.error('Lớp học không tồn tại');
                 }
