@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
+// @ts-ignore
 import styles from './styles.module.css';
 import { memo } from 'react';
 
@@ -24,7 +25,4 @@ function ClassHeader({ handleOpenJoinModal }) {
     );
 }
 
-// ClassHeader.propTypes = {
-//   handleOpenAddModal: PropTypes.func
-// }
 export default memo(ClassHeader);
