@@ -9,9 +9,13 @@ import useManageMyClass from '~/hooks/useManageMyClass';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 import { CreateClassForm, SearchClassForm } from '~/types/class';
+import useManageJoinClasses from '~/hooks/useManageJoinClasses';
+import ClassModalJoin from '~/components/ClassModalJoin';
 
 function Class() {
     const { isOpen: openAddModal, open: handleOpenAddModal, close: handleCloseAddModal } = useModal();
+    const { isOpen: openJoinModal, open: handleOpenJoinModal, close: handleCloseJoinModal } = useModal();
+    const { mutateJ } = useManageJoinClasses();
 
     const { activeClass, mutate, handleSearch } = useManageMyClass();
 
@@ -32,11 +36,16 @@ function Class() {
             sort: methods.watch('sort'),
         });
     }, [methods.watch('search'), methods.watch('sort')]);
+    // moi
+    const handleJoinClass = (data) => {
+        console.log(data);
+        mutateJ(data);
+    };
 
     return (
         <div className={styles.wrap}>
             <div className={styles.header}>
-                <ClassHeader />
+                <ClassHeader handleOpenJoinModal={handleOpenJoinModal} />
                 <FormProvider {...methods}>
                     <ClassContentHeader handleOpenAddModal={handleOpenAddModal} />
                 </FormProvider>
@@ -50,6 +59,11 @@ function Class() {
                 subMitForm={createClasses}
                 openAddModal={openAddModal}
                 handleCloseAddModal={handleCloseAddModal}
+            />
+            <ClassModalJoin
+                subMitForm={handleJoinClass}
+                openJoinModal={openJoinModal}
+                handleCloseJoinModal={handleCloseJoinModal}
             />
         </div>
     );
