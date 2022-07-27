@@ -1,9 +1,18 @@
 import Post from '~/components/Post';
+// @ts-ignore
 import styles from './styles.module.css';
 import CreatePost from '~/components/CreatePost';
 import useAuthStore from '~/store/useAuthStore';
+import { IPost } from '~/models/IPost';
+import { IComment } from '~/models/IComment';
 
-function NewsfeedContent({ data, handleCreatePost, handleCreateComment }) {
+interface Prop {
+    handleCreatePost: (post: Pick<IPost, 'content'>) => void;
+    handleCreateComment: (comment: Pick<IComment, 'content' | 'postId'>) => void;
+    data: IPost[];
+}
+
+function NewsfeedContent({ data, handleCreatePost, handleCreateComment }: Prop) {
     const getAvatar = useAuthStore((state) => state.getAvatar);
 
     return (
@@ -14,7 +23,7 @@ function NewsfeedContent({ data, handleCreatePost, handleCreateComment }) {
             <div className={styles.listPost}>
                 {data &&
                     data.length > 0 &&
-                    data.map((item, index) => (
+                    data.map((item: IPost) => (
                         <div key={item?.id} className={styles.postItem}>
                             <Post
                                 authAvatar={getAvatar()}

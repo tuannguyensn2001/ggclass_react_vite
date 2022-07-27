@@ -1,16 +1,24 @@
+// @ts-ignore
 import styles from './styles.module.css';
+// @ts-ignore
 import avatarDefault from '~/assets/images/avatar_default.png';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { Box, Button } from '@mui/material';
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { memo, useEffect } from 'react';
+import { memo } from 'react';
+import { IPost } from '~/models/IPost';
 
-function CreatePost({ handleCreatePost, avatar }) {
-    const { register, handleSubmit, reset } = useForm();
+type Prop = {
+    avatar?: string;
+    handleCreatePost: (comment: Pick<IPost, 'content'>) => void;
+};
 
-    const submit = (data) => {
+function CreatePost({ handleCreatePost, avatar }: Prop) {
+    const { register, handleSubmit, reset } = useForm<Pick<IPost, 'content'>>();
+
+    const submit = (data: Pick<IPost, 'content'>) => {
         const content = data.content.trim();
 
         if (content !== '') {
@@ -36,7 +44,6 @@ function CreatePost({ handleCreatePost, avatar }) {
                             minRows={3}
                             placeholder="Nhập nội dung thảo luận với lớp học..."
                             className={styles.text}
-                            name="content"
                             {...register('content')}
                         />
                     </div>
