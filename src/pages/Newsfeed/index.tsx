@@ -1,23 +1,24 @@
+// @ts-ignore
 import styles from './style.module.css';
 import NewsfeedHeader from '~/components/NewsfeedHeader';
 import NewsfeedSiderBarRight from '~/components/NewsfeedSiderBarRight';
 import NewsfeedContent from '~/components/NewsfeedContent';
 
 import useManageMyNewFeeds from '~/hooks/useManageMyNewFeeds';
-import { useCallback, useEffect } from 'react';
-import { getSocket } from '~/packages/socket';
-import { useParams } from 'react-router-dom';
+import { useCallback } from 'react';
+import { IPost } from '~/models/IPost';
+import { IComment } from '~/models/IComment';
 
 function Newsfeed() {
     const { listPost, setListPost, mutateP, mutateC, classId } = useManageMyNewFeeds();
 
-    const handleCreatePost = useCallback((data) => {
+    const handleCreatePost = useCallback((data: Pick<IPost, 'content'>) => {
         mutateP({
             ...data,
             classId: classId,
         });
     }, []);
-    const handleCreateComment = useCallback((data) => {
+    const handleCreateComment = useCallback((data: Pick<IComment, 'content' | 'postId'>) => {
         mutateC(data);
     }, []);
 

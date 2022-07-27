@@ -1,15 +1,28 @@
+// @ts-ignore
 import avatarDefault from '~/assets/images/avatar_default.png';
 import dayjs from 'dayjs';
 import CustomMenu from '~/components/CustomMenu';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { createElement } from 'react';
+import { createElement, memo } from 'react';
 import { useConfirm } from 'material-ui-confirm';
 import Comment from '~/components/Comment';
 import CommentWrite from '~/components/CommentWrite';
+// @ts-ignore
 import styles from './styles.module.css';
-import { memo } from 'react';
-function Post({ postId, content, byUserName, comments, handleCreateComment, avatar, authAvatar }) {
+import { IComment } from '~/models/IComment';
+
+interface Prop {
+    postId: number;
+    content: string;
+    byUserName?: string;
+    comments: IComment[];
+    handleCreateComment: (comment: Pick<IComment, 'content' | 'postId'>) => void;
+    avatar?: string;
+    authAvatar?: string;
+}
+
+function Post({ postId, content, byUserName, comments, handleCreateComment, avatar, authAvatar }: Prop) {
     const confirm = useConfirm();
 
     return (
@@ -41,7 +54,7 @@ function Post({ postId, content, byUserName, comments, handleCreateComment, avat
                                 },
                             },
                         ]}
-                        renderTextMenu={({ text, icon }) => (
+                        renderTextMenu={({ text, icon }: any) => (
                             <div className={'tw-px-5 tw-flex'}>
                                 <div className={'tw-flex tw-flex-col tw-justify-center'}>
                                     {createElement(icon, { fontSize: 'small' })}
@@ -68,7 +81,7 @@ function Post({ postId, content, byUserName, comments, handleCreateComment, avat
             <div>
                 {comments &&
                     comments.length > 0 &&
-                    comments.map((item, index) => (
+                    comments.map((item: IComment) => (
                         <Comment
                             avatar={item?.createdByUser?.profile?.avatar}
                             key={item?.id}

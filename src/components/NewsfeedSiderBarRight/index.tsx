@@ -1,5 +1,5 @@
-
-import styles from './styles.module.css'
+// @ts-ignore
+import styles from './styles.module.css';
 
 function NewsfeedSiderBarRight() {
     return (
@@ -10,10 +10,12 @@ function NewsfeedSiderBarRight() {
             </div>
             <div className={styles.content}>
                 <div className={styles.noNotify}>
-                <span className={styles.dark}>Lớp học chưa có thông báo</span> Nội dung thông báo của giáo viên sẽ xuất hiện ở đây
+                    <span className={styles.dark}>Lớp học chưa có thông báo</span> Nội dung thông báo của giáo viên sẽ
+                    xuất hiện ở đây
                 </div>
             </div>
         </div>
     );
-    }
-export default NewsfeedSiderBarRight
+}
+
+export default NewsfeedSiderBarRight;

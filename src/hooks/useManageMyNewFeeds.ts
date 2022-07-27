@@ -1,37 +1,36 @@
-import { useLocation, useParams } from 'react-router-dom';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import API from '~/network/API';
 import { useMutation, useQuery } from 'react-query';
-import { getSocket } from '~/packages/socket';
 import pusher from '~/packages/pusher';
+import { getPostByClassId } from '~/repositories/post';
+import { IPost } from '~/models/IPost';
+import { ResponseAPI } from '~/app/response';
+import { AxiosError } from 'axios';
+import { IComment } from '~/models/IComment';
 
 export default function useManageMyNewFeeds() {
-    const [listPost, setListPost] = useState();
+    const [listPost, setListPost] = useState<IPost[]>([]);
+
     const { id } = useParams();
     const classId = useMemo(() => {
         return Number(id);
     }, [id]);
-    const { data } = useQuery(
-        'getPost',
-        async () => {
-            const res = await API.get(`/v1/classes/${classId}/posts`);
-            return res.data;
+
+    const { data } = useQuery(['getPost', classId], async () => getPostByClassId(classId), {
+        onSuccess(data) {
+            data.data.reverse();
+            data.data.forEach((item) => {
+                if (!Boolean(item?.comments)) {
+                    item.comments = [];
+                }
+            });
+            setListPost(data.data);
         },
-        {
-            onSuccess(data) {
-                data.data.reverse();
-                data.data.forEach((item) => {
-                    if (!Boolean(item?.comments)) {
-                        item.comments = [];
-                    }
-                });
-                setListPost(data.data);
-            },
-        },
-    );
-    const { mutate: mutateP } = useMutation(
+    });
+    const { mutate: mutateP } = useMutation<ResponseAPI, AxiosError<ResponseAPI>, Pick<IPost, 'content' | 'classId'>>(
         'addPost',
         async (data) => {
             const response = await API.post('/v1/posts', data);
@@ -45,7 +44,7 @@ export default function useManageMyNewFeeds() {
             },
         },
     );
-    const { mutate: mutateC } = useMutation(
+    const { mutate: mutateC } = useMutation<IComment, AxiosError<ResponseAPI>, Pick<IComment, 'content' | 'postId'>>(
         'addComment',
         async (data) => {
             const response = await API.post('/v1/comments', data);
@@ -73,7 +72,7 @@ export default function useManageMyNewFeeds() {
 
         const channel = pusher.subscribe(`class-${id}-newsfeed`);
 
-        channel.bind('create-post', (post) => {
+        channel.bind('create-post.ts', (post: IPost) => {
             setListPost((prevState) => {
                 if (prevState.length === 0) return [post];
                 if (Number(prevState[0]?.id) === Number(post?.id)) return prevState;
