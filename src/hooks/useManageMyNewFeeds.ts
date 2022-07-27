@@ -72,7 +72,7 @@ export default function useManageMyNewFeeds() {
 
         const channel = pusher.subscribe(`class-${id}-newsfeed`);
 
-        channel.bind('create-post.ts', (post: IPost) => {
+        channel.bind('create-post', (post: IPost) => {
             setListPost((prevState) => {
                 if (prevState.length === 0) return [post];
                 if (Number(prevState[0]?.id) === Number(post?.id)) return prevState;
