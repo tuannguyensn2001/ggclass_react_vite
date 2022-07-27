@@ -1,14 +1,19 @@
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import API from '~/network/API';
 import { STATUS } from '~/enums/class';
 import { toast } from 'react-toastify';
 import useDebounceFunction from '~/hooks/useDebounceFunction';
 import dayjs from 'dayjs';
+import { IClass } from '~/models/IClass';
+import { getCreate } from '~/repositories/class';
+import { ResponseAPI } from '~/app/response';
+import { AxiosError } from 'axios';
+import { CreateClassForm } from '~/types/class';
 
 export default function useManageMyClass() {
-    const [listData, setListData] = useState();
-    const originData = useRef();
+    const [listData, setListData] = useState<IClass[]>([]);
+    const originData = useRef<IClass[]>([]);
     const { data } = useQuery(
         'classes',
         async () => {
@@ -28,12 +33,9 @@ export default function useManageMyClass() {
         return listData.filter((item) => item?.statusClass === STATUS.ACTIVE);
     }, [listData]);
 
-    const { mutate } = useMutation(
+    const { mutate } = useMutation<ResponseAPI, AxiosError<ResponseAPI>, CreateClassForm>(
         'submit',
-        async (classes) => {
-            const response = await API.post('/v1/classes', classes);
-            return response.data;
-        },
+        async (classes) => getCreate(classes),
         {
             async onSuccess(classes) {
                 setListData((prev) => [classes.data, ...prev]);
@@ -41,7 +43,7 @@ export default function useManageMyClass() {
             },
             onError(err) {
                 console.log(err);
-                if (err.response.data.statusCode === 409) {
+                if (err.response?.status === 409) {
                     toast.error('Lớp học đã tồn tại');
                 } else {
                     toast.error('Thêm lớp học thất bại');
@@ -50,7 +52,7 @@ export default function useManageMyClass() {
         },
     );
 
-    const handleSearch = useDebounceFunction(({ search, sort }) => {
+    const handleSearch = useDebounceFunction(({ search, sort }: { search: string; sort: string }) => {
         const origin = structuredClone(originData.current);
         if (!Array.isArray(origin)) return;
 

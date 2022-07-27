@@ -1,4 +1,4 @@
-import { Fragment, lazy } from 'react';
+import React, { ExoticComponent, Fragment, lazy, ReactNode } from 'react';
 
 const Home = lazy(() => import('~/pages/Home'));
 const Login = lazy(() => import('~/pages/Login'));
@@ -12,13 +12,25 @@ const Member = lazy(() => import('~/pages/Member'));
 const Lesson = lazy(() => import('~/pages/Lesson'));
 import DefaultLayout from '~/layout/Default';
 
-const routes = [
+interface Route {
+    path: string;
+    component: React.LazyExoticComponent<any>;
+    layout?: any;
+    private?: boolean;
+    children?: RouteChildren[];
+}
+
+interface RouteChildren {
+    path: string;
+    component: React.LazyExoticComponent<any>;
+}
+
+const routes: Route[] = [
     {
         path: '/',
         component: Home,
         layout: DefaultLayout,
     },
-
     {
         path: '/login',
         component: Login,

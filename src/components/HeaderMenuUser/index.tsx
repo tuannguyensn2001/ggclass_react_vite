@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useMemo } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
@@ -8,12 +9,16 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
+// @ts-ignore
 import styles from './styles.module.css';
-import { useMemo } from 'react';
 import useAuthStore from '~/store/useAuthStore';
 import { toast } from 'react-toastify';
 
-export default function HeaderMenuUser({ onClick }) {
+interface Prop {
+    onClick: () => void;
+}
+
+export default function HeaderMenuUser({ onClick }: Prop) {
     const logOut = useAuthStore((state) => state.logOut);
 
     const configs = useMemo(() => {

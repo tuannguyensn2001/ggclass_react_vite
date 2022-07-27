@@ -1,19 +1,24 @@
+// @ts-ignore
 import styles from './styles.module.css';
 
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import TextField from '@mui/material/TextField';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
+import { CreateClassForm } from '~/types/class';
 
-function ClassModalAdd({ openAddModal = false, handleCloseAddModal = () => {}, subMitForm }) {
-    const { register, handleSubmit, reset } = useForm({ shouldUseNativeValidation: true });
+interface Prop {
+    openAddModal: boolean;
+    handleCloseAddModal: () => void;
+    subMitForm: (data: CreateClassForm) => void;
+}
+
+function ClassModalAdd({ openAddModal = false, handleCloseAddModal = () => {}, subMitForm }: Prop) {
+    const { register, handleSubmit, reset } = useForm<CreateClassForm>({ shouldUseNativeValidation: true });
     const style = {
         position: 'absolute',
         top: '50%',
@@ -25,7 +30,7 @@ function ClassModalAdd({ openAddModal = false, handleCloseAddModal = () => {}, s
         p: 4,
     };
 
-    const submit = (data) => {
+    const submit = (data: CreateClassForm) => {
         const name = data.name.trim();
         const description = data.description.trim();
 
@@ -86,9 +91,5 @@ function ClassModalAdd({ openAddModal = false, handleCloseAddModal = () => {}, s
         </div>
     );
 }
-ClassModalAdd.propTypes = {
-    openAddModal: PropTypes.bool,
-    handleCloseAddModal: PropTypes.func,
-    subMitForm: PropTypes.func,
-};
+
 export default ClassModalAdd;
