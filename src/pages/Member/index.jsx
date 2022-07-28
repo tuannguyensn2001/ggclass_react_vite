@@ -4,51 +4,54 @@ import MemberTableContentHeader from '~/components/MemberTableContentHeader';
 import MemberTableContentItem from '~/components/MemberTableContentItem';
 import MemberModalAddStudent from '~/components/MemberModalAddStudent';
 import MemberModalEditStudent from '~/components/MemberModalEditStudent';
-import MemberModalDeleteStudent from '~/components/MemberModalDeleteStudent';
 import { useCallback, useMemo, useState } from 'react';
 import useModal from '~/hooks/useModal';
-import useModalDelete from '~/hooks/useModalDelete';
 import SiderbarRightMemberItem from '~/components/SiderbarRightMemberItem';
 import SiderbarRightMember from '~/components/SiderbarRightMember';
 import useManageMember from '~/hooks/useManageMember';
-
+import { useConfirm } from 'material-ui-confirm';
+import { ConfirmProvider } from 'material-ui-confirm';
 function Member() {
     const { isOpen: openAddModal, open: handleOpenAddModal, close: handleCloseAddModal } = useModal();
 
     const { isOpen: isOpenModalEdit, open: handleOpenModalEdit, close: handleCloseModalEdit } = useModal();
 
     const {
-        isOpen: isOpenModalDelete,
-        nameDelete,
-        open: handleOpenModalDelete,
-        close: handleCloseModalDelete,
-        userIdDelete,
-    } = useModalDelete();
-    const { listStudent, listPendingMember, mutateA, mutateS, mutateD, classId, mutateAAll } =
-        useManageMember(userIdDelete);
+        listStudent,
+        listPendingMember,
+        mutateAcceptPending,
+        mutateAcceptPendingddStudent,
+        mutateDeleteStudent,
+        classId,
+        mutateAcceptPendingAll,
+    } = useManageMember();
     const handleAddStudent = useCallback((data) => {
-        mutateS({
+        mutateAcceptPendingddStudent({
             ...data,
             classId: classId,
             role: 2,
         });
     }, []);
-    const handleDeleteUser = useCallback(() => {
-        handleCloseModalDelete();
-        mutateD({
-            classId: classId,
-            userId: userIdDelete,
-        });
-    }, [userIdDelete]);
+    const confirm = useConfirm();
+    const handleDelete = (name, id) => {
+        confirm({ title: 'Hãy chắc chắn rằng', description: `Học sinh ${name} sẽ bị xóa.` })
+            .then(() =>
+                mutateDeleteStudent({
+                    classId: classId,
+                    userId: id,
+                }),
+            )
+            .catch(() => console.log('Deletion cancelled.'));
+    };
 
     const handleAcceptMember = (userId) => {
-        mutateA({
+        mutateAcceptPending({
             classId: classId,
             userId: userId,
         });
     };
     const handleAcceptAll = () => {
-        mutateAAll();
+        mutateAcceptPendingAll();
     };
     return (
         <div className={styles.wrap}>
@@ -57,21 +60,23 @@ function Member() {
                 <div className={styles.table}>
                     <MemberTableHeader handleOpenAddModal={handleOpenAddModal} />
                     <MemberTableContentHeader />
-                    <div className={styles.listStudent}>
-                        {listStudent?.map((item, index) => (
-                            <MemberTableContentItem
-                                key={item?.id}
-                                avatar={item?.profile?.avatar}
-                                name={item?.username}
-                                classes={item?.classes}
-                                school={item?.school}
-                                phone={item?.phone}
-                                id={item?.id}
-                                handleOpenModalEdit={handleOpenModalEdit}
-                                handleOpenModalDelete={handleOpenModalDelete}
-                            />
-                        ))}
-                    </div>
+                    <ConfirmProvider>
+                        <div className={styles.listStudent}>
+                            {listStudent?.map((item, index) => (
+                                <MemberTableContentItem
+                                    key={item?.id}
+                                    avatar={item?.profile?.avatar}
+                                    name={item?.username}
+                                    classes={item?.classes}
+                                    school={item?.school}
+                                    phone={item?.phone}
+                                    id={item?.id}
+                                    handleOpenModalEdit={handleOpenModalEdit}
+                                    handleDelete={handleDelete}
+                                />
+                            ))}
+                        </div>
+                    </ConfirmProvider>
                     <MemberModalAddStudent
                         handleAddStudent={handleAddStudent}
                         openAddModal={openAddModal}
@@ -80,12 +85,6 @@ function Member() {
                     <MemberModalEditStudent
                         handleCloseModalEdit={handleCloseModalEdit}
                         isOpenModalEdit={isOpenModalEdit}
-                    />
-                    <MemberModalDeleteStudent
-                        nameDelete={nameDelete}
-                        handleDeleteUser={handleDeleteUser}
-                        isOpenModalDelete={isOpenModalDelete}
-                        handleCloseModalDelete={handleCloseModalDelete}
                     />
                 </div>
                 <SiderbarRightMember

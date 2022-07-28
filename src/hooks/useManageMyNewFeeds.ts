@@ -30,7 +30,11 @@ export default function useManageMyNewFeeds() {
             setListPost(data.data);
         },
     });
-    const { mutate: mutateP } = useMutation<ResponseAPI, AxiosError<ResponseAPI>, Pick<IPost, 'content' | 'classId'>>(
+    const { mutate: mutateAddPost } = useMutation<
+        ResponseAPI,
+        AxiosError<ResponseAPI>,
+        Pick<IPost, 'content' | 'classId'>
+    >(
         'addPost',
         async (data) => {
             const response = await API.post('/v1/posts', data);
@@ -44,7 +48,11 @@ export default function useManageMyNewFeeds() {
             },
         },
     );
-    const { mutate: mutateC } = useMutation<IComment, AxiosError<ResponseAPI>, Pick<IComment, 'content' | 'postId'>>(
+    const { mutate: mutateAddComment } = useMutation<
+        IComment,
+        AxiosError<ResponseAPI>,
+        Pick<IComment, 'content' | 'postId'>
+    >(
         'addComment',
         async (data) => {
             const response = await API.post('/v1/comments', data);
@@ -88,8 +96,8 @@ export default function useManageMyNewFeeds() {
     return {
         listPost,
         setListPost,
-        mutateP,
-        mutateC,
+        mutateAddPost,
+        mutateAddComment,
         classId,
     };
 }

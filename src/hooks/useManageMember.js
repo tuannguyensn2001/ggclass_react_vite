@@ -7,7 +7,7 @@ import { useMutation, useQuery } from 'react-query';
 import { getSocket } from '~/packages/socket';
 import pusher from '~/packages/pusher';
 
-export default function useManageMyNewFeeds(userIdDelete) {
+export default function useManageMyNewFeeds() {
     const [listStudent, setListStudent] = useState([]);
     const [listPendingMember, setListPendingMember] = useState();
 
@@ -29,7 +29,7 @@ export default function useManageMyNewFeeds(userIdDelete) {
         },
     );
 
-    const { mutate: mutateS } = useMutation(
+    const { mutate: mutateAcceptPendingddStudent } = useMutation(
         'addStudent',
         async (data) => {
             const response = await API.post('/v1/classes/members', data);
@@ -50,14 +50,14 @@ export default function useManageMyNewFeeds(userIdDelete) {
             },
         },
     );
-    const { mutate: mutateD } = useMutation(
+    const { mutate: mutateDeleteStudent } = useMutation(
         'deleteStudent',
         async (data) => {
             const response = await API.delete('/v1/classes/members', { data });
-            return response.data;
+            return data.userId;
         },
         {
-            async onSuccess(data) {
+            async onSuccess(userIdDelete) {
                 const clone = structuredClone(listStudent);
                 const indexOfObject = clone.findIndex((object) => {
                     return object.id === userIdDelete;
@@ -73,7 +73,7 @@ export default function useManageMyNewFeeds(userIdDelete) {
         },
     );
 
-    const { data: dataP } = useQuery(
+    const { data: dataPending } = useQuery(
         'pendingMember',
         async () => {
             const response = await API.get(`/v1/members/class/${classId}/pending`);
@@ -85,7 +85,7 @@ export default function useManageMyNewFeeds(userIdDelete) {
             },
         },
     );
-    const { mutate: mutateA } = useMutation(
+    const { mutate: mutateAcceptPending } = useMutation(
         'acceptPending',
         async (user) => {
             const response = await API.put('/v1/members', user);
@@ -110,7 +110,7 @@ export default function useManageMyNewFeeds(userIdDelete) {
             },
         },
     );
-    const { mutate: mutateAAll } = useMutation(
+    const { mutate: mutateAcceptPendingAll } = useMutation(
         'acceptPending',
         async (data) => {
             const response = await API.post(`/v1/members/class/${classId}/accept`);
@@ -132,11 +132,11 @@ export default function useManageMyNewFeeds(userIdDelete) {
 
     return {
         listStudent,
-        mutateS,
-        mutateD,
+        mutateAcceptPendingddStudent,
+        mutateDeleteStudent,
         classId,
         listPendingMember,
-        mutateA,
-        mutateAAll,
+        mutateAcceptPending,
+        mutateAcceptPendingAll,
     };
 }

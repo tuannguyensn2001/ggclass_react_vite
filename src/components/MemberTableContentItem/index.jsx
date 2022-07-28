@@ -13,7 +13,7 @@ function MemberTableContentItem({
     phone,
     id,
     handleOpenModalEdit = () => {},
-    handleOpenModalDelete = () => {},
+    handleDelete,
 }) {
     return (
         <div className={styles.wrap}>
@@ -34,10 +34,7 @@ function MemberTableContentItem({
                 <div className={styles.path_4}>{classes}</div>
                 <div className={styles.path_5}>{phone}</div>
                 <div className={styles.path_6}>
-                    <div
-                        className={styles.icon}
-                        onClick={({ a = name, idUser = id }) => handleOpenModalDelete(a, idUser)}
-                    >
+                    <div className={styles.icon} onClick={({ a = name, idUser = id }) => handleDelete(a, idUser)}>
                         <DeleteOutlineIcon sx={{ fontSize: 22, color: '#65697B', margin: 'auto' }} />
                     </div>
                 </div>
