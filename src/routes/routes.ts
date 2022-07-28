@@ -10,6 +10,9 @@ const AddHomework = lazy(() => import('~/pages/AddHomework'));
 const Schedule = lazy(() => import('~/pages/Schedule'));
 const Member = lazy(() => import('~/pages/Member'));
 const Lesson = lazy(() => import('~/pages/Lesson'));
+const LessonAdd = lazy(() => import('~/pages/LessonAdd'));
+const LessonEdit = lazy(() => import('~/pages/LessonEdit'));
+
 import DefaultLayout from '~/layout/Default';
 
 interface Route {
@@ -67,6 +70,14 @@ const routes: Route[] = [
             {
                 path: 'lesson',
                 component: Lesson,
+            },
+            {
+                path: 'lesson/add',
+                component: LessonAdd,
+            },
+            {
+                path: 'lesson/:id/edit',
+                component: LessonEdit,
             },
         ],
     },

@@ -20,6 +20,9 @@
     justify-content: center;
     margin-left: 4px;
 }
+.link {
+    text-decoration: none;
+}
 .button {
     width: 140px;
     font-size: 14px;

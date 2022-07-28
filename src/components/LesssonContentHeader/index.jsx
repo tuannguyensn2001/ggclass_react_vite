@@ -1,6 +1,7 @@
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
+import { Link } from 'react-router-dom';
 
 import styles from './styles.module.css';
 
@@ -24,7 +25,9 @@ function LesssonContentHeader() {
                     <SearchIcon />
                 </div>
             </div>
-            <Button className={styles.button}>Tạo bài giảng</Button>
+            <Link to="add" className={styles.link}>
+                <Button className={styles.button}>Tạo bài giảng</Button>
+            </Link>
         </div>
     );
 }

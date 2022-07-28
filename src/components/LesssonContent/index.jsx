@@ -9,6 +9,7 @@ function LesssonContent() {
             <div className={styles.list_card}>
                 <CardVideo />
                 <CardVideo />
+                {/* <div className={styles.noVideo}>Lớp học chưa có bài giảng nào</div> */}
             </div>
         </div>
     );

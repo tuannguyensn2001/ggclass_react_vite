@@ -1,0 +1,16 @@
+.wrap {
+    width: 320px;
+    box-sizing: border-box;
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+.header_top {
+    font-size: 14px;
+    color: #65697b;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 16px;
+    padding: 0 16px;
+    text-align: center;
+}

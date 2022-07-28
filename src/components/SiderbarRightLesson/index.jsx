@@ -2,23 +2,28 @@ import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { Link } from 'react-router-dom';
 import styles from './styles.module.css';
 const actions = [
     {
         name: 'Xem bài giảng',
         Icon: OndemandVideoIcon,
+        to: '',
     },
     {
         name: 'Chỉnh sửa',
         Icon: BorderColorIcon,
+        to: 'alo/edit',
     },
     {
         name: 'Di chuyển',
         Icon: FolderOpenIcon,
+        to: '',
     },
     {
         name: 'Xóa bài giảng',
         Icon: DeleteOutlineIcon,
+        to: '',
     },
 ];
 
@@ -40,12 +45,12 @@ function SiderbarRightLesson() {
             </div>
             <div className={styles.bottom}>
                 {actions.map((item, index) => (
-                    <div key={index} className={styles.bottom_item}>
-                        <h4 className={styles.name}>{item.name}</h4>
+                    <Link to={item?.to} key={index} className={styles.bottom_item}>
+                        <h4 className={styles.name}>{item?.name}</h4>
                         <h5 className={styles.icon}>
                             <item.Icon />
                         </h5>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>
