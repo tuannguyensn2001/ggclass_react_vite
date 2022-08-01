@@ -1,0 +1,35 @@
+.wrap {
+    display: flex;
+    align-items: center;
+    height: 64px;
+    border-bottom: 1px solid rgb(223, 221, 221);
+    justify-content: space-between;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+.name {
+    font-size: 18px;
+    font-weight: 500;
+    color: #202227;
+}
+.button {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 210px;
+    border: 1px solid green;
+    padding: 0 16px;
+    box-sizing: border-box;
+    border-radius: 12px;
+}
+.icon {
+    position: relative;
+    top: 2px;
+    color: green;
+}
+.title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #202227;
+    margin-left: 10px;
+}

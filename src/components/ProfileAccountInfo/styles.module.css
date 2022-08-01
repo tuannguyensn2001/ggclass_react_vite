@@ -1,0 +1,39 @@
+.wrap {
+    padding: 16px;
+}
+.avatar {
+    margin: 16px auto;
+    width: 82px;
+    height: 82px;
+    position: relative;
+}
+.img {
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+
+    object-fit: center;
+    /* object-position: center; */
+}
+.upLoad {
+}
+.cameraAltIcon {
+    display: none;
+    position: absolute;
+    bottom: -11px;
+    right: -10px;
+    cursor: pointer;
+}
+.avatar:hover .cameraAltIcon {
+    display: block;
+}
+.inputfile {
+    display: none;
+}
+.title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #202227;
+    margin: 0;
+    padding-bottom: 6px;
+}
