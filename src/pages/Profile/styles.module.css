@@ -1,0 +1,32 @@
+.container {
+    background-color: #f0f2f5;
+    display: flex;
+    height: calc(100vh - 64px);
+}
+.wrap {
+    background-color: #fff;
+    width: 960px;
+    margin: 0 auto;
+}
+.content {
+    height: calc(100vh - 128px);
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding-bottom: 20px;
+}
+.content::-webkit-scrollbar {
+    width: 8px;
+    background-color: #fff;
+}
+.content::-webkit-scrollbar-thumb {
+    height: 20px;
+    background-color: rgb(224, 220, 220);
+}
+.tips {
+    margin: 4px 16px 0 16px;
+}
+.tips_title {
+    color: #65697b;
+    font-size: 12px;
+    margin: 0;
+}

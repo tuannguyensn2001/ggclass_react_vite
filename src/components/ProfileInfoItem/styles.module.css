@@ -1,0 +1,48 @@
+.wrap {
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #d8dcf0;
+    box-sizing: border-box;
+}
+.left {
+    display: flex;
+    align-items: center;
+    width: 40%;
+}
+.icon_left {
+}
+.img_icon {
+    height: 24px;
+    width: 24px;
+}
+.title {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgb(78, 82, 95);
+    margin: 0 12px;
+}
+.mid {
+    display: flex;
+    align-items: center;
+    width: 40%;
+}
+.title {
+}
+.icon_mid {
+    position: relative;
+    top: 3px;
+    cursor: pointer;
+}
+.edit {
+    font-size: 14px;
+    text-align: right;
+    text-decoration: none;
+    color: #1e88e5;
+    font-weight: 500;
+    width: 20%;
+}
+.hide {
+    visibility: hidden;
+}

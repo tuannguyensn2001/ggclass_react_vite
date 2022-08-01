@@ -1,0 +1,32 @@
+.wrap {
+    padding: 16px;
+    margin-top: 4px;
+}
+.avatar {
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 82px;
+    height: 82px;
+}
+.img {
+    width: 82px;
+    height: 82px;
+
+    object-fit: center;
+    /* object-position: center; */
+}
+.title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #202227;
+    margin: 0;
+}
+.sub {
+    color: #65697b;
+    font-size: 12px;
+    margin: 0;
+    padding-top: 6px;
+    box-sizing: border-box;
+    padding-bottom: 10px;
+}

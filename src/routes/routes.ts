@@ -8,6 +8,7 @@ const DetailClass = lazy(() => import('~/pages/DetailClass'));
 const Newsfeed = lazy(() => import('~/pages/Newsfeed'));
 const AddHomework = lazy(() => import('~/pages/AddHomework'));
 const Schedule = lazy(() => import('~/pages/Schedule'));
+const Profile = lazy(() => import('~/pages/Profile'));
 const Member = lazy(() => import('~/pages/Member'));
 const Lesson = lazy(() => import('~/pages/Lesson'));
 import DefaultLayout from '~/layout/Default';
@@ -38,6 +39,12 @@ const routes: Route[] = [
     {
         path: '/class',
         component: Class,
+        layout: DefaultLayout,
+        private: true,
+    },
+    {
+        path: '/profile',
+        component: Profile,
         layout: DefaultLayout,
         private: true,
     },
