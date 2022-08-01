@@ -1,0 +1,42 @@
+.wrap {
+    width: 320px;
+    padding: 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.item {
+    margin-bottom: 16px;
+}
+.name {
+    color: #65697b;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+.input {
+    width: 100%;
+}
+.aria {
+    border: 1px solid #c5c6ca;
+}
+.aria:focus-within {
+    border: none;
+    outline: 1px solid #1e88e5;
+}
+.button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    border: 1px dashed #1e88e5;
+    color: #1e88e5;
+    padding: 3px 0;
+    border-radius: 4px;
+}
+.icon {
+}
+.title {
+    font-size: 14px;
+    margin-left: 4px;
+}

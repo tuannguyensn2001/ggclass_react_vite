@@ -1,0 +1,29 @@
+.wrap {
+    flex: 1;
+    border-right: 1px solid #d8dcf0;
+    box-sizing: border-box;
+    padding: 16px;
+}
+.list_card {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    height: calc(100vh - 190px);
+    overflow: auto;
+}
+.list_card::-webkit-scrollbar {
+    background-color: #fff;
+    width: 10px;
+}
+.list_card::-webkit-scrollbar-thumb {
+    height: 20px;
+    background-color: rgb(232, 221, 221);
+}
+.noVideo {
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+    color: rgb(180, 172, 172);
+}
