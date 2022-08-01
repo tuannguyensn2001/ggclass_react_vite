@@ -7,3 +7,8 @@ export interface SearchClassForm {
     search: string;
     sort: string;
 }
+
+export interface GetRoleResponse {
+    admin: number[];
+    student: number[];
+}

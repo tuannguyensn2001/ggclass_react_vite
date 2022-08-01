@@ -13,8 +13,9 @@ import VerticalSplitIcon from '@mui/icons-material/VerticalSplit';
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useMemo } from 'react';
+import useDetailClass from '~/hooks/useDetailClass';
 
 function SidebarClass() {
     const location = useLocation();
@@ -36,36 +37,36 @@ function SidebarClass() {
                 text: 'Thành viên',
                 to: 'member',
             },
-            {
-                icon: WorkOutlineIcon,
-                text: 'Vai trò lớp',
-                to: 'assistance',
-            },
-            {
-                icon: PeopleOutlineIcon,
-                text: 'Nhóm hoc tập',
-                to: 'group',
-            },
+            // {
+            //     icon: WorkOutlineIcon,
+            //     text: 'Vai trò lớp',
+            //     to: 'assistance',
+            // },
+            // {
+            //     icon: PeopleOutlineIcon,
+            //     text: 'Nhóm hoc tập',
+            //     to: 'group',
+            // },
             {
                 icon: TaskIcon,
                 text: 'Bài tập',
                 to: 'homework',
             },
-            {
-                icon: VerticalSplitIcon,
-                text: 'Bảng điểm',
-                to: 'scoretable',
-            },
+            // {
+            //     icon: VerticalSplitIcon,
+            //     text: 'Bảng điểm',
+            //     to: 'scoretable',
+            // },
             {
                 icon: PlayCircleOutlineIcon,
                 text: 'Bài giảng',
                 to: 'lesson',
             },
-            {
-                icon: SummarizeIcon,
-                text: 'Tài liệu',
-                to: 'file',
-            },
+            // {
+            //     icon: SummarizeIcon,
+            //     text: 'Tài liệu',
+            //     to: 'file',
+            // },
             {
                 icon: SettingsIcon,
                 text: 'Cài đặt lớp học',
