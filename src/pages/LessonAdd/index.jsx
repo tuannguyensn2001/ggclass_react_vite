@@ -1,5 +1,5 @@
 import LessonHeader from '~/components/LessonHeader';
-import SiderbarLessonAdd from '~/components/SiderbarLessonAdd';
+import SiderbarLessonAddEdit from '~/components/SiderbarLessonAddEdit';
 import BoxInputLessonAdd from '~/components/BoxInputLessonAdd';
 
 import styles from './styles.module.css';
@@ -13,7 +13,7 @@ function LessonAdd() {
                     <BoxInputLessonAdd />
                 </div>
             </div>
-            <SiderbarLessonAdd />
+            <SiderbarLessonAddEdit />
         </div>
     );
 }
