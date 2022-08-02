@@ -25,10 +25,19 @@ function HeaderRight() {
             {/*      </div>*/}
             {/*</div>*/}
             {/* </a> */}
-            <Tippy interactive trigger="click" offset={[120, 0]} placement="bottom-end" render={() => <Notification />}>
-                <span className={styles.bell}>
+            <Tippy
+                interactive
+                trigger="click"
+                offset={[120, -6]}
+                placement="bottom-end"
+                render={() => <Notification />}
+            >
+                <div className={styles.bell}>
                     <HeaderBell />
-                </span>
+                    <div className={styles.numberNotification}>
+                        <span className={styles.number}>20</span>
+                    </div>
+                </div>
             </Tippy>
 
             <HeaderUser />

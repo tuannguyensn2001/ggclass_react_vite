@@ -2,15 +2,7 @@
     width: 400px;
     background-color: #fff;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    padding-bottom: 10px;
-}
-.wrap::-webkit-scrollbar {
-    background-color: #fff;
-    width: 6px;
-}
-.wrap::-webkit-scrollbar-thumb {
-    background-color: rgb(224, 222, 222);
-    height: 6px;
+    padding-bottom: 4px;
 }
 .header {
     font-size: 13px;

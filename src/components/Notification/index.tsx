@@ -10,11 +10,6 @@ function Notification() {
             <div className={styles.header}>Thông báo</div>
             <div className={styles.content}>
                 <NotificationItem />
-                <NotificationItem />
-                <NotificationItem />
-                <NotificationItem />
-                <NotificationItem />
-                <NotificationItem />
             </div>
         </div>
     );
