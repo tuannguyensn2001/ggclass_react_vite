@@ -1,7 +1,7 @@
 import { Button, TextareaAutosize, TextField } from '@mui/material';
 import styles from './styles.module.css';
 import FindInPageIcon from '@mui/icons-material/FindInPage';
-function SiderbarLessonEdit() {
+function SiderbarLessonAddEdit() {
     return (
         <div className={styles.wrap}>
             <div className={styles.item}>
@@ -53,4 +53,4 @@ function SiderbarLessonEdit() {
     );
 }
 
-export default SiderbarLessonEdit;
+export default SiderbarLessonAddEdit;

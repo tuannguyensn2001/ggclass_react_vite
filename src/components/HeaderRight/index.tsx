@@ -1,8 +1,11 @@
+import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 // @ts-ignore
 import styles from './styles.module.css';
 import HeaderBell from '~/components/HeaderBell';
 import HeaderUser from '~/components/HeaderUser';
+// @ts-ignore
+import Notification from '~/components/Notification';
 
 function HeaderRight() {
     return (
@@ -22,7 +25,21 @@ function HeaderRight() {
             {/*      </div>*/}
             {/*</div>*/}
             {/* </a> */}
-            <HeaderBell />
+            <Tippy
+                interactive
+                trigger="click"
+                offset={[120, -6]}
+                placement="bottom-end"
+                render={() => <Notification />}
+            >
+                <div className={styles.bell}>
+                    <HeaderBell />
+                    <div className={styles.numberNotification}>
+                        <span className={styles.number}>20</span>
+                    </div>
+                </div>
+            </Tippy>
+
             <HeaderUser />
         </div>
     );
