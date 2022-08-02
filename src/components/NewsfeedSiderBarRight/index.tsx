@@ -2,6 +2,7 @@
 import styles from './styles.module.css';
 import ModalAddNotification from '~/components/ModalAddNotification';
 import useModal from '~/hooks/useModal';
+import NewFeedNotification from '~/components/NewFeedNotification';
 
 function NewsfeedSiderBarRight() {
     const { isOpen, close, open } = useModal();
@@ -21,10 +22,12 @@ function NewsfeedSiderBarRight() {
                 </button>
             </div>
             <div className={styles.content}>
-                <div className={styles.noNotify}>
+                <NewFeedNotification />
+                <NewFeedNotification />
+                {/* <div className={styles.noNotify}>
                     <span className={styles.dark}>Lớp học chưa có thông báo</span> Nội dung thông báo của giáo viên sẽ
                     xuất hiện ở đây
-                </div>
+                </div> */}
             </div>
         </div>
     );
