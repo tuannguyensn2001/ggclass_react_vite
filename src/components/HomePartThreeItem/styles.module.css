@@ -1,0 +1,32 @@
+.wrap {
+    display: flex;
+    flex-direction: column;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    margin: 0 4px;
+}
+.img {
+    width: 100%;
+}
+.name {
+    font-size: 28px;
+    font-weight: 600;
+    color: #1e88e5;
+    margin: 0;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 8px;
+}
+.title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #202227;
+    margin-left: 10px;
+    margin-bottom: 28px;
+}
+.wrap:hover {
+    background-color: #bce0ff;
+    cursor: pointer;
+}

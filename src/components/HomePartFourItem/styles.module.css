@@ -1,0 +1,21 @@
+.wrap {
+    border-radius: 30px;
+    height: 164px;
+    padding: 24px;
+    background-color: #efeff5;
+    margin-left: 20px;
+    margin: 16px 8px;
+    box-sizing: border-box;
+}
+.street {
+    width: 20px;
+    height: 8px;
+    border-radius: 6px;
+    background-color: #007aff;
+}
+.title {
+    font-size: 14px;
+    color: #202227;
+    font-weight: 400;
+    text-align: justify;
+}

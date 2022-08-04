@@ -1,0 +1,23 @@
+.wrap {
+    background-color: rgba(239, 239, 245, 0.9);
+    height: 48px;
+    margin-top: 8px;
+    padding: 0 16px;
+    display: flex;
+    width: fit-content;
+    margin-right: 6px;
+    align-items: center;
+    border-radius: 100px;
+}
+.img {
+    width: 17px;
+    height: 17px;
+}
+.title {
+    display: inline-table;
+    font-size: 16px;
+    color: #202227;
+    font-weight: 500;
+    margin: 0;
+    margin-left: 8px;
+}

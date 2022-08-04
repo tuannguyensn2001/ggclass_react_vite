@@ -1,7 +1,7 @@
 import styles from './styles.module.css';
 
-function LessonHeader() {
-    return <div className={styles.header}>Bài giảng</div>;
+function LessonHeader({ name }: string) {
+    return <div className={styles.header}>{name}</div>;
 }
 
 export default LessonHeader;

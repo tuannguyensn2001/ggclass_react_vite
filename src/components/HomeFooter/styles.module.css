@@ -1,0 +1,44 @@
+.wrap {
+    padding: 40px 160px;
+    display: flex;
+    align-items: center;
+}
+.left {
+}
+.logo {
+}
+.left_header {
+    font-size: 16px;
+    color: #202227;
+    font-weight: 600;
+}
+.left_title {
+    font-size: 14px;
+    color: #202227;
+    font-weight: 400;
+}
+.mid {
+    margin: 0 80px;
+}
+.mid_header {
+    font-size: 14px;
+    color: #202227;
+    font-weight: 600;
+}
+.mid_title {
+    font-size: 14px;
+    color: #202227;
+    font-weight: 400;
+}
+.right {
+}
+.right_header {
+    font-size: 14px;
+    color: #202227;
+    font-weight: 600;
+}
+.right_title {
+    font-size: 14px;
+    color: #202227;
+    font-weight: 400;
+}
