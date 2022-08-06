@@ -23,7 +23,6 @@ ReactDOM.createRoot(document?.getElementById('root')).render(
                 <App />
             </ConfirmProvider>
         </QueryClientProvider>
-        ,
     </React.StrictMode>,
 );
 

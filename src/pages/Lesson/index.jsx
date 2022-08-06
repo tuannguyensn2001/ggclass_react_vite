@@ -15,7 +15,7 @@ const defaultData = [
 function Lesson() {
     return (
         <div className={styles.wrap}>
-            <LessonHeader />
+            <LessonHeader name="Bài giảng" />
             <div className={styles.content}>
                 <SidebarLeftLesson />
                 <LesssonContent data={defaultData} />

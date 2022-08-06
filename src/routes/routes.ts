@@ -13,6 +13,7 @@ const Member = lazy(() => import('~/pages/Member'));
 const Lesson = lazy(() => import('~/pages/Lesson'));
 const LessonAdd = lazy(() => import('~/pages/LessonAdd'));
 const LessonEdit = lazy(() => import('~/pages/LessonEdit'));
+const HomeWork = lazy(() => import('~/pages/HomeWork'));
 
 import DefaultLayout from '~/layout/Default';
 
@@ -33,7 +34,7 @@ const routes: Route[] = [
     {
         path: '/',
         component: Home,
-        layout: DefaultLayout,
+        // layout: DefaultLayout,
     },
     {
         path: '/login',
@@ -85,6 +86,10 @@ const routes: Route[] = [
             {
                 path: 'lesson/:id/edit',
                 component: LessonEdit,
+            },
+            {
+                path: 'homework',
+                component: HomeWork,
             },
         ],
     },
