@@ -57,7 +57,7 @@ export default function SignInSide() {
             onSuccess(data) {
                 localStorage.setItem('accessToken', data.data.accessToken);
                 setUser(data.data.user);
-                navigate('/');
+                navigate('/class');
                 toast.success('Chào mừng bạn trở lại');
             },
         },

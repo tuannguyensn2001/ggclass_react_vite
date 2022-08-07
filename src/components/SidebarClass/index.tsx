@@ -16,9 +16,13 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import { useLocation, useParams } from 'react-router-dom';
 import { useMemo } from 'react';
 import useDetailClass from '~/hooks/useDetailClass';
+import useRoleInClass from '~/hooks/useRoleInClass';
+import { Role } from '~/enums/role';
 
 function SidebarClass() {
     const location = useLocation();
+
+    const role = useRoleInClass();
 
     const menu = useMemo(() => {
         return [
@@ -26,16 +30,19 @@ function SidebarClass() {
                 icon: NewspaperIcon,
                 text: 'Bảng tin',
                 to: 'newsfeed',
+                show: true,
             },
             {
                 icon: EventNoteIcon,
                 text: 'Lịch học',
                 to: 'schedule',
+                show: true,
             },
             {
                 icon: PersonOutlineIcon,
                 text: 'Thành viên',
                 to: 'member',
+                show: role == Role.ADMIN,
             },
             // {
             //     icon: WorkOutlineIcon,
@@ -51,6 +58,7 @@ function SidebarClass() {
                 icon: TaskIcon,
                 text: 'Bài tập',
                 to: 'homework',
+                show: true,
             },
             // {
             //     icon: VerticalSplitIcon,
@@ -61,6 +69,7 @@ function SidebarClass() {
                 icon: PlayCircleOutlineIcon,
                 text: 'Bài giảng',
                 to: 'lesson',
+                show: true,
             },
             // {
             //     icon: SummarizeIcon,
@@ -72,9 +81,10 @@ function SidebarClass() {
                 text: 'Cài đặt lớp học',
                 to: 'edit',
                 footer: true,
+                show: true,
             },
         ];
-    }, []);
+    }, [role]);
 
     const active = useMemo(() => {
         const { pathname } = location;
@@ -93,14 +103,18 @@ function SidebarClass() {
                 {menu.map((item, index) => {
                     if (!item?.footer) {
                         return (
-                            <SiderbarClassItem
-                                active={item.to === active}
-                                key={index}
-                                Icon={item?.icon}
-                                to={item?.to}
-                                text={item?.text}
-                                footer={Boolean(item?.footer)}
-                            />
+                            <div key={item.to}>
+                                {item?.show && (
+                                    <SiderbarClassItem
+                                        active={item.to === active}
+                                        key={index}
+                                        Icon={item?.icon}
+                                        to={item?.to}
+                                        text={item?.text}
+                                        footer={Boolean(item?.footer)}
+                                    />
+                                )}
+                            </div>
                         );
                     }
                 })}

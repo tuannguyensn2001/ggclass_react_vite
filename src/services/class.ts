@@ -12,3 +12,7 @@ export const fetchRoles = () => {
 export const fetchDetailClass = (classId: number) => {
     return API.get(`/v1/classes/${classId}`);
 };
+
+export const fetchRole = (classId: number) => {
+    return API.get(`/v1/classes/${classId}/role`);
+};

@@ -8,6 +8,7 @@ import useManageMyNewFeeds from '~/hooks/useManageMyNewFeeds';
 import { useCallback } from 'react';
 import { IPost } from '~/models/IPost';
 import { IComment } from '~/models/IComment';
+import useNewsfeedStore from '~/store/useNewsfeedStore';
 
 function Newsfeed() {
     const { listPost, setListPost, mutateAddPost, mutateAddComment, classId } = useManageMyNewFeeds();

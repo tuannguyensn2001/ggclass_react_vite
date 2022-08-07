@@ -84,7 +84,7 @@ const routes: Route[] = [
                 component: LessonAdd,
             },
             {
-                path: 'lesson/:id/edit',
+                path: 'lesson/:lessonId/edit',
                 component: LessonEdit,
             },
             {

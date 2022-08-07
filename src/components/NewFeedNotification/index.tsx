@@ -2,16 +2,15 @@
 import styles from './styles.module.css';
 import clsx from 'clsx';
 import CloseIcon from '@mui/icons-material/Close';
+import dayjs from '~/packages/dayjs';
+import { memo } from 'react';
 
-function NewFeedNotification() {
+function NewFeedNotification({ content, createdAt }: { content: string; createdAt: string }) {
     return (
         <div className={styles.wrap}>
             <div className={styles.left}>
-                <h6 className={styles.header}>
-                    Một bản ballad thật sâu đậm, ý nghĩa, chất liệu âm nhạc tuyệt vời. Chúc ca khúc này vươn tầm thế
-                    giới và ngày càng nhiều người cảm nhận !
-                </h6>
-                <p className={styles.time}>time</p>
+                <h6 className={styles.header}>{content}</h6>
+                <p className={styles.time}>{dayjs(createdAt).format(' HH:MM DD/MM/YYYY')}</p>
             </div>
             <div className={styles.close}>
                 <CloseIcon sx={{ fontSize: 20 }} />
@@ -20,4 +19,4 @@ function NewFeedNotification() {
     );
 }
 
-export default NewFeedNotification;
+export default memo(NewFeedNotification);

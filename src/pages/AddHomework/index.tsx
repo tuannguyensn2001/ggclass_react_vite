@@ -1,7 +1,11 @@
+import MultipleChoiceForm from '~/components/MultipleChoiceForm';
+
 function AddHomework() {
     return (
         <div>
-            <div>abc</div>
+            <div>
+                <MultipleChoiceForm />
+            </div>
         </div>
     );
 }

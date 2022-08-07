@@ -6,8 +6,24 @@ import HeaderBell from '~/components/HeaderBell';
 import HeaderUser from '~/components/HeaderUser';
 // @ts-ignore
 import Notification from '~/components/Notification';
+import useGetMyNotifications from '~/hooks/useGetMyNotifications';
+import { useEffect, useRef } from 'react';
+import { Instance } from 'tippy.js';
 
 function HeaderRight() {
+    const { newestNumber } = useGetMyNotifications();
+
+    const instance = useRef<Instance | null>(null);
+
+    useEffect(() => {
+        const handler = () => {
+            instance.current?.hide();
+        };
+        window.addEventListener('close-notification', handler);
+        return () => {
+            window.addEventListener('close-notification', handler);
+        };
+    }, []);
     return (
         <div className={styles.content_right_header}>
             {/* <a className={styles.update}> */}
@@ -26,6 +42,9 @@ function HeaderRight() {
             {/*</div>*/}
             {/* </a> */}
             <Tippy
+                onMount={(tippy) => {
+                    instance.current = tippy;
+                }}
                 interactive
                 trigger="click"
                 offset={[120, -6]}
@@ -34,9 +53,11 @@ function HeaderRight() {
             >
                 <div className={styles.bell}>
                     <HeaderBell />
-                    <div className={styles.numberNotification}>
-                        <span className={styles.number}>20</span>
-                    </div>
+                    {newestNumber > 0 && (
+                        <div className={styles.numberNotification}>
+                            <span className={styles.number}>{newestNumber}</span>
+                        </div>
+                    )}
                 </div>
             </Tippy>
 
