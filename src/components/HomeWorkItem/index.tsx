@@ -1,6 +1,7 @@
 // @ts-ignore
 import styles from './style.module.scss';
 import clsx from 'clsx';
+import useExercisesInClassStore from '~/store/useExercisesInClassStore';
 
 const types = [
     {
@@ -20,13 +21,20 @@ const types = [
 interface Prop {
     name: string;
     active?: boolean;
+    id: number;
+    onClick: (id: number) => void;
 }
 
-function HomeWorkItem({ active = true, name }: Prop) {
+function HomeWorkItem({ active = true, name, id, onClick }: Prop) {
     const type = 'pdf';
     const typeCurrent = types.find((item) => item.type === type);
+
+    const handleClick = () => {
+        onClick(id);
+    };
     return (
         <div
+            onClick={handleClick}
             className={clsx(styles.wrap, {
                 [styles.active]: active,
             })}

@@ -5,18 +5,38 @@ import FormMultipleChoiceItem from '~/components/FormMultipleChoiceItem';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import uniqueId from 'lodash/uniqueId';
 import { memo } from 'react';
+import { useQuery } from 'react-query';
+import { getMultipleChoiceExerciseDetail } from '~/repositories/exercise';
+import { useParams } from 'react-router-dom';
 
 function FormMultipleChoice() {
-    const { control, watch, setValue, getValues } = useFormContext<FormMultipleChoiceInterface>();
+    const { control, watch, setValue, getValues, register } = useFormContext<FormMultipleChoiceInterface>();
 
-    const { fields } = useFieldArray({
+    const { fields, insert } = useFieldArray({
         control: control,
         name: 'answers',
     });
 
+    useEffect(() => {
+        register('answers');
+    }, [register]);
+
     const origin = useRef<FormMultipleChoiceAnswerItemInterface[]>([]);
 
     const [active, setActive] = useState<number>(0);
+
+    const { exerciseId } = useParams();
+
+    const { data } = useQuery(['detail', exerciseId], () => getMultipleChoiceExerciseDetail(Number(exerciseId)), {
+        onSuccess(response) {
+            response?.multipleChoice.answers.forEach((item, index) => {
+                origin.current[index] = {
+                    ...origin.current[index],
+                    ...item,
+                };
+            });
+        },
+    });
 
     useEffect(() => {
         for (let i = 0; i < 50; i++) {

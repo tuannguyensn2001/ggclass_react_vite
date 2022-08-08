@@ -12,3 +12,11 @@ export const fetchExercisesByClass = (classId: number) => {
         },
     });
 };
+
+export const fetchMultipleChoiceExerciseDetail = (id: number) => {
+    return API.get(`/v1/exercises/multiple-choice/${id}/edit`);
+};
+
+export const fetchUpdateMultipleChoice = (id: number, data: FormMultipleChoiceInterface) => {
+    return API.put(`/v1/exercises/multiple-choice/${id}`, data);
+};
