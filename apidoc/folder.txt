@@ -1,0 +1,32 @@
+API create folder:
+url: /v1/folders
+method: post
+request:
+    - name: string
+    - classId: int
+response:
+    - message: string
+    - data:
+        - id: int
+        - name: string
+        - classId: int
+        - createdBy: int
+        - createdAt: timestamp
+        - updatedAt: timestamp
+
+API get all folders in class:
+url: /v1/folders
+method: get
+query param:
+    - classId : int
+response:
+    - [
+        {
+       - id: int
+            - name: string
+            - classId: int
+            - createdBy: int
+            - createdAt: timestamp
+            - updatedAt: timestamp
+        }
+    ]
