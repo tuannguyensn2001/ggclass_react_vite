@@ -9,8 +9,12 @@ import { FormMultipleChoiceInterface } from '~/types/exercise';
 import FormExercise from '~/components/FormExercise';
 import { RoleStudent } from '~/enums/role_student';
 import { ExerciseMode } from '~/enums/exercise';
-import { useMutation } from 'react-query';
-import { getCreateMultipleChoice } from '~/repositories/exercise';
+import { useMutation, useQuery } from 'react-query';
+import {
+    getCreateMultipleChoice,
+    getMultipleChoiceExerciseDetail,
+    getUpdateMultipleChoice,
+} from '~/repositories/exercise';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -21,11 +25,32 @@ function MultipleChoiceForm() {
     const { mutate } = useMutation('create', (data: FormMultipleChoiceInterface) => getCreateMultipleChoice(data), {
         onSuccess() {
             navigate(`/class/${id}/homework`);
-            toast.success('Them moi bai hoc thanh cong');
+            toast.success('Them moi bai tap thanh cong');
         },
     });
 
-    const { id } = useParams();
+    const { mutate: mutateUpdate } = useMutation(
+        'edit',
+        (data: FormMultipleChoiceInterface) => getUpdateMultipleChoice(Number(exerciseId), data),
+        {
+            onSuccess() {
+                navigate(`/class/${id}/homework`);
+                toast.success('Chinh sua bai tap thanh cong');
+            },
+        },
+    );
+
+    const { id, exerciseId } = useParams();
+
+    const { data } = useQuery(['detail', exerciseId], () => getMultipleChoiceExerciseDetail(Number(exerciseId)), {
+        onSuccess(response) {
+            methods.reset({
+                ...response,
+
+                answers: response.multipleChoice.answers,
+            });
+        },
+    });
 
     const handleComplete = useCallback((data: FormMultipleChoiceInterface) => {
         data.classId = Number(id);
@@ -38,7 +63,14 @@ function MultipleChoiceForm() {
         }));
         data.preventViewQuestion = data.preventViewQuestion ? 1 : 0;
         data.isTest = data.isTest ? 1 : 0;
-        mutate(data);
+        data.roleStudent = Number(data.roleStudent);
+        data.mode = Number(data.mode);
+
+        if (Boolean(data?.id)) {
+            mutateUpdate(data);
+        } else {
+            mutate(data);
+        }
     }, []);
 
     const handleNext = useCallback(async () => {

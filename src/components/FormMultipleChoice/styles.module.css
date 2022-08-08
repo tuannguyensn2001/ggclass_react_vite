@@ -1,0 +1,12 @@
+.listForm {
+    height: calc(100vh - 230px);
+    overflow-y: auto;
+}
+.listForm::-webkit-scrollbar {
+    width: 8px;
+    background-color: #fff;
+}
+.listForm::-webkit-scrollbar-thumb {
+    height: 20px;
+    background-color: rgb(197, 197, 197);
+}

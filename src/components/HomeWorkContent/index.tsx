@@ -2,22 +2,30 @@ import HomeWorkContentHeader from '~/components/HomeWorkContentHeader';
 // @ts-ignore
 import styles from './styles.module.css';
 import HomeWorkItem from '~/components/HomeWorkItem';
-import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
-import { IExercise } from '~/models/IExercise';
-import { getExercisesByClass } from '~/repositories/exercise';
+import useGetExerciseInClass from '~/hooks/useGetExercisesInClass';
+import useExercisesInClassStore from '~/store/useExercisesInClassStore';
 
 function HomeWorkContent() {
-    const { id } = useParams();
+    const { data } = useGetExerciseInClass();
 
-    const { data } = useQuery<IExercise[]>(['exercises', id], () => getExercisesByClass(Number(id)));
+    const { id, setId } = useExercisesInClassStore((state) => state);
+
+    const handleClickItem = (item: number) => {
+        setId(item);
+    };
 
     return (
         <div className={styles.wrap}>
             <HomeWorkContentHeader />
             <div className={styles.list_card}>
                 {data?.map((item) => (
-                    <HomeWorkItem key={item.id} name={item?.name} active={false} />
+                    <HomeWorkItem
+                        onClick={handleClickItem}
+                        id={item.id}
+                        key={item.id}
+                        name={item?.name}
+                        active={id === item.id}
+                    />
                 ))}
             </div>
         </div>

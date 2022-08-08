@@ -1,22 +1,50 @@
 import TextField from '@mui/material/TextField';
 import { useFormContext, Controller, useFieldArray, useWatch } from 'react-hook-form';
-import { FormMultipleChoiceAnswerItemInterface, FormMultipleChoiceInterface } from '~/types/exercise';
+import {
+    FormMultipleChoiceAnswerItemInterface,
+    FormMultipleChoiceInterface,
+} from '~/types/exercise';
 import FormMultipleChoiceItem from '~/components/FormMultipleChoiceItem';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import uniqueId from 'lodash/uniqueId';
 import { memo } from 'react';
-
+import { useQuery } from 'react-query';
+import { getMultipleChoiceExerciseDetail } from '~/repositories/exercise';
+import { useParams } from 'react-router-dom';
+import styles from './styles.module.css';
 function FormMultipleChoice() {
-    const { control, watch, setValue, getValues } = useFormContext<FormMultipleChoiceInterface>();
+    const { control, watch, setValue, getValues, register } =
+        useFormContext<FormMultipleChoiceInterface>();
 
-    const { fields } = useFieldArray({
+    const { fields, insert } = useFieldArray({
         control: control,
         name: 'answers',
     });
 
+    useEffect(() => {
+        register('answers');
+    }, [register]);
+
     const origin = useRef<FormMultipleChoiceAnswerItemInterface[]>([]);
 
     const [active, setActive] = useState<number>(0);
+
+    const { exerciseId } = useParams();
+
+    const { data } = useQuery(
+        ['detail', exerciseId],
+        () => getMultipleChoiceExerciseDetail(Number(exerciseId)),
+        {
+            onSuccess(response) {
+                response?.multipleChoice.answers.forEach((item, index) => {
+                    origin.current[index] = {
+                        ...origin.current[index],
+                        ...item,
+                    };
+                });
+            },
+        },
+    );
 
     useEffect(() => {
         for (let i = 0; i < 50; i++) {
@@ -77,7 +105,7 @@ function FormMultipleChoice() {
 
     return (
         <div>
-            <div className={'tw-mt-4 tw-flex'}>
+            <div className={'tw-mt-4 tw-flex tw-shadow tw-pb-4'}>
                 <div>
                     <Controller
                         rules={{
@@ -124,17 +152,19 @@ function FormMultipleChoice() {
                 </div>
             </div>
             <div>
-                <div className={'tw-mt-10'}>
-                    <div className={'tw-grid tw-grid-cols-3 tw-gap-4'}>
-                        {fields.map((item, index) => (
-                            <FormMultipleChoiceItem
-                                setActive={setActive}
-                                emitChange={handleEmitChange}
-                                key={item.id}
-                                active={index === active}
-                                order={index}
-                            />
-                        ))}
+                <div className={'tw-mt-2'}>
+                    <div className={styles.listForm}>
+                        <div className={'tw-grid tw-grid-cols-3 tw-gap-4'}>
+                            {fields.map((item, index) => (
+                                <FormMultipleChoiceItem
+                                    setActive={setActive}
+                                    emitChange={handleEmitChange}
+                                    key={item.id}
+                                    active={index === active}
+                                    order={index}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,12 @@
+.wrapper {
+    height: calc(100vh - 140px);
+    overflow-y: auto;
+}
+.wrapper::-webkit-scrollbar {
+    width: 8px;
+    background-color: #fff;
+}
+.wrapper::-webkit-scrollbar-thumb {
+    height: 20px;
+    background-color: rgb(197, 197, 197);
+}
