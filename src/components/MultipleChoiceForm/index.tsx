@@ -7,12 +7,56 @@ import FormMultipleChoice from '~/components/FormMultipleChoice';
 import { useForm, FormProvider } from 'react-hook-form';
 import { FormMultipleChoiceInterface } from '~/types/exercise';
 import FormExercise from '~/components/FormExercise';
+import { RoleStudent } from '~/enums/role_student';
+import { ExerciseMode } from '~/enums/exercise';
+import { useMutation } from 'react-query';
+import { getCreateMultipleChoice } from '~/repositories/exercise';
+import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function MultipleChoiceForm() {
     const { step, previous, next } = useStep();
 
-    const handleComplete = useCallback(() => {
-        console.log('complete');
+    const navigate = useNavigate();
+    const { mutate } = useMutation('create', (data: FormMultipleChoiceInterface) => getCreateMultipleChoice(data), {
+        onSuccess() {
+            navigate(`/class/${id}/homework`);
+            toast.success('Them moi bai hoc thanh cong');
+        },
+    });
+
+    const { id } = useParams();
+
+    const handleComplete = useCallback((data: FormMultipleChoiceInterface) => {
+        data.classId = Number(id);
+        data.multipleChoice.answers = data.answers;
+        data.multipleChoice.mark = Number(data.multipleChoice.mark);
+        data.multipleChoice.numberOfQuestions = Number(data.multipleChoice.numberOfQuestions);
+        data.multipleChoice.answers = data.answers.map((item, index) => ({
+            ...item,
+            order: index + 1,
+        }));
+        data.preventViewQuestion = data.preventViewQuestion ? 1 : 0;
+        data.isTest = data.isTest ? 1 : 0;
+        mutate(data);
+    }, []);
+
+    const handleNext = useCallback(async () => {
+        if (step === 1) {
+            const { trigger } = methods;
+            const hasError =
+                (
+                    await Promise.all([
+                        trigger('multipleChoice.mark'),
+                        trigger('multipleChoice.numberOfQuestions'),
+                        trigger('answers'),
+                    ])
+                ).filter((item) => !item).length > 0;
+
+            if (hasError) return;
+        }
+
+        next();
     }, []);
 
     const methods = useForm<FormMultipleChoiceInterface>({
@@ -22,6 +66,16 @@ function MultipleChoiceForm() {
                 numberOfQuestions: '',
             },
             answers: [],
+            preventViewQuestion: false,
+            isTest: true,
+            roleStudent: RoleStudent.ONLY_VIEW_MARK,
+            numberOfTimeToDo: 1,
+            mode: ExerciseMode.GET_MARK_FOR_FIRST_TIME_TO_DO,
+            timeStart: null,
+            timeEnd: null,
+            password: '',
+            name: '',
+            timeToDo: 90,
         },
         reValidateMode: 'onChange',
         mode: 'onChange',
@@ -31,9 +85,9 @@ function MultipleChoiceForm() {
         <FormProvider {...methods}>
             <HeaderHomework
                 showComplete={step === 3}
-                handleComplete={handleComplete}
+                handleComplete={methods.handleSubmit(handleComplete)}
                 handlePrevious={previous}
-                handleNext={next}
+                handleNext={handleNext}
             />
 
             <div>

@@ -85,6 +85,7 @@ function FormMultipleChoice() {
                                 value: 50,
                                 message: 'Khong qua 50 cau',
                             },
+                            required: 'Khong duoc de trong',
                         }}
                         control={control}
                         name={'multipleChoice.numberOfQuestions'}

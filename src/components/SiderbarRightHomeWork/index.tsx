@@ -4,9 +4,12 @@ import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import MouseIcon from '@mui/icons-material/Mouse';
 import { Link } from 'react-router-dom';
+// @ts-ignore
 import styles from './styles.module.css';
 import clsx from 'clsx';
-const actions = [
+import React from 'react';
+
+const actions: { name: string; Icon: any; to: string; active?: boolean }[] = [
     {
         name: 'Làm thử',
         Icon: OndemandVideoIcon,
@@ -28,7 +31,6 @@ const actions = [
         Icon: BorderColorIcon,
         to: '',
     },
-    ,
     {
         name: 'Xóa',
         Icon: DeleteOutlineIcon,
@@ -41,7 +43,7 @@ function SiderbarRightHomeWork() {
         {
             name: 'Số lần làm bài',
             value: '1',
-            nameApi: '',
+            key: 'numberOfTi',
         },
         {
             name: 'Lấy điểm',
@@ -96,9 +98,7 @@ function SiderbarRightHomeWork() {
                         })}
                     >
                         <h4 className={styles.name}>{item?.name}</h4>
-                        <h5 className={styles.icon}>
-                            <item.Icon sx={{ fontSize: 20 }} />
-                        </h5>
+                        <h5 className={styles.icon}>{React.createElement(item?.Icon)}</h5>
                     </Link>
                 ))}
             </div>

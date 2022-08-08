@@ -29,10 +29,15 @@ function FormMultipleChoiceItem({ active, order, emitChange, setActive }: Prop) 
             <div>Cau {order + 1}</div>
             <div className={'tw-mt-4'}>
                 <Controller
+                    rules={{
+                        required: 'Khong duoc de trong',
+                    }}
                     name={`answers.${order}.answer`}
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, fieldState: { error, invalid } }) => (
                         <TextField
+                            error={invalid}
+                            helperText={error?.message}
                             fullWidth
                             size={'small'}
                             label={'Dap an'}
@@ -47,10 +52,19 @@ function FormMultipleChoiceItem({ active, order, emitChange, setActive }: Prop) 
             </div>
             <div className={'tw-mt-4'}>
                 <Controller
+                    rules={{
+                        required: 'Khong duoc de trong diem',
+                        min: {
+                            value: 0,
+                            message: 'Diem khong hop le',
+                        },
+                    }}
                     name={`answers.${order}.mark`}
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, fieldState: { error, invalid } }) => (
                         <TextField
+                            error={invalid}
+                            helperText={error?.message}
                             type={'number'}
                             fullWidth
                             size={'small'}

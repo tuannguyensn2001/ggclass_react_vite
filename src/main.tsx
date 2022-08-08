@@ -4,6 +4,8 @@ import App from '~/App';
 import '~/styles/global.scss';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ConfirmProvider } from 'material-ui-confirm';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 // @ts-ignore
 ReactDOM.createRoot(document?.getElementById('root')).render(
@@ -20,7 +22,9 @@ ReactDOM.createRoot(document?.getElementById('root')).render(
             }
         >
             <ConfirmProvider>
-                <App />
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <App />
+                </LocalizationProvider>
             </ConfirmProvider>
         </QueryClientProvider>
     </React.StrictMode>,

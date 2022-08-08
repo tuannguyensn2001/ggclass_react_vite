@@ -9,14 +9,14 @@ interface Option {
 
 interface Prop {
     label: string;
-    value: any;
+    value?: any;
     options: Option[];
-    onChange: SelectInputProps['onChange'];
+    onChange?: SelectInputProps['onChange'];
 }
 
 function SelectMaterial({ label, options, value, onChange }: Prop) {
     return (
-        <FormControl size={'small'} fullWidth>
+        <FormControl size={'medium'} fullWidth>
             <InputLabel id="demo-simple-select-label">{label}</InputLabel>
             <Select
                 labelId="demo-simple-select-label"

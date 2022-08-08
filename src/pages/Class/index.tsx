@@ -37,7 +37,7 @@ function Class() {
         });
     }, [methods.watch('search'), methods.watch('sort')]);
     // moi
-    const handleJoinClass = (data) => {
+    const handleJoinClass = (data: any) => {
         console.log(data);
         mutateJoin(data);
     };

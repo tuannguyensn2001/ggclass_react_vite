@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 
 export default function useStep(min: number = 1, max: number = 3) {
-    const [step, setStep] = useState<number>(3);
+    const [step, setStep] = useState<number>(1);
 
     const previous = useCallback(() => {
         setStep((prevState) => {
