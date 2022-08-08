@@ -8,7 +8,7 @@ import useModal from './useModal';
 
 function UseFolder() {
     const { id } = useParams();
-    const classId = Number(id)
+    const classId = Number(id);
     const {
         isOpen: isOpenModalAddFolder,
         open: handleOpenModalAddFolder,
@@ -17,25 +17,27 @@ function UseFolder() {
 
     const [allFolder, setAllFolder] = useState<IFolder[]>([]);
 
-    const { data } = useQuery<GetFolderResponse>(
-        'getStudent',
-        getAllFolder(classId: number),
-        {
-            onSuccess(res) {
-                setAllFolder(res.data);
-            },
+    const { data } = useQuery<GetFolderResponse>('getStudent', getAllFolder(classId), {
+        onSuccess(res: any) {
+            setAllFolder(res.data);
         },
-    );
-    const { mutate: mutateGetFolder } = useMutation(
-        'getAllFolder',
-        ({ classId }: { classId: number }) => getAllFolder(classId),
-        {
-            onSuccess(data) {
-                setAllFolder(data.data);
-                console.log('data all ', data);
-            },
+        onError(err) {
+            console.log(err);
         },
-    );
+    });
+    // const { mutate: mutateGetFolder } = useMutation(
+    //     'getAllFolder',
+    //     ({ classId }: { classId: number }) => getAllFolder(classId),
+    //     {
+    //         onSuccess(data) {
+    //             setAllFolder(data.data);
+    //             console.log('data all ', data);
+    //         },
+    //         onError(err) {
+    //             console.log(err);
+    //         },
+    //     },
+    // );
     const { mutate: mutateCreateFolder } = useMutation(
         'createFolder',
         ({ classId, name }: { classId: number; name: string }) => getCreateFolder(classId, name),
@@ -51,7 +53,6 @@ function UseFolder() {
     );
 
     return {
-        mutateGetFolder,
         isOpenModalAddFolder,
         handleOpenModalAddFolder,
         handleCloseModalAddFolder,

@@ -1,4 +1,5 @@
 import { fetchCreateFolder, fetchGetALlFolder } from '~/services/folder';
+import { GetFolderResponse } from '~/types/Folder';
 
 export const getCreateFolder = async (classId: number, name: string) => {
     const response = await fetchCreateFolder(classId, name);

@@ -22,7 +22,6 @@ function Lesson() {
         handleOpenModalAddFolder,
         isOpenModalAddFolder,
         mutateCreateFolder,
-        mutateGetFolder,
         allFolder,
     } = UseFolder();
     const { id } = useParams();
@@ -33,10 +32,6 @@ function Lesson() {
             name,
         });
     };
-
-    useEffect(() => {
-        mutateGetFolder({ classId: Number(id) });
-    }, []);
 
     return (
         <div className={styles.wrap}>
