@@ -1,6 +1,11 @@
+// @ts-ignore
 import styles from './styles.module.css';
 
-function LessonHeader({ name }: string) {
+interface Prop {
+    name: string;
+}
+
+function LessonHeader({ name }: Prop) {
     return <div className={styles.header}>{name}</div>;
 }
 

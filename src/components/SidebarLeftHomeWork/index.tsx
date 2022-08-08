@@ -1,7 +1,10 @@
+// @ts-ignore
 import styles from './styles.module.scss';
 import FolderItem from '~/components/FolderItem';
 
-function SidebarLeftHomeWork({ name, id }) {
+interface Prop {}
+
+function SidebarLeftHomeWork() {
     return (
         <div className={styles.nav}>
             <div className={styles.head}>

@@ -1,3 +1,4 @@
+// @ts-ignore
 import styles from './style.module.scss';
 import clsx from 'clsx';
 
@@ -16,7 +17,13 @@ const types = [
     },
 ];
 
-function HomeWorkItem({ type, active = true, name, style, value }) {
+interface Prop {
+    name: string;
+    active?: boolean;
+}
+
+function HomeWorkItem({ active = true, name }: Prop) {
+    const type = 'pdf';
     const typeCurrent = types.find((item) => item.type === type);
     return (
         <div
@@ -24,16 +31,15 @@ function HomeWorkItem({ type, active = true, name, style, value }) {
                 [styles.active]: active,
             })}
         >
-            <div className={styles.icon}>
-                <img className={styles.img} src={typeCurrent.url} alt="file" />
-            </div>
+            <div className={styles.icon}>{<img className={styles.img} src={typeCurrent?.url} alt="file" />}</div>
             <div className={styles.mid}>
                 <h6 className={styles.name}>{name}</h6>
                 <div className={styles.loading}></div>
-                <div className={styles.title}>{style}</div>
+                <div className={styles.title}>Trac nghiem</div>
             </div>
-            <div className={styles.right}>{value}</div>
+            <div className={styles.right}>0/0 da lam</div>
         </div>
     );
 }
+
 export default HomeWorkItem;

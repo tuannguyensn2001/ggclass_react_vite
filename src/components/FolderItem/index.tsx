@@ -1,7 +1,12 @@
+// @ts-ignore
 import styles from './style.module.scss';
 import clsx from 'clsx';
 
-function FolderItem({ name }) {
+interface Prop {
+    name: string;
+}
+
+function FolderItem({ name }: Prop) {
     return (
         <div className={clsx(styles.head, styles.lessons)}>
             <img
@@ -20,4 +25,5 @@ function FolderItem({ name }) {
         </div>
     );
 }
+
 export default FolderItem;
