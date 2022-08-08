@@ -3,15 +3,11 @@ import styles from './style.module.scss';
 import clsx from 'clsx';
 import { IFolder } from '~/models/IFolder';
 
-<<<<<<< HEAD
-function FolderItem({ name }: IFolder) {
-=======
 interface Prop {
     name: string;
 }
 
 function FolderItem({ name }: Prop) {
->>>>>>> 5100849dcf63abe74949bb2c07aa90e7c4491630
     return (
         <div className={clsx(styles.head, styles.lessons)}>
             <img
