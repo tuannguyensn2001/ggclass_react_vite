@@ -18,12 +18,12 @@ const defaultData = [
 function HomeWork() {
     return (
         <div className={styles.wrap}>
-            {/* <LessonHeader name="Bài tập" />
+            <LessonHeader name="Bài tập" />
             <div className={styles.content}>
                 <SidebarLeftHomeWork />
                 <HomeWorkContent data={defaultData} />
                 <SiderbarRightHomeWork />
-            </div> */}
+            </div>
             <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js">
                 <Viewer fileUrl="http://truongthptductho.edu.vn/upload/48852/20190504/Vi_tich_phan_va_cam_ung_dien_tu.pdf" />
                 ;
