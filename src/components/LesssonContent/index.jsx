@@ -9,7 +9,13 @@ function LesssonContent({ data }) {
             <div className={styles.list_card}>
                 {data && data?.length > 0 ? (
                     data.map((item, index) => (
-                        <CardVideo name={item?.name} video={item?.video} viewer={item?.viewer} time={item?.time} />
+                        <CardVideo
+                            key={item?.name}
+                            name={item?.name}
+                            video={item?.video}
+                            viewer={item?.viewer}
+                            time={item?.time}
+                        />
                     ))
                 ) : (
                     <div className={styles.noVideo}>Lớp học chưa có bài giảng nào</div>

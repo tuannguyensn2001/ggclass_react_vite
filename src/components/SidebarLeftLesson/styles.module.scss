@@ -26,6 +26,10 @@
     opacity: 0.6;
     width: 25px;
     object-fit: contain;
+    cursor: pointer;
+}
+.img:hover {
+    opacity: 0.87;
 }
 
 .lessons {

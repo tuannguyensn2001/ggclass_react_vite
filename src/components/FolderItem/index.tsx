@@ -1,7 +1,8 @@
 import styles from './style.module.scss';
 import clsx from 'clsx';
+import { IFolder } from '~/models/IFolder';
 
-function FolderItem({ name }) {
+function FolderItem({ name }: IFolder) {
     return (
         <div className={clsx(styles.head, styles.lessons)}>
             <img
