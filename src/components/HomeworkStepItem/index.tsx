@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { memo } from 'react';
 
 interface Prop {
     active: boolean;
@@ -18,4 +19,4 @@ function HomeworkStepItem({ active, label }: Prop) {
     );
 }
 
-export default HomeworkStepItem;
+export default memo(HomeworkStepItem);

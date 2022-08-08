@@ -1,4 +1,5 @@
 import HomeworkStepItem from '~/components/HomeworkStepItem';
+import { memo } from 'react';
 
 interface Prop {
     step: number;
@@ -14,4 +15,4 @@ function HeaderStepHomework({ step }: Prop) {
     );
 }
 
-export default HeaderStepHomework;
+export default memo(HeaderStepHomework);

@@ -1,11 +1,12 @@
 import HeaderHomework from '~/components/HeaderHomework';
-import clsx from 'clsx';
-import HomeworkStepItem from '~/components/HomeworkStepItem';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import useStep from '~/hooks/useStep';
 import HeaderStepHomework from '~/components/HeaderStepHomework';
 import PreviewFileMultipleChoice from '~/components/PreviewFileMultipleChoice';
 import FormMultipleChoice from '~/components/FormMultipleChoice';
+import { useForm, FormProvider } from 'react-hook-form';
+import { FormMultipleChoiceInterface } from '~/types/exercise';
+import FormExercise from '~/components/FormExercise';
 
 function MultipleChoiceForm() {
     const { step, previous, next } = useStep();
@@ -14,8 +15,20 @@ function MultipleChoiceForm() {
         console.log('complete');
     }, []);
 
+    const methods = useForm<FormMultipleChoiceInterface>({
+        defaultValues: {
+            multipleChoice: {
+                mark: '10',
+                numberOfQuestions: '',
+            },
+            answers: [],
+        },
+        reValidateMode: 'onChange',
+        mode: 'onChange',
+    });
+
     return (
-        <div>
+        <FormProvider {...methods}>
             <HeaderHomework
                 showComplete={step === 3}
                 handleComplete={handleComplete}
@@ -32,13 +45,12 @@ function MultipleChoiceForm() {
                         <div>
                             <HeaderStepHomework step={step} />
                         </div>
-                        <div>
-                            <FormMultipleChoice />
-                        </div>
+                        <div>{step === 1 && <FormMultipleChoice />}</div>
+                        {step === 3 && <FormExercise />}
                     </div>
                 </div>
             </div>
-        </div>
+        </FormProvider>
     );
 }
 
