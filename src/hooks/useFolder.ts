@@ -1,10 +1,14 @@
 import { useState } from 'react';
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
+import { useParams } from 'react-router-dom';
 import { IFolder } from '~/models/IFolder';
 import { getAllFolder, getCreateFolder } from '~/repositories/folder';
+import { GetFolderResponse } from '~/types/Folder';
 import useModal from './useModal';
 
 function UseFolder() {
+    const { id } = useParams();
+    const classId = Number(id)
     const {
         isOpen: isOpenModalAddFolder,
         open: handleOpenModalAddFolder,
@@ -13,6 +17,15 @@ function UseFolder() {
 
     const [allFolder, setAllFolder] = useState<IFolder[]>([]);
 
+    const { data } = useQuery<GetFolderResponse>(
+        'getStudent',
+        getAllFolder(classId: number),
+        {
+            onSuccess(res) {
+                setAllFolder(res.data);
+            },
+        },
+    );
     const { mutate: mutateGetFolder } = useMutation(
         'getAllFolder',
         ({ classId }: { classId: number }) => getAllFolder(classId),
