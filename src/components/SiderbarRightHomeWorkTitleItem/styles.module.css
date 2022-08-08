@@ -1,0 +1,25 @@
+.top_item {
+    font-weight: 400;
+    color: #65697b;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    display: flex;
+    margin: 14px 0;
+}
+.top_name {
+    padding: 0;
+    margin: 0;
+    font-weight: 400;
+    font-size: 12.5px;
+}
+.title {
+    padding: 0;
+    margin-left: auto;
+    margin-right: 0;
+    display: block;
+    font-weight: 500;
+    color: #202227;
+    font-size: 12.5px;
+}

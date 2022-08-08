@@ -1,0 +1,30 @@
+.bottom_item {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+    margin: 10px 0;
+    text-decoration: none;
+}
+.bottom_item:hover {
+    background-color: rgba(30, 136, 229, 0.04);
+    cursor: pointer;
+}
+.focus {
+    background-color: rgba(32, 34, 39, 0.04);
+}
+.name {
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    color: #33353b;
+    font-size: 500;
+}
+.icon {
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    font-size: 500;
+    color: #202227;
+}
