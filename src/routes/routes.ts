@@ -2,6 +2,7 @@ import React, { ExoticComponent, Fragment, lazy, ReactNode } from 'react';
 
 const Home = lazy(() => import('~/pages/Home'));
 const Login = lazy(() => import('~/pages/Login'));
+const Register = lazy(() => import('~/pages/Register'));
 const Class = lazy(() => import('~/pages/Class'));
 const Resource = lazy(() => import('~/pages/Resource'));
 const DetailClass = lazy(() => import('~/pages/DetailClass'));
@@ -39,6 +40,10 @@ const routes: Route[] = [
     {
         path: '/login',
         component: Login,
+    },
+    {
+        path: '/register',
+        component: Register,
     },
     {
         path: '/class',

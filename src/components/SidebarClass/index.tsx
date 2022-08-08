@@ -18,7 +18,8 @@ import { useMemo } from 'react';
 import useDetailClass from '~/hooks/useDetailClass';
 import useRoleInClass from '~/hooks/useRoleInClass';
 import { Role } from '~/enums/role';
-
+import ClassModalAddEdit from '~/components/ClassModalAddEdit';
+import useModal from '~/hooks/useModal';
 function SidebarClass() {
     const location = useLocation();
 
@@ -79,7 +80,7 @@ function SidebarClass() {
             {
                 icon: SettingsIcon,
                 text: 'Cài đặt lớp học',
-                to: 'edit',
+                to: '',
                 footer: true,
                 show: true,
             },
@@ -92,6 +93,7 @@ function SidebarClass() {
         const result = menu.find((item) => pathname.includes(item.to));
         return result?.to;
     }, [location]);
+    const { isOpen: openAddEditModal, open: handleOpenAddEditModal, close: handleCloseAddEditModal } = useModal();
 
     return (
         <div className={styles.wrap}>
@@ -119,7 +121,12 @@ function SidebarClass() {
                     }
                 })}
             </div>
-            <div className={styles.footer}>
+            <div
+                className={styles.footer}
+                onClick={() => {
+                    handleOpenAddEditModal();
+                }}
+            >
                 {menu.map((item, index) => {
                     if (item?.footer) {
                         return (
@@ -134,6 +141,12 @@ function SidebarClass() {
                     }
                 })}
             </div>
+            <ClassModalAddEdit
+                subMitForm={() => {}}
+                openAddModal={openAddEditModal}
+                handleCloseAddModal={handleCloseAddEditModal}
+                title="Chỉnh sửa lớp học hiện tại"
+            />
         </div>
     );
 }

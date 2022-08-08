@@ -13,11 +13,12 @@ import { CreateClassForm } from '~/types/class';
 
 interface Prop {
     openAddModal: boolean;
+    title: string;
     handleCloseAddModal: () => void;
     subMitForm: (data: CreateClassForm) => void;
 }
 
-function ClassModalAdd({ openAddModal = false, handleCloseAddModal = () => {}, subMitForm }: Prop) {
+function ClassModalAddEdit({ openAddModal = false, title, handleCloseAddModal = () => {}, subMitForm }: Prop) {
     const { register, handleSubmit, reset } = useForm<CreateClassForm>({ shouldUseNativeValidation: true });
     const style = {
         position: 'absolute',
@@ -55,7 +56,7 @@ function ClassModalAdd({ openAddModal = false, handleCloseAddModal = () => {}, s
             >
                 <Box sx={style} className={styles.box} component="form" noValidate onSubmit={handleSubmit(submit)}>
                     <div className={styles.header}>
-                        <div className={styles.header_text}>Thêm lớp học mới</div>
+                        <div className={styles.header_text}>{title}</div>
                         <div className={styles.close}>
                             <CloseIcon
                                 onClick={handleCloseAddModal}
@@ -92,4 +93,4 @@ function ClassModalAdd({ openAddModal = false, handleCloseAddModal = () => {}, s
     );
 }
 
-export default ClassModalAdd;
+export default ClassModalAddEdit;

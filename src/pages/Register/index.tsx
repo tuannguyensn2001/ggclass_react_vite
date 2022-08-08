@@ -18,11 +18,11 @@ import API from '~/network/API';
 import useAuthStore from '~/store/useAuthStore';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { LoginForm, LoginResponse } from '~/types/login';
-import { getLogin } from '~/repositories/auth';
+import { RegisterForm, RegisterResponse } from '~/types/register';
+import { getLogin, getRegister } from '~/repositories/auth';
 import { ResponseAPI } from '~/app/response';
 import { AxiosError } from 'axios';
-
+import { useRef } from 'react';
 function Copyright(props: any) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -38,36 +38,30 @@ function Copyright(props: any) {
 
 const theme = createTheme();
 
-export default function SignInSide() {
+export default function Register() {
     const {
         register,
-        handleSubmit,
         formState: { errors },
-    } = useForm<LoginForm>({
-        defaultValues: {
-            email: 'tuannguyensn2001a@gmail.com',
-            password: 'java2001',
-        },
-    });
-
-    const setUser = useAuthStore((state) => state.setUser);
+        handleSubmit,
+        watch,
+    } = useForm<RegisterForm>();
+    const password = useRef({});
+    password.current = watch('password', '');
 
     const navigate = useNavigate();
 
-    const { mutate } = useMutation<ResponseAPI<LoginResponse>, AxiosError<ResponseAPI>, LoginForm>(
+    const { mutate } = useMutation<ResponseAPI<RegisterResponse>, AxiosError<ResponseAPI>, RegisterForm>(
         'submit',
-        async (data) => getLogin(data),
+        async (data) => getRegister(data),
         {
             onSuccess(data) {
-                localStorage.setItem('accessToken', data.data.accessToken);
-                setUser(data.data.user);
-                navigate('/class');
-                toast.success('Chào mừng bạn trở lại');
+                navigate('/login');
+                toast.success('Mời bạn đăng nhập lại ');
             },
         },
     );
 
-    const submit = (data: LoginForm) => {
+    const submit = (data: RegisterForm) => {
         mutate(data);
     };
 
@@ -102,7 +96,7 @@ export default function SignInSide() {
                             <LockOutlinedIcon />
                         </Avatar>
                         <Typography component="h1" variant="h5">
-                            Sign in
+                            Sign Up
                         </Typography>
                         <Box component="form" noValidate onSubmit={handleSubmit(submit)} sx={{ mt: 1, width: '100%' }}>
                             <TextField
@@ -123,7 +117,18 @@ export default function SignInSide() {
                                 })}
                             />
                             {errors.email && <p style={{ color: 'red', margin: 3 }}>{errors.email.message}</p>}
-
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                label="Username"
+                                type="username"
+                                id="username"
+                                {...register('username', {
+                                    required: 'Please enter your username.',
+                                })}
+                            />
+                            {errors.username && <p style={{ color: 'red', margin: 3 }}>{errors.username.message}</p>}
                             <TextField
                                 margin="normal"
                                 required
@@ -138,25 +143,26 @@ export default function SignInSide() {
                             />
                             {errors.password && <p style={{ color: 'red', margin: 3 }}>{errors.password.message}</p>}
 
-                            <FormControlLabel
-                                control={<Checkbox value="remember" color="primary" />}
-                                label="Remember me"
+                            <TextField
+                                margin="normal"
+                                {...register('password_repeat', {
+                                    required: 'Please enter your repeat password.',
+                                    validate: (value) => value === password.current || 'The passwords do not match',
+                                })}
+                                required
+                                fullWidth
+                                label="Repeat password"
+                                type="password"
+                                autoComplete="current-password"
                             />
+                            {errors.password_repeat && (
+                                <p style={{ color: 'red', margin: 1 }}>{errors.password_repeat.message}</p>
+                            )}
+
                             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-                                Sign In
+                                Sign Up
                             </Button>
-                            <Grid container>
-                                <Grid item xs>
-                                    <Link href="#" variant="body2">
-                                        Forgot password?
-                                    </Link>
-                                </Grid>
-                                <Grid item>
-                                    <Link href="#" variant="body2">
-                                        {"Don't have an account? Sign Up"}
-                                    </Link>
-                                </Grid>
-                            </Grid>
+
                             <Copyright sx={{ mt: 5 }} />
                         </Box>
                     </Box>

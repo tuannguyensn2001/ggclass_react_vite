@@ -1,7 +1,7 @@
 import CardCourse from '~/components/CardCourse';
 // @ts-ignore
 import styles from './styles.module.css';
-import ClassModalAdd from '~/components/ClassModalAdd';
+import ClassModalAddEdit from '~/components/ClassModalAddEdit';
 import useModal from '~/hooks/useModal';
 import ClassHeader from '~/components/ClassHeader';
 import ClassContentHeader from '~/components/ClassContentHeader';
@@ -55,10 +55,11 @@ function Class() {
                     <CardCourse key={item?.id} id={item?.id} name={item?.name} />
                 ))}
             </div>
-            <ClassModalAdd
+            <ClassModalAddEdit
                 subMitForm={createClasses}
                 openAddModal={openAddModal}
                 handleCloseAddModal={handleCloseAddModal}
+                title="Thêm lớp học mới"
             />
             <ClassModalJoin
                 subMitForm={handleJoinClass}
