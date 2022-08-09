@@ -6,10 +6,15 @@ import '@react-pdf-viewer/core/lib/styles/index.css';
 import styles from './style.module.scss';
 // @ts-ignore
 import pdf from '~/assets/shub_sample_pdf.pdf';
+import clsx from 'clsx';
 
-function PreviewFileMultipleChoice() {
+interface Prop {
+    isFullScreen?: boolean;
+}
+
+function PreviewFileMultipleChoice({ isFullScreen = false }: Prop) {
     return (
-        <div className={styles.wrapper}>
+        <div className={clsx({ [styles.wrapper]: !isFullScreen, 'tw-h-screen tw-w-full': isFullScreen })}>
             <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js">
                 <Viewer fileUrl={pdf} />
             </Worker>

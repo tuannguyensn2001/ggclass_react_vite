@@ -3,7 +3,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import MouseIcon from '@mui/icons-material/Mouse';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 // @ts-ignore
 import styles from './styles.module.css';
 import clsx from 'clsx';
@@ -19,6 +19,8 @@ import { getTextExerciseMode } from '~/enums/exercise';
 function SiderbarRightHomeWork() {
     const { data } = useGetExerciseInClass();
     const id = useExercisesInClassStore((state) => state.id);
+
+    const { id: classId } = useParams();
 
     const exercise = useMemo<IExercise | undefined>(() => {
         return data?.find((item) => Number(item.id) === Number(id));
@@ -53,7 +55,11 @@ function SiderbarRightHomeWork() {
                 <SiderbarRightHomeWorkSettingItem to="" name="Làm thử" Icon={OndemandVideoIcon} />
                 <SiderbarRightHomeWorkSettingItem to="alo/edit" name="Chi tiết" Icon={MouseIcon} />
                 <SiderbarRightHomeWorkSettingItem to="" name="Di chuyển" Icon={FolderOpenIcon} />
-                <SiderbarRightHomeWorkSettingItem to="" name="Chỉnh sửa" Icon={BorderColorIcon} />
+                <SiderbarRightHomeWorkSettingItem
+                    to={`/class/${classId}/homework/${exercise?.id}/edit`}
+                    name="Chỉnh sửa"
+                    Icon={BorderColorIcon}
+                />
                 <SiderbarRightHomeWorkSettingItem to="" name="Xóa" Icon={DeleteOutlineIcon} />
             </div>
         </div>
