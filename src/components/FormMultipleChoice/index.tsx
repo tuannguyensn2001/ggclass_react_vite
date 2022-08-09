@@ -111,9 +111,9 @@ function FormMultipleChoice() {
                         rules={{
                             max: {
                                 value: 50,
-                                message: 'Khong qua 50 cau',
+                                message: 'Không quá 50 câu',
                             },
-                            required: 'Khong duoc de trong',
+                            required: 'Không được để trống',
                         }}
                         control={control}
                         name={'multipleChoice.numberOfQuestions'}
@@ -121,7 +121,7 @@ function FormMultipleChoice() {
                             <TextField
                                 helperText={error?.message}
                                 error={invalid}
-                                label={'So cau'}
+                                label={'Số câu'}
                                 value={field.value}
                                 onChange={(event) => {
                                     handleChangeNumberOfQuestion(Number(event.target.value));
@@ -139,7 +139,7 @@ function FormMultipleChoice() {
                         name={'multipleChoice.mark'}
                         render={({ field }) => (
                             <TextField
-                                label={'Tong diem'}
+                                label={'Tổng điểm'}
                                 {...field}
                                 onChange={(event) => {
                                     handleChangeTotalMark(Number(event.target.value));

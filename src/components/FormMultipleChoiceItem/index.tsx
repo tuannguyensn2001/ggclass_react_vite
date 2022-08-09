@@ -29,7 +29,7 @@ function FormMultipleChoiceItem({ active, order, emitChange, setActive }: Prop) 
                 { 'tw-bg-blue-50 tw-border-blue-600': active },
             ])}
         >
-            <div>Cau {order + 1}</div>
+            <div>Câu {order + 1}</div>
             <div className={'tw-mt-4'}>
                 <Controller
                     rules={{

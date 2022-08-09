@@ -1,4 +1,5 @@
 import Button from '@mui/material/Button';
+import CustomSeparator from '~/components/Breadcrumbs';
 import styles from './styles.module.css';
 interface Prop {
     handleNext: () => void;
@@ -11,10 +12,10 @@ function HeaderHomework({ handleNext, handlePrevious, handleComplete, showComple
     return (
         <div className={styles.wrap}>
             <div className={'tw-h-[60px]'}>
-                <div className={'tw-flex tw-justify-between tw-h-full'}>
-                    <div></div>
+                <div className={'tw-flex tw-justify-between tw-items-center tw-h-full'}>
+                    <CustomSeparator />
                     <div className={'tw-flex tw-justify-center tw-flex-col '}>
-                        <div className={'tw-flex tw-mr-4'}>
+                        <div className={'tw-flex'}>
                             <div className={'tw-mr-4'}>
                                 <Button onClick={handlePrevious} variant={'outlined'}>
                                     Quay lại
