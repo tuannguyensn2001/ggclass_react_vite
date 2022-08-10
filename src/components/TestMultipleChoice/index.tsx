@@ -1,6 +1,17 @@
 import PreviewFileMultipleChoice from '~/components/PreviewFileMultipleChoice';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import useMultipleChoiceTestStore from '~/store/useMultipleChoiceTestStore';
 
 function TestMultipleChoice() {
+    const { exerciseId } = useParams();
+
+    const init = useMultipleChoiceTestStore((state) => state.init);
+
+    useEffect(() => {
+        init(Number(exerciseId));
+    }, [exerciseId]);
+
     return (
         <div className={'tw-grid tw-grid-cols-12 tw-h-screen'}>
             <div className={'tw-col-span-7'}>

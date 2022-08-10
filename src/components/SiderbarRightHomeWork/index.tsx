@@ -53,6 +53,11 @@ function SiderbarRightHomeWork() {
             </div>
             <div className={styles.bottom}>
                 <SiderbarRightHomeWorkSettingItem to="" name="Làm thử" Icon={OndemandVideoIcon} />
+                <SiderbarRightHomeWorkSettingItem
+                    to={`/class/${classId}/homework/${exercise?.exerciseCloneId}/do`}
+                    name="Vao thi"
+                    Icon={OndemandVideoIcon}
+                />
                 <SiderbarRightHomeWorkSettingItem to="alo/edit" name="Chi tiết" Icon={MouseIcon} />
                 <SiderbarRightHomeWorkSettingItem to="" name="Di chuyển" Icon={FolderOpenIcon} />
                 <SiderbarRightHomeWorkSettingItem

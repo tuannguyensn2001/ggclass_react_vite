@@ -17,6 +17,7 @@ const LessonEdit = lazy(() => import('~/pages/LessonEdit'));
 const HomeWork = lazy(() => import('~/pages/HomeWork'));
 const EditHomework = lazy(() => import('~/pages/EditHomework/index'));
 const TestHomework = lazy(() => import('~/pages/TestHomework/index'));
+const DoHomework = lazy(() => import('~/pages/DoHomework/index'));
 
 import DefaultLayout from '~/layout/Default';
 
@@ -116,6 +117,12 @@ const routes: Route[] = [
         path: '/class/:id/homework/:exerciseId/test',
         component: TestHomework,
         layout: Fragment,
+    },
+    {
+        path: '/class/:id/homework/:exerciseId/do',
+        component: DoHomework,
+        layout: Fragment,
+        private: true,
     },
 ];
 

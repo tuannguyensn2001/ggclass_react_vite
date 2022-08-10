@@ -20,4 +20,5 @@ export declare interface IExercise {
     type: ExerciseType;
     version: number;
     canLate: boolean;
+    exerciseCloneId: number;
 }
