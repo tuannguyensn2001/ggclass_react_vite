@@ -15,6 +15,7 @@ const Lesson = lazy(() => import('~/pages/Lesson'));
 const LessonAdd = lazy(() => import('~/pages/LessonAdd'));
 const LessonEdit = lazy(() => import('~/pages/LessonEdit'));
 const HomeWork = lazy(() => import('~/pages/HomeWork'));
+const ScoreTable = lazy(() => import('~/pages/ScoreTable'));
 const EditHomework = lazy(() => import('~/pages/EditHomework/index'));
 const TestHomework = lazy(() => import('~/pages/TestHomework/index'));
 
@@ -53,6 +54,7 @@ const routes: Route[] = [
         layout: DefaultLayout,
         private: true,
     },
+
     {
         path: '/profile',
         component: Profile,
@@ -85,6 +87,10 @@ const routes: Route[] = [
             {
                 path: 'lesson',
                 component: Lesson,
+            },
+            {
+                path: 'scoretable',
+                component: ScoreTable,
             },
             {
                 path: 'lesson/add',

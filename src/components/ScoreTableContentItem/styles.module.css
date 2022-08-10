@@ -1,0 +1,48 @@
+.wrap {
+}
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px 0;
+}
+.path_1 {
+    width: 16%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    color: #202227;
+    font-weight: 500;
+    font-size: 14px;
+}
+.left_path_1 {
+    margin-right: 6px;
+}
+.right_path_1 {
+    margin-left: 4px;
+    position: relative;
+    top: 2px;
+}
+.path_2 {
+    width: 8%;
+    padding: 0 16px;
+}
+.listSubject {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+.subject_item {
+    width: 100%;
+}
+.icon {
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
+    display: flex;
+    cursor: pointer;
+}
+.icon:hover {
+    background-color: rgb(248, 243, 243);
+}
