@@ -1,4 +1,3 @@
-// @ts-ignore
 import styles from './styles.module.css';
 
 interface Prop {
