@@ -61,11 +61,12 @@ function SidebarClass() {
                 to: 'homework',
                 show: true,
             },
-            // {
-            //     icon: VerticalSplitIcon,
-            //     text: 'Bảng điểm',
-            //     to: 'scoretable',
-            // },
+            {
+                icon: VerticalSplitIcon,
+                text: 'Bảng điểm',
+                to: 'scoretable',
+                show: true,
+            },
             {
                 icon: PlayCircleOutlineIcon,
                 text: 'Bài giảng',
