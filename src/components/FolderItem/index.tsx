@@ -1,3 +1,4 @@
+// @ts-ignore
 import styles from './style.module.scss';
 import clsx from 'clsx';
 

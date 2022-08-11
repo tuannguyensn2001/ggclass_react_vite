@@ -1,14 +1,13 @@
-import { useLocation, useParams } from 'react-router-dom';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import API from '~/network/API';
 import { useMutation, useQuery } from 'react-query';
-import { getSocket } from '~/packages/socket';
-import pusher from '~/packages/pusher';
+import { IUser } from '~/models/IUser';
 
 export default function useManageMyNewFeeds() {
-    const [listStudent, setListStudent] = useState([]);
+    const [listStudent, setListStudent] = useState<IUser[]>([]);
     const [listPendingMember, setListPendingMember] = useState();
 
     const { id } = useParams();

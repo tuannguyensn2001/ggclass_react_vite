@@ -11,10 +11,19 @@ import SiderbarRightMember from '~/components/SiderbarRightMember';
 import useManageMember from '~/hooks/useManageMember';
 import { useConfirm } from 'material-ui-confirm';
 import { ConfirmProvider } from 'material-ui-confirm';
-function Member() {
-    const { isOpen: openAddModal, open: handleOpenAddModal, close: handleCloseAddModal } = useModal();
 
-    const { isOpen: isOpenModalEdit, open: handleOpenModalEdit, close: handleCloseModalEdit } = useModal();
+function Member() {
+    const {
+        isOpen: openAddModal,
+        open: handleOpenAddModal,
+        close: handleCloseAddModal,
+    } = useModal();
+
+    const {
+        isOpen: isOpenModalEdit,
+        open: handleOpenModalEdit,
+        close: handleCloseModalEdit,
+    } = useModal();
 
     const {
         listStudent,
@@ -25,7 +34,7 @@ function Member() {
         classId,
         mutateAcceptPendingAll,
     } = useManageMember();
-    const handleAddStudent = useCallback((data) => {
+    const handleAddStudent = useCallback((data: any) => {
         mutateAcceptPendingddStudent({
             ...data,
             classId: classId,
@@ -33,7 +42,7 @@ function Member() {
         });
     }, []);
     const confirm = useConfirm();
-    const handleDelete = (name, id) => {
+    const handleDelete = (name: any, id: any) => {
         confirm({ title: 'Hãy chắc chắn rằng', description: `Học sinh ${name} sẽ bị xóa.` })
             .then(() =>
                 mutateDeleteStudent({
@@ -44,7 +53,7 @@ function Member() {
             .catch(() => console.log('Deletion cancelled.'));
     };
 
-    const handleAcceptMember = (userId) => {
+    const handleAcceptMember = (userId: any) => {
         mutateAcceptPending({
             classId: classId,
             userId: userId,
@@ -62,7 +71,7 @@ function Member() {
                     <MemberTableContentHeader />
                     <ConfirmProvider>
                         <div className={styles.listStudent}>
-                            {listStudent?.map((item, index) => (
+                            {listStudent?.map((item: any, index: any) => (
                                 <MemberTableContentItem
                                     key={item?.id}
                                     avatar={item?.profile?.avatar}

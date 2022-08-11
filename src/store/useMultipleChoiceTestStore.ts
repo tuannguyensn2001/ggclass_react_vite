@@ -34,12 +34,14 @@ const useMultipleChoiceTestStore = create<MultipleChoiceTestStore>()(
                     exercise: undefined,
                     timeLeft: 0,
                     initAnswers: (ids: number[]) => {
-                        const map: FormMultipleChoiceAnswerItemInterface[] = ids.map((item, index) => ({
-                            id: item.toString(),
-                            order: index,
-                            answer: '',
-                            mark: '',
-                        }));
+                        const map: FormMultipleChoiceAnswerItemInterface[] = ids.map(
+                            (item, index) => ({
+                                id: item.toString(),
+                                order: index,
+                                answer: '',
+                                mark: '',
+                            }),
+                        );
 
                         set((state) => {
                             state.answers = map;
@@ -50,8 +52,9 @@ const useMultipleChoiceTestStore = create<MultipleChoiceTestStore>()(
                             if (get().isInit) {
                                 const deadline = dayjs(get().deadLine, 'hh:mm:ss DD/MM/YYYY');
                                 const diff = deadline.diff(dayjs(), 'seconds');
+
                                 set((state) => {
-                                    state.timeLeft = diff;
+                                    state.timeLeft = Math.abs(diff);
                                 });
                                 return;
                             }
@@ -61,12 +64,14 @@ const useMultipleChoiceTestStore = create<MultipleChoiceTestStore>()(
                             const response = await getMultipleChoiceClone(id);
                             const ids = response?.answerIds;
                             if (!ids || !Array.isArray(ids)) return;
-                            const map: FormMultipleChoiceAnswerItemInterface[] = ids.map((item, index) => ({
-                                id: item.toString(),
-                                order: index,
-                                answer: '',
-                                mark: '',
-                            }));
+                            const map: FormMultipleChoiceAnswerItemInterface[] = ids.map(
+                                (item, index) => ({
+                                    id: item.toString(),
+                                    order: index,
+                                    answer: '',
+                                    mark: '',
+                                }),
+                            );
 
                             set((state) => {
                                 state.answers = map;
@@ -74,9 +79,18 @@ const useMultipleChoiceTestStore = create<MultipleChoiceTestStore>()(
                                 state.exercise = response?.exercise;
                                 if (!!response?.exercise?.timeToDo) {
                                     const minutes = response?.exercise.timeToDo;
+                                    // console.log(dayjs().add(180, 'minutes'));
+
                                     state.deadLine = dayjs()
                                         .add(Number(minutes), 'minutes')
                                         .format('hh:mm:ss DD/MM/YYYY');
+
+                                    const deadline = dayjs().add(Number(minutes), 'minutes');
+                                    const diff = deadline.diff(dayjs(), 'seconds');
+
+                                    console.log(diff);
+
+                                    state.timeLeft = Math.abs(diff);
                                 }
                             });
                             if (!teacherTest) {
@@ -99,6 +113,10 @@ const useMultipleChoiceTestStore = create<MultipleChoiceTestStore>()(
                     leave: () => {
                         set((state) => {
                             state.isInit = false;
+                            state.deadLine = '';
+                            state.timeLeft = 0;
+                            state.id = 0;
+                            state.answers = [];
                         });
                     },
                 }),

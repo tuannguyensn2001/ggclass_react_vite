@@ -4,6 +4,7 @@ import SiderbarRightLesson from '~/components/SiderbarRightLesson';
 import LessonHeader from '~/components/LessonHeader';
 import useModal from '~/hooks/useModal';
 import ModalAddFolder from '~/components/ModalAddFolder';
+// @ts-ignore
 import styles from './styles.module.css';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
