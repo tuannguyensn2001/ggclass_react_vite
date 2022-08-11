@@ -8,7 +8,7 @@ import { memo } from 'react';
 import { useQuery } from 'react-query';
 import { getMultipleChoiceExerciseDetail } from '~/repositories/exercise';
 import { useParams } from 'react-router-dom';
-
+import styles from './styles.module.css';
 function FormMultipleChoice() {
     const { control, watch, setValue, getValues, register } = useFormContext<FormMultipleChoiceInterface>();
 
@@ -97,15 +97,15 @@ function FormMultipleChoice() {
 
     return (
         <div>
-            <div className={'tw-mt-4 tw-flex'}>
+            <div className={'tw-mt-4 tw-flex tw-shadow tw-pb-4'}>
                 <div>
                     <Controller
                         rules={{
                             max: {
                                 value: 50,
-                                message: 'Khong qua 50 cau',
+                                message: 'Không quá 50 câu',
                             },
-                            required: 'Khong duoc de trong',
+                            required: 'Không được để trống',
                         }}
                         control={control}
                         name={'multipleChoice.numberOfQuestions'}
@@ -113,7 +113,7 @@ function FormMultipleChoice() {
                             <TextField
                                 helperText={error?.message}
                                 error={invalid}
-                                label={'So cau'}
+                                label={'Số câu'}
                                 value={field.value}
                                 onChange={(event) => {
                                     handleChangeNumberOfQuestion(Number(event.target.value));
@@ -131,7 +131,7 @@ function FormMultipleChoice() {
                         name={'multipleChoice.mark'}
                         render={({ field }) => (
                             <TextField
-                                label={'Tong diem'}
+                                label={'Tổng điểm'}
                                 {...field}
                                 onChange={(event) => {
                                     handleChangeTotalMark(Number(event.target.value));
@@ -144,17 +144,19 @@ function FormMultipleChoice() {
                 </div>
             </div>
             <div>
-                <div className={'tw-mt-10'}>
-                    <div className={'tw-grid tw-grid-cols-3 tw-gap-4'}>
-                        {fields.map((item, index) => (
-                            <FormMultipleChoiceItem
-                                setActive={setActive}
-                                emitChange={handleEmitChange}
-                                key={item.id}
-                                active={index === active}
-                                order={index}
-                            />
-                        ))}
+                <div className={'tw-mt-2'}>
+                    <div className={styles.listForm}>
+                        <div className={'tw-grid tw-grid-cols-3 tw-gap-4'}>
+                            {fields.map((item, index) => (
+                                <FormMultipleChoiceItem
+                                    setActive={setActive}
+                                    emitChange={handleEmitChange}
+                                    key={item.id}
+                                    active={index === active}
+                                    order={index}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

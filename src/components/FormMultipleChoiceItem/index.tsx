@@ -26,11 +26,11 @@ function FormMultipleChoiceItem({ active, order, emitChange, setActive }: Prop) 
                 { 'tw-bg-blue-50 tw-border-blue-600': active },
             ])}
         >
-            <div>Cau {order + 1}</div>
+            <div>Câu {order + 1}</div>
             <div className={'tw-mt-4'}>
                 <Controller
                     rules={{
-                        required: 'Khong duoc de trong',
+                        required: 'Không được để trống',
                     }}
                     name={`answers.${order}.answer`}
                     control={control}
@@ -40,7 +40,7 @@ function FormMultipleChoiceItem({ active, order, emitChange, setActive }: Prop) 
                             helperText={error?.message}
                             fullWidth
                             size={'small'}
-                            label={'Dap an'}
+                            label={'Đáp án'}
                             value={field.value}
                             onChange={(event) => {
                                 emitChange(order, `answer`, event.target.value);
@@ -53,10 +53,10 @@ function FormMultipleChoiceItem({ active, order, emitChange, setActive }: Prop) 
             <div className={'tw-mt-4'}>
                 <Controller
                     rules={{
-                        required: 'Khong duoc de trong diem',
+                        required: 'Không được để trống điểm',
                         min: {
                             value: 0,
-                            message: 'Diem khong hop le',
+                            message: 'Điểm không hợp lệ',
                         },
                     }}
                     name={`answers.${order}.mark`}
@@ -73,7 +73,7 @@ function FormMultipleChoiceItem({ active, order, emitChange, setActive }: Prop) 
                                 field.onChange(event);
                             }}
                             value={field.value}
-                            label={'Diem'}
+                            label={'Điểm'}
                         />
                     )}
                 />

@@ -89,16 +89,7 @@ function MultipleChoiceForm() {
         }
 
         next();
-    }, [step]);
-
-    const handlePrevious = useCallback(() => {
-        if (step === 1) {
-            navigate(`/class/${id}/homework`);
-            return;
-        }
-
-        previous();
-    }, [step, navigate]);
+    }, []);
 
     const methods = useForm<FormMultipleChoiceInterface>({
         defaultValues: {
@@ -127,7 +118,7 @@ function MultipleChoiceForm() {
             <HeaderHomework
                 showComplete={step === 3}
                 handleComplete={methods.handleSubmit(handleComplete)}
-                handlePrevious={handlePrevious}
+                handlePrevious={previous}
                 handleNext={handleNext}
             />
 

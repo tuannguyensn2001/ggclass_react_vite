@@ -1,0 +1,41 @@
+.wrap {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    position: fixed;
+    height: calc(100vh - 64px);
+    width: 100%;
+}
+.content {
+    display: flex;
+    box-sizing: border-box;
+}
+.table {
+    width: calc(100% - 240px);
+    box-sizing: border-box;
+}
+.header {
+    font-size: 14px;
+    color: #202227;
+    height: 63px;
+    font-weight: 500;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    border-bottom: 1px solid rgb(216, 220, 240);
+    -sizing: border-box;
+}
+.listStudent {
+    height: calc(100vh - 260px);
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+.listStudent::-webkit-scrollbar {
+    background-color: #fff;
+    width: 6px;
+}
+.listStudent::-webkit-scrollbar-thumb {
+    background-color: rgb(237, 230, 230);
+    height: 20px;
+}
