@@ -72,7 +72,7 @@ function SiderbarRightHomeWork() {
                 </PermissionWrapper>
                 <PermissionWrapper role={Role.STUDENT}>
                     <SiderbarRightHomeWorkSettingItem
-                        to={`/class/${classId}/homework/${exercise?.exerciseCloneId}/do`}
+                        to={`/class/${classId}/homework/${exercise?.id}/do`}
                         name="Vao thi"
                         Icon={OndemandVideoIcon}
                     />

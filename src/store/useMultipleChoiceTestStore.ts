@@ -5,6 +5,8 @@ import { immer } from 'zustand/middleware/immer';
 import { getMultipleChoiceClone } from '~/repositories/exercise_clone';
 import { IExercise } from '~/models/IExercise';
 import dayjs from '~/packages/dayjs';
+import { getStart, getSubmitMultipleChoice } from '~/repositories/assignment';
+import { SubmitMultipleChoiceTestInterface } from '~/types/assignment';
 
 interface MultipleChoiceTestStore {
     answers: FormMultipleChoiceAnswerItemInterface[];
@@ -19,6 +21,10 @@ interface MultipleChoiceTestStore {
     setTimeLeft: () => void;
     changeAnswer: (index: number, answer: string) => void;
     leave: () => void;
+    isLoading: boolean;
+    assignmentId: number;
+    submit: () => void;
+    reset: () => void;
 }
 
 const useMultipleChoiceTestStore = create<MultipleChoiceTestStore>()(
@@ -32,7 +38,9 @@ const useMultipleChoiceTestStore = create<MultipleChoiceTestStore>()(
                     id: 0,
                     deadLine: '',
                     exercise: undefined,
+                    isLoading: false,
                     timeLeft: 0,
+                    assignmentId: -1,
                     initAnswers: (ids: number[]) => {
                         const map: FormMultipleChoiceAnswerItemInterface[] = ids.map(
                             (item, index) => ({
@@ -50,18 +58,27 @@ const useMultipleChoiceTestStore = create<MultipleChoiceTestStore>()(
                     init: async function (id: number, teacherTest = true) {
                         if (!teacherTest) {
                             if (get().isInit) {
-                                const deadline = dayjs(get().deadLine, 'hh:mm:ss DD/MM/YYYY');
+                                const deadline = dayjs(get().deadLine, 'HH:mm:ss DD/MM/YYYY');
                                 const diff = deadline.diff(dayjs(), 'seconds');
 
                                 set((state) => {
-                                    state.timeLeft = Math.abs(diff);
+                                    state.timeLeft = diff;
                                 });
                                 return;
                             }
                         }
 
                         try {
-                            const response = await getMultipleChoiceClone(id);
+                            set((state) => {
+                                state.isLoading = true;
+                            });
+                            const responseStart = await getStart(id);
+                            set((state) => {
+                                state.assignmentId = responseStart.id;
+                            });
+                            const response = await getMultipleChoiceClone(
+                                responseStart.exerciseCloneId,
+                            );
                             const ids = response?.answerIds;
                             if (!ids || !Array.isArray(ids)) return;
                             const map: FormMultipleChoiceAnswerItemInterface[] = ids.map(
@@ -79,18 +96,15 @@ const useMultipleChoiceTestStore = create<MultipleChoiceTestStore>()(
                                 state.exercise = response?.exercise;
                                 if (!!response?.exercise?.timeToDo) {
                                     const minutes = response?.exercise.timeToDo;
-                                    // console.log(dayjs().add(180, 'minutes'));
 
                                     state.deadLine = dayjs()
                                         .add(Number(minutes), 'minutes')
-                                        .format('hh:mm:ss DD/MM/YYYY');
+                                        .format('HH:mm:ss DD/MM/YYYY');
 
                                     const deadline = dayjs().add(Number(minutes), 'minutes');
                                     const diff = deadline.diff(dayjs(), 'seconds');
 
-                                    console.log(diff);
-
-                                    state.timeLeft = Math.abs(diff);
+                                    state.timeLeft = diff;
                                 }
                             });
                             if (!teacherTest) {
@@ -98,11 +112,18 @@ const useMultipleChoiceTestStore = create<MultipleChoiceTestStore>()(
                                     state.isInit = true;
                                 });
                             }
-                        } catch (e) {}
+                        } catch (e) {
+                        } finally {
+                            set((state) => {
+                                state.isLoading = false;
+                            });
+                        }
                     },
                     setTimeLeft: () => {
                         set((state) => {
-                            state.timeLeft--;
+                            if (state.timeLeft >= 0) {
+                                state.timeLeft--;
+                            }
                         });
                     },
                     changeAnswer: (index: number, value: string) => {
@@ -117,6 +138,37 @@ const useMultipleChoiceTestStore = create<MultipleChoiceTestStore>()(
                             state.timeLeft = 0;
                             state.id = 0;
                             state.answers = [];
+                        });
+                    },
+                    async submit() {
+                        const data: SubmitMultipleChoiceTestInterface = {
+                            assignmentId: get().assignmentId,
+                            answers: get().answers.map((item) => ({
+                                id: Number(item.id),
+                                answer: item.answer,
+                            })),
+                        };
+
+                        const response = await getSubmitMultipleChoice(data);
+
+                        set((state) => {
+                            state.isInit = false;
+                            state.deadLine = '';
+                            state.timeLeft = 0;
+                            state.id = 0;
+                            state.answers = [];
+                            state.isSubmit = true;
+                        });
+                    },
+                    reset() {
+                        set((state) => {
+                            state.isInit = false;
+                            state.deadLine = '';
+                            state.timeLeft = 0;
+                            state.id = 0;
+                            state.answers = [];
+                            state.isSubmit = false;
+                            state.assignmentId = -1;
                         });
                     },
                 }),

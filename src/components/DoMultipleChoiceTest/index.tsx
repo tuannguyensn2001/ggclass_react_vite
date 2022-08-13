@@ -19,6 +19,11 @@ function DoMultipleChoiceTest() {
     const [active, setActive] = useState<number>(0);
     const changeAnswer = useMultipleChoiceTestStore((state) => state.changeAnswer);
     const leave = useMultipleChoiceTestStore((state) => state.leave);
+    const timeLeft = useMultipleChoiceTestStore((state) => state.timeLeft);
+    const submit = useMultipleChoiceTestStore((state) => state.submit);
+    const assigmentId = useMultipleChoiceTestStore((state) => state.assignmentId);
+    const reset = useMultipleChoiceTestStore((state) => state.reset);
+    const isInit = useMultipleChoiceTestStore((state) => state.isInit);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -38,7 +43,25 @@ function DoMultipleChoiceTest() {
         if (isSubmit && !!idInterval.current) {
             clearInterval(idInterval.current);
         }
+        if (isSubmit) {
+            console.log('true', isSubmit);
+            navigate(`/class/${id}/assignment/${assigmentId}/detail`);
+            reset();
+        }
     }, [isSubmit]);
+
+    useEffect(() => {
+        // if (timeLeft === 0) {
+        //     if (!!idInterval.current) {
+        //         clearInterval(idInterval.current);
+        //     }
+        // }
+        if (timeLeft === 0 && !isSubmit && isInit) {
+            if (!!idInterval.current) {
+                clearInterval(idInterval.current);
+            }
+        }
+    }, [timeLeft, isSubmit, isInit]);
 
     const handleLeave = () => {
         leave();
@@ -96,7 +119,9 @@ function DoMultipleChoiceTest() {
                             Roi khoi
                         </Button>
                         <div className="tw-ml-4">
-                            <Button variant={'contained'}>Nop bai</Button>
+                            <Button onClick={submit} variant={'contained'}>
+                                Nop bai
+                            </Button>
                         </div>
                     </div>
                 </div>
