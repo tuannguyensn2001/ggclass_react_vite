@@ -8,3 +8,7 @@ export const fetchStart = (exerciseId: number) => {
 export const fetchSubmitMultipleChoice = (data: SubmitMultipleChoiceTestInterface) => {
     return API.post('/v1/assignments/submit/multiple-choice', data);
 };
+
+export const fetchScoreInClass = (classId: number) => {
+    return API.get(`/v1/scores/class/${classId}`);
+};
