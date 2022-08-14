@@ -8,15 +8,16 @@ interface Option {
 }
 
 interface Prop {
-    label: string;
+    label?: string;
     value?: any;
     options: Option[];
     onChange?: SelectInputProps['onChange'];
+    size?: string;
 }
 
-function SelectMaterial({ label, options, value, onChange }: Prop) {
+function SelectMaterial({ label, options, value, onChange, size = 'medium' }: Prop) {
     return (
-        <FormControl size={'medium'} fullWidth>
+        <FormControl size={size} fullWidth>
             <InputLabel id="demo-simple-select-label">{label}</InputLabel>
             <Select
                 labelId="demo-simple-select-label"

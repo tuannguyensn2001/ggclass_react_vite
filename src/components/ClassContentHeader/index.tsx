@@ -36,14 +36,14 @@ function ClassContentHeader({ handleOpenAddModal }: Prop) {
                     control={control}
                     render={({ field }) => (
                         <SelectMaterial
+                            size={'small'}
                             value={field.value}
                             onChange={field.onChange}
-                            label={'Sap xep'}
                             // className={styles.select}
                             options={[
                                 {
                                     value: 'default',
-                                    text: 'sap xep',
+                                    text: 'Sắp xếp  ',
                                 },
                                 {
                                     value: 'A-Z',
@@ -55,11 +55,11 @@ function ClassContentHeader({ handleOpenAddModal }: Prop) {
                                 },
                                 {
                                     value: 'time_asc',
-                                    text: 'Moi nhat',
+                                    text: 'Mới nhất',
                                 },
                                 {
                                     value: 'time_desc',
-                                    text: 'Cu nhat',
+                                    text: 'Cũ nhất',
                                 },
                             ]}
                         />

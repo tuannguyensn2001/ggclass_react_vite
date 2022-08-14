@@ -83,7 +83,8 @@ export default function SignInSide() {
                     sx={{
                         backgroundImage: 'url(https://source.unsplash.com/random)',
                         backgroundRepeat: 'no-repeat',
-                        backgroundColor: (t) => (t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900]),
+                        backgroundColor: (t) =>
+                            t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                     }}
@@ -102,16 +103,21 @@ export default function SignInSide() {
                             <LockOutlinedIcon />
                         </Avatar>
                         <Typography component="h1" variant="h5">
-                            Sign in
+                            Đăng nhập
                         </Typography>
-                        <Box component="form" noValidate onSubmit={handleSubmit(submit)} sx={{ mt: 1, width: '100%' }}>
+                        <Box
+                            component="form"
+                            noValidate
+                            onSubmit={handleSubmit(submit)}
+                            sx={{ mt: 1, width: '100%' }}
+                        >
                             <TextField
                                 margin="normal"
                                 required
                                 fullWidth
                                 id="email"
                                 type="email"
-                                label="Email Address"
+                                label="Email "
                                 autoComplete="email"
                                 autoFocus
                                 {...register('email', {
@@ -122,13 +128,15 @@ export default function SignInSide() {
                                     },
                                 })}
                             />
-                            {errors.email && <p style={{ color: 'red', margin: 3 }}>{errors.email.message}</p>}
+                            {errors.email && (
+                                <p style={{ color: 'red', margin: 3 }}>{errors.email.message}</p>
+                            )}
 
                             <TextField
                                 margin="normal"
                                 required
                                 fullWidth
-                                label="Password"
+                                label="Mật khẩu"
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
@@ -136,28 +144,35 @@ export default function SignInSide() {
                                     required: 'Please enter your password.',
                                 })}
                             />
-                            {errors.password && <p style={{ color: 'red', margin: 3 }}>{errors.password.message}</p>}
+                            {errors.password && (
+                                <p style={{ color: 'red', margin: 3 }}>{errors.password.message}</p>
+                            )}
 
                             <FormControlLabel
                                 control={<Checkbox value="remember" color="primary" />}
-                                label="Remember me"
+                                label="Ghi nhớ đăng nhập"
                             />
-                            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-                                Sign In
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                sx={{ mt: 3, mb: 2 }}
+                            >
+                                Đăng nhập
                             </Button>
                             <Grid container>
                                 <Grid item xs>
                                     <Link href="#" variant="body2">
-                                        Forgot password?
+                                        Quên mật khẩu ?
                                     </Link>
                                 </Grid>
                                 <Grid item>
-                                    <Link href="#" variant="body2">
-                                        {"Don't have an account? Sign Up"}
+                                    <Link href="/register" variant="body2">
+                                        {'Chưa có tài khoản? Đăng ký ngay'}
                                     </Link>
                                 </Grid>
                             </Grid>
-                            <Copyright sx={{ mt: 5 }} />
+                            {/*<Copyright sx={{ mt: 5 }} />*/}
                         </Box>
                     </Box>
                 </Grid>
