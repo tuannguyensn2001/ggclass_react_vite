@@ -25,6 +25,8 @@ function HomeWorkContent() {
                         key={item.id}
                         name={item?.name}
                         active={id === item.id}
+                        totalMembers={item.totalMembersInClass}
+                        totalDoExercise={item.totalMembersDoExercise}
                     />
                 ))}
             </div>

@@ -1,13 +1,13 @@
 import styles from './styles.module.scss';
 import FolderItem from '~/components/FolderItem';
 import { IFolder } from '~/models/IFolder';
+
 interface Props {
     handleOpenModalAddFolder: () => void;
     data?: Array<IFolder>;
 }
 
 function SidebarLeftLesson({ handleOpenModalAddFolder, data }: Props) {
-    console.log('dataaaa', data);
     return (
         <div className={styles.nav}>
             <div className={styles.head}>

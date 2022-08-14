@@ -21,4 +21,6 @@ export declare interface IExercise {
     version: number;
     canLate: boolean;
     exerciseCloneId: number;
+    totalMembersInClass: number;
+    totalMembersDoExercise: number;
 }

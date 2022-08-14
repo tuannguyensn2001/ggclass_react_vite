@@ -46,6 +46,7 @@
     margin: 0;
 }
 .right {
+    @apply tw-ml-4;
     font-size: 13px;
     color: #202227;
     font-weight: 500;

@@ -8,7 +8,6 @@ import useModal from './useModal';
 
 function UseFolder() {
     const { id } = useParams();
-    const classId = Number(id);
     const {
         isOpen: isOpenModalAddFolder,
         open: handleOpenModalAddFolder,
@@ -17,14 +16,18 @@ function UseFolder() {
 
     const [allFolder, setAllFolder] = useState<IFolder[]>([]);
 
-    const { data } = useQuery<GetFolderResponse>('getStudent', getAllFolder(classId), {
-        onSuccess(res: any) {
-            setAllFolder(res.data);
+    const { data } = useQuery<GetFolderResponse>(
+        'getStudent',
+        async () => getAllFolder(Number(id)),
+        {
+            onSuccess(res: any) {
+                setAllFolder(res.data);
+            },
+            onError(err) {
+                console.log(err);
+            },
         },
-        onError(err) {
-            console.log(err);
-        },
-    });
+    );
     // const { mutate: mutateGetFolder } = useMutation(
     //     'getAllFolder',
     //     ({ classId }: { classId: number }) => getAllFolder(classId),
