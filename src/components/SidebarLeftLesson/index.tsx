@@ -1,6 +1,8 @@
 import styles from './styles.module.scss';
 import FolderItem from '~/components/FolderItem';
 import { IFolder } from '~/models/IFolder';
+import useFolderStore from '~/store/useFolderStore';
+import { useCallback } from 'react';
 
 interface Props {
     handleOpenModalAddFolder: () => void;
@@ -8,6 +10,12 @@ interface Props {
 }
 
 function SidebarLeftLesson({ handleOpenModalAddFolder, data }: Props) {
+    const { setId, id: folderId } = useFolderStore((state) => state);
+
+    const handleClickFolder = useCallback((id: number) => {
+        setId(id);
+    }, []);
+
     return (
         <div className={styles.nav}>
             <div className={styles.head}>
@@ -20,10 +28,17 @@ function SidebarLeftLesson({ handleOpenModalAddFolder, data }: Props) {
                 />
             </div>
             <div>
-                <FolderItem name={'Tat ca bai giang'} />
                 {data &&
                     data.length > 0 &&
-                    data?.map((item) => <FolderItem key={item?.id} name={item?.name} />)}
+                    data?.map((item) => (
+                        <FolderItem
+                            id={item?.id}
+                            onClick={handleClickFolder}
+                            active={item?.id === folderId}
+                            key={item?.id}
+                            name={item?.name}
+                        />
+                    ))}
             </div>
         </div>
     );

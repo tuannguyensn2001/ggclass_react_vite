@@ -5,6 +5,7 @@ import { IFolder } from '~/models/IFolder';
 import { getAllFolder, getCreateFolder } from '~/repositories/folder';
 import { GetFolderResponse } from '~/types/Folder';
 import useModal from './useModal';
+import useFolderStore from '~/store/useFolderStore';
 
 function UseFolder() {
     const { id } = useParams();
@@ -14,6 +15,8 @@ function UseFolder() {
         close: handleCloseModalAddFolder,
     } = useModal();
 
+    const setId = useFolderStore((state) => state.setId);
+
     const [allFolder, setAllFolder] = useState<IFolder[]>([]);
 
     const { data } = useQuery<GetFolderResponse>(
@@ -22,6 +25,7 @@ function UseFolder() {
         {
             onSuccess(res: any) {
                 setAllFolder(res.data);
+                setId(Number(res?.data[0]?.id));
             },
             onError(err) {
                 console.log(err);

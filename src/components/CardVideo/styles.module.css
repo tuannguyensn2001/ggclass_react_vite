@@ -17,12 +17,13 @@
     overflow: hidden;
 }
 .background {
-    background-image: url('https://shub.edu.vn/images/illustrations/lesson-thumbnail/lesson_playlist.png');
+    /*background-image: url('https://shub.edu.vn/images/illustrations/lesson-thumbnail/lesson_playlist.png');*/
     height: 100%;
     width: 100%;
-    background-size: cover;
+    background-size: auto;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
+    object-fit: cover;
 }
 .name {
     background-color: rgba(10, 11, 13, 0.8);
@@ -44,7 +45,7 @@
     flex-direction: column;
     justify-content: center;
     box-sizing: border-box;
-    padding: 10px 20px;
+    /*padding: 10px 20px;*/
     height: 30%;
 }
 .header {

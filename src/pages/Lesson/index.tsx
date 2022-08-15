@@ -42,7 +42,7 @@ function Lesson() {
                     data={allFolder}
                     handleOpenModalAddFolder={handleOpenModalAddFolder}
                 />
-                <LesssonContent data={defaultData} />
+                <LesssonContent />
                 <SiderbarRightLesson />
             </div>
             <ModalAddFolder

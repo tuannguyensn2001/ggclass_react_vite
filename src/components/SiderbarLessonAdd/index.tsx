@@ -1,3 +1,4 @@
+// @ts-ignore
 import styles from './styles.module.css';
 
 function SiderbarLessonAdd() {
